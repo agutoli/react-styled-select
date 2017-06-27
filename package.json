@@ -17,6 +17,16 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "keywords": [
+    "javascript",
+    "react",
+    "styled-components",
+    "select",
+    "react-select",
+    "css-modules",
+    "shadow dom",
+    "component"
+  ],
   "nyc": {
     "branches": 95,
     "functions": 95,
