@@ -3,11 +3,11 @@ react-styled-select
 
 This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://raw.githubusercontent.com/JedWatson/react-select). But what the differences between [react-select](https://raw.githubusercontent.com/JedWatson/react-select) and this project?
 
-
-* It don`t force you to load any external css
-* Works with css-modules concept and not with global class names. Here has a good discussion about it ([here](https://github.com/oliviertassinari/a-journey-toward-better-style))
-
-https://github.com/oliviertassinari/a-journey-toward-better-style
+* Lightweight!
+* It don`t force you to load any external css.
+* Works with css-modules concept and not with global class names. Here has a good discussion about this problem ([here](https://github.com/oliviertassinari/a-journey-toward-better-style)).
+* [CSS Variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables): Very easy to customize for your need.
+* [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Shadow_DOM): If you has or had problems with input fields globally stylized you can "encapsulate" your component using this awesome feature.
 
 ## Installation
 
