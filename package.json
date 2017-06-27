@@ -8,12 +8,24 @@
     "dist": "dist"
   },
   "scripts": {
+    "coverage": "nyc npm test",
     "lint:css": "stylelint './src/**/*.js'",
     "build": "./tools/build",
-    "test": "mocha test/browser.js $(find ./src -name '*.spec.js')",
+    "test": "find ./src -name '*.spec.js' | NODE_ENV=test xargs mocha ./test/browser.js --reporter spec",
     "test:watch": "mocha -w test/browser.js $(find ./src -name '*.spec.js')",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
+  },
+  "nyc": {
+    "branches": 95,
+    "functions": 95,
+    "lines": 95,
+    "statements": 95,
+    "reporter": [
+      "lcov",
+      "text",
+      "text-summary"
+    ]
   },
   "author": "Bruno Agutoli <bruno.agutoli@gmail.com>",
   "license": "UNLICENSED",
@@ -32,6 +44,7 @@
     "eslint": "^3.19.0",
     "jsdom": "^9.11.0",
     "mocha": "^3.4.2",
+    "nyc": "^11.0.3",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.6.1",
