@@ -11,12 +11,14 @@ var options = [
 
 storiesOf('Select', module)
   .add('default', () => (
-    <Select
-      name="form-field-name"
-      options={options}
-      onOpen={action('onOpen')}
-      onChange={action('onChange')}
-      onInputClear={action('onInputClear')}
-      onValueClick={action('onValueClick')}
-    />
+    <div style={{width: '300px'}}>
+      <Select
+        name="form-field-name"
+        options={options}
+        onOpen={action('onOpen')}
+        onChange={action('onChange')}
+        onInputClear={action('onInputClear')}
+        onValueClick={action('onValueClick')}
+      />
+    </div>
   ))

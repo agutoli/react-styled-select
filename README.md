@@ -1,8 +1,6 @@
 react-styled-select
 ============
 
-This project was build with [styled-components](https://github.com/styled-components/styled-components) and is a  "rethink" of the awesome project [react-select](https://raw.githubusercontent.com/JedWatson/react-select).
-
 This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://raw.githubusercontent.com/JedWatson/react-select). But what the differences between [react-select](https://raw.githubusercontent.com/JedWatson/react-select) and this project?
 
 
