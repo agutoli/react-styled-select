@@ -1,0 +1,4 @@
+rm -rf lib
+babel --copy-files \
+  --plugins transform-es2015-modules-umd src/ \
+  --ignore *.storybook.js,*.spec.js  --out-dir ./lib --source-maps

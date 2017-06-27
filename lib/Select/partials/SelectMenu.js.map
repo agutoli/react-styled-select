@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/Select/partials/SelectMenu.js"],"names":["div"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;oBAEe,2BAAOA,G","file":"SelectMenu.js","sourcesContent":["import styled from 'styled-components'\n\nexport default styled.div`\n  box-sizing: border-box;\n  max-height: 198px;\n  overflow-y: auto;\n`\n"]}
