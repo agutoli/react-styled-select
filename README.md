@@ -76,7 +76,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 class MyForm extends React.Component {
   render() {
     return(){
-      <Select className="dark-theme" />
+      <Select className="dark-theme" options={[...]} />
     }
   }
 }
