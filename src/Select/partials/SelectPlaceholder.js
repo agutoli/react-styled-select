@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export default styled.div`
   bottom: 0;
   color: #aaa;
+  color: var(--styled-select-placeholder-color, #aaa);
   left: 0;
   line-height: 34px;
   padding-left: 10px;

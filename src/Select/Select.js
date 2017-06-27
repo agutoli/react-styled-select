@@ -219,10 +219,10 @@ class WrapperSelect extends React.PureComponent {
   }
 
   render () {
-    const { name, disabled } = this.props;
+    const { name, disabled, className } = this.props;
     const { value, isSelected } = this.state;
     return (
-      <Select data-select>
+      <Select data-select className={className}>
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
         <SelectControl data-select-control onMouseDown={this.onSelectFocused}>
           {this.renderSelectMultiValueWrapper()}

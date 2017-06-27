@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export default styled.input`
+  color: #333;
+  color: var(--styled-select-color, #333);
   box-sizing: content-box;
   background: none transparent;
   border: 0 none;
