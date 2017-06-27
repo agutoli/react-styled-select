@@ -14,6 +14,10 @@
   --styled-select-menu-outer-border-width: 3px;
 
   --styled-select-option-background-color: #444;
+
   --styled-select-option-focused-color: #eee;
   --styled-select-option-focused-background-color: #333;
+
+  --styled-select-option-selected-color: #eee;
+  --styled-select-option-selected-background-color: #444;
 }

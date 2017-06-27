@@ -7,6 +7,13 @@ const isFocused = () => (`
   background-color: var(--styled-select-option-focused-background-color, #eee);
 `)
 
+const isSelected = () => (`
+  color: #333;
+  color: var(--styled-select-option-selected-color, #333);
+  background-color: #ddd;
+  background-color: var(--styled-select-option-selected-background-color, #ddd);
+`)
+
 export default styled.div`
   box-sizing: border-box;
 
@@ -18,7 +25,7 @@ export default styled.div`
   display: block;
   padding: 8px 10px;
 
-  ${props => props.isSelected && 'background: #ddd;'}
+  ${props => props.isSelected && isSelected()}
   ${props => props.isFocused && isFocused()}
 
   &:hover {

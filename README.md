@@ -30,6 +30,19 @@ This project was built with [styled-components](https://github.com/styled-compon
       }
     }
 
+## Opptions
+
+| Property | Type | Description
+:---|:---|:---
+| `classes` | object | You can specify class for each element. Possible values: `selectArrow`, `selectArrowZone`, `selectClear`, `selectClearZone`, `selectControl`, `selectInput`, `selectInputField`, `selectMenu`, `selectMenuOuter`, `selectMultiValueWrapper`, `selectOption`, `selectPlaceholder`, `selectValue`, `selectValueLabel`
+| `className` | string | Root element className
+| `value` | any | If you want to specify a pre selected value
+| `options` | array | List of values. Ex. <br> `[{"label": "Foo", value: "foo"}]`
+|`onOpen`| function | It calls when open outer menu
+|`onChange`| function | It calls when change selected value
+|`onValueClick`| function | It calls when click over a option value
+|`onInputClear`|function| It calls when input is cleared
+
 ## Inspiration
 This project was based on [react-select](https://raw.githubusercontent.com/JedWatson/react-select).
 

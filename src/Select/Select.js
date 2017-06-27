@@ -146,30 +146,37 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMultiValueWrapper() {
-    const { placeholder } = this.props
+    const { placeholder, classes } = this.props
     const { value, isSelected, valueLabel, searchTerm } = this.state
 
     let content = '';
 
     if (value && !searchTerm) {
       content = (
-        <SelectValue data-select-value>
-          <SelectValueLabel data-select-value-label>{valueLabel}</SelectValueLabel>
+        <SelectValue className={classes.selectValue} data-select-value>
+          <SelectValueLabel
+            className={classes.selectValueLabel}
+            data-select-value-label>{valueLabel}</SelectValueLabel>
         </SelectValue>
       );
     }
 
     if (!value && !searchTerm) {
       content = (
-        <SelectPlaceholder data-select-placeholder>{placeholder}</SelectPlaceholder>
+        <SelectPlaceholder
+          className={classes.selectPlaceholder}
+          data-select-placeholder>{placeholder}</SelectPlaceholder>
       )
     }
 
     return (
-      <SelectMultiValueWrapper data-select-multi-value-wrapper>
+      <SelectMultiValueWrapper
+        className={classes.selectMultiValueWrapper}
+        data-select-multi-value-wrapper>
         {content}
-        <SelectInput data-select-input>
+        <SelectInput data-select-input className={classes.selectInput}>
           <SelectInputField
+            className={classes.selectInputField}
             data-select-input-search
             onKeyDown={this.onSearching}
             innerRef={(n) => this.inputInnerRef = n}
@@ -180,7 +187,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMenuOuter() {
-    const { onOpen } = this.props;
+    const { onOpen, classes } = this.props;
     const { value, isOpened, focusedIndex, options } = this.state;
 
     if (!isOpened) return;
@@ -188,10 +195,13 @@ class WrapperSelect extends React.PureComponent {
     onOpen()
 
     return (
-      <SelectMenuOuter data-select-menu-outer>
-        <SelectMenu data-select-menu>
+      <SelectMenuOuter
+        className={classes.selectMenuOuter}
+        data-select-menu-outer>
+        <SelectMenu className={classes.selectMenu} data-select-menu>
           {options.map((opt, i) => (
             <SelectOption
+              className={classes.selectOption}
               key={i}
               isSelected={value === opt.value}
               isFocused={focusedIndex === i}
@@ -207,28 +217,34 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectClearZone() {
-    const { clearable } = this.props;
+    const { clearable, classes } = this.props;
 
     if (!clearable) return;
 
     return (
-      <SelectClearZone data-select-clear-zone onMouseDown={this.onClearValue}>
-        <SelectClear data-select-clear>x</SelectClear>
+      <SelectClearZone
+        className={classes.selectClearZone}
+        data-select-clear-zone onMouseDown={this.onClearValue}>
+        <SelectClear
+          className={classes.selectClear} data-select-clear>x</SelectClear>
       </SelectClearZone>
     );
   }
 
   render () {
-    const { name, disabled, className } = this.props;
+    const { name, disabled, className, classes } = this.props;
     const { value, isSelected } = this.state;
     return (
       <Select data-select className={className}>
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
-        <SelectControl data-select-control onMouseDown={this.onSelectFocused}>
+        <SelectControl
+          className={classes.selectControl}
+          data-select-control onMouseDown={this.onSelectFocused}>
           {this.renderSelectMultiValueWrapper()}
           {this.renderSelectClearZone()}
-          <SelectArrowZone data-select-arrow-zone>
-            <SelectArrow data-select-arrow />
+          <SelectArrowZone
+            className={classes.selectArrowZone} data-select-arrow-zone>
+            <SelectArrow className={classes.selectArrow} data-select-arrow />
           </SelectArrowZone>
         </SelectControl>
         {this.renderSelectMenuOuter()}
@@ -245,7 +261,9 @@ WrapperSelect.propTypes = {
   onValueClick: PropTypes.func,
   onInputClear: PropTypes.func,
   clearable: PropTypes.bool,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  className: PropTypes.string,
+  classes: PropTypes.object
 }
 
 WrapperSelect.defaultProps = {
@@ -255,7 +273,23 @@ WrapperSelect.defaultProps = {
   onInputClear: () => {},
   clearable: true,
   options: [],
-  placeholder: 'Select...'
+  placeholder: 'Select...',
+  classes: {
+    selectArrow: '',
+    selectArrowZone: '',
+    selectClear: '',
+    selectClearZone: '',
+    selectControl: '',
+    selectInput: '',
+    selectInputField: '',
+    selectMenu: '',
+    selectMenuOuter: '',
+    selectMultiValueWrapper: '',
+    selectOption: '',
+    selectPlaceholder: '',
+    selectValue: '',
+    selectValueLabel: ''
+  }
 }
 
 export default enhanceWithClickOutside(WrapperSelect)
