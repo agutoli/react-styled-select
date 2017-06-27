@@ -62,43 +62,43 @@ This project was built with [styled-components](https://github.com/styled-compon
 
 * Your react file ex. `MyForm.jsx`
 
-
-    class MyForm extends React.Component {
-      render() {
-        return(){
-          <Select className="dark-theme" />
-        }
-      }
+```javascript
+class MyForm extends React.Component {
+  render() {
+    return(){
+      <Select className="dark-theme" />
     }
+  }
+}
+```
 
 * Your project CSS file ex. `mysite.css`
 
+```css
+.dark-theme {
+  --styled-select-placeholder-color: #999;
+  --styled-select-color: white;
+  --styled-select-background-color: #555;
+  --styled-select-border-color: black;
+  --styled-select-border-width: 3px;
+  --styled-select-border-radius: 5px;
 
-    .dark-theme {
-      --styled-select-placeholder-color: #999;
-      --styled-select-color: white;
-      --styled-select-background-color: #555;
-      --styled-select-border-color: black;
-      --styled-select-border-width: 3px;
-      --styled-select-border-radius: 5px;
+  --styled-select-menu-outer-margin: 10px 0 0 0;
+  --styled-select-menu-outer-padding: 0;
+  --styled-select-menu-outer-background-color: #555;
+  --styled-select-menu-outer-border-color: black;
+  --styled-select-menu-outer-border-style: solid;
+  --styled-select-menu-outer-border-width: 3px;
 
-      --styled-select-menu-outer-margin: 10px 0 0 0;
-      --styled-select-menu-outer-padding: 0;
-      --styled-select-menu-outer-background-color: #555;
-      --styled-select-menu-outer-border-color: black;
-      --styled-select-menu-outer-border-style: solid;
-      --styled-select-menu-outer-border-width: 3px;
+  --styled-select-option-background-color: #444;
 
-      --styled-select-option-background-color: #444;
+  --styled-select-option-focused-color: #eee;
+  --styled-select-option-focused-background-color: #333;
 
-      --styled-select-option-focused-color: #eee;
-      --styled-select-option-focused-background-color: #333;
-
-      --styled-select-option-selected-color: #eee;
-      --styled-select-option-selected-background-color: #444;
-    }
-
-
+  --styled-select-option-selected-color: #eee;
+  --styled-select-option-selected-background-color: #444;
+}
+```
 
 
 ## Inspiration
