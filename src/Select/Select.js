@@ -244,18 +244,19 @@ class WrapperSelect extends React.PureComponent {
 
   render () {
     const { name, disabled, className, classes } = this.props;
-    const { value, isSelected } = this.state;
+    const { value, isSelected, isOpened } = this.state;
     return (
       <Select data-select className={className}>
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
         <SelectControl
+          isOpened={isOpened}
           className={classes.selectControl}
           data-select-control onMouseDown={this.onSelectFocused}>
           {this.renderSelectMultiValueWrapper()}
           {this.renderSelectClearZone()}
           <SelectArrowZone
             className={classes.selectArrowZone} data-select-arrow-zone>
-            <SelectArrow className={classes.selectArrow} data-select-arrow />
+            <SelectArrow isOpened={isOpened} className={classes.selectArrow} data-select-arrow />
           </SelectArrowZone>
         </SelectControl>
         {this.renderSelectMenuOuter()}
@@ -282,7 +283,7 @@ WrapperSelect.defaultProps = {
   onChange: () => {},
   onValueClick: () => {},
   onInputClear: () => {},
-  clearable: true,
+  clearable: false,
   options: [],
   placeholder: 'Select...',
   classes: {

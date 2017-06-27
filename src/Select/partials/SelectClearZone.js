@@ -1,9 +1,10 @@
 import styled from 'styled-components'
+import defaults from '../defaults.js'
 
 export default styled.div`
   box-sizing: border-box;
-  animation: Select-animation-fadeIn 200ms;
-  color: #999;
+  color: ${defaults.clearZone__color};
+  color: var(--styled-select-clear-font-size, ${defaults.clearZone__color});
   cursor: pointer;
   display: table-cell;
   position: relative;

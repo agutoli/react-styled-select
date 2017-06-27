@@ -23,7 +23,7 @@ storiesOf('Select', module)
         />
       </div>
       <div style={{width: '300px'}}>
-        <Select
+        {/*<Select
           className="secondary"
           name="form-field-name"
           options={options}
@@ -31,7 +31,7 @@ storiesOf('Select', module)
           onChange={action('onChange')}
           onInputClear={action('onInputClear')}
           onValueClick={action('onValueClick')}
-        />
+        />*/}
       </div>
     </div>
   ))

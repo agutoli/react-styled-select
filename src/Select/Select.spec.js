@@ -98,7 +98,7 @@ describe('<Select />', () => {
   })
 
   it('should have clear button by default', () => {
-    const wrapper = mount(<Select />);
+    const wrapper = mount(<Select clearable={true} />);
     expect(wrapper.find('[data-select-clear-zone]').length).to.equal(1);
   })
 
@@ -110,7 +110,7 @@ describe('<Select />', () => {
 
   it('should clear field when click over clear zone', () => {
     const onValueClickSpy = sinon.spy()
-    const wrapper = mount(<Select options={options} value={2} />);
+    const wrapper = mount(<Select options={options} value={2} clearable={true} />);
     wrapper.find('[data-select-clear-zone]').at(0).simulate('mouseDown');
     expect(wrapper.find('[data-select-placeholder]').length).to.equal(1);
   })
