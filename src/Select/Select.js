@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import enhanceWithClickOutside from 'react-click-outside'
 
-const KEY_UP = 38
-const KEY_DOWN = 40
-const KEY_ENTER = 13
-const KEY_BACKSPACE = 8
-const KEY_ESC = 27
+import {
+  KEY_UP,
+  KEY_ESC,
+  KEY_DOWN,
+  KEY_ENTER,
+  KEY_BACKSPACE
+} from './constants'
 
 import Select from './partials/Select'
 import SelectMenu from './partials/SelectMenu'
@@ -55,6 +57,10 @@ class WrapperSelect extends React.PureComponent {
     this.inputInnerRef = null
   }
 
+  openOptions() {
+    this.setState({ isOpened: true });
+  }
+
   closeOptions() {
     this.setState({ isOpened: false });
   }
@@ -100,15 +106,15 @@ class WrapperSelect extends React.PureComponent {
   }
 
   onSelectFocused = () => {
+    this.openOptions();
     this.setState({
-      isOpened: true,
       isFocused: true
     })
     this.setFocus();
   }
 
   onSearching = (event) => {
-    const { focusedIndex, options } = this.state;
+    const { focusedIndex, options, isOpened } = this.state;
 
     setTimeout(() => {
       const filteredOptions = this.props.options.filter((opt) => {
@@ -131,6 +137,11 @@ class WrapperSelect extends React.PureComponent {
         })
         return;
       case KEY_DOWN:
+        if (!isOpened) {
+          this.openOptions();
+          return;
+        }
+
         this.setState({
           focusedIndex: (focusedIndex >= lastIndex ? 0 : (focusedIndex + 1))
         })

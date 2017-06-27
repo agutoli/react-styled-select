@@ -4,6 +4,14 @@ import { shallow, mount } from 'enzyme';
 
 import Select from './Select';
 
+import {
+  KEY_UP,
+  KEY_ESC,
+  KEY_DOWN,
+  KEY_ENTER,
+  KEY_BACKSPACE
+} from './constants'
+
 const typing = (input, value, opts, callback) => {
 
   const options = callback ? opts : {}
@@ -130,7 +138,7 @@ describe('<Select />', () => {
     typing(input, 'a', () => {
       typing(input, '', () => {
         expect(wrapper.find('[data-select-value-label]').length).to.equal(1);
-        typing(input, '', {keyCode: 8}, () => {
+        typing(input, '', {keyCode: KEY_BACKSPACE}, () => {
           expect(wrapper.find('[data-select-value-label]').length).to.equal(0);
           expect(wrapper.find('[data-select-placeholder]').length).to.equal(1);
           expect(onInputClearSpy).to.have.property('callCount', 1);
@@ -140,4 +148,14 @@ describe('<Select />', () => {
       });
     });
   })
+
+  it('should open outer menu when KEY_DOWN is pressed', (done) => {
+    const onOpenSpy = sinon.spy()
+    const wrapper = mount(<Select onOpen={onOpenSpy} options={options} value={2} />);
+    const input = wrapper.find('[data-select-input-search]').at(0)
+    typing(input, '', {keyCode: KEY_DOWN}, () => {
+      expect(wrapper.find('[data-select-menu-outer]').length).to.equal(1);
+      done()
+    });
+  });
 });
