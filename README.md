@@ -33,10 +33,20 @@ This project was built with [styled-components](https://github.com/styled-compon
           { label: "Two", value: 2},
         ]
         return (
-          <Select options={options} />
+          <Select
+            options={options}
+            onOpen={myOpenFunc}
+            onChange={myChangeFunc}
+            classes={{
+              selectValue: 'my-custom-value',
+              selectArrow: 'my-custom-arrow'
+            }}
+          />
         )
       }
     }
+
+
 
 ## Opptions
 
