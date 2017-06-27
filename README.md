@@ -3,8 +3,11 @@
 [![Build Status](https://travis-ci.org/agutoli/react-styled-select.svg?branch=master)](https://travis-ci.org/agutoli/react-styled-select)
 [![NPM](https://img.shields.io/npm/v/react-styled-select.svg)](https://www.npmjs.com/package/react-styled-select)
 
+
+
 react-styled-select
 ============
+### ATTENTION: Work in Progress (sorry about that!)
 
 This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://raw.githubusercontent.com/JedWatson/react-select). But what the differences between [react-select](https://raw.githubusercontent.com/JedWatson/react-select) and this project?
 
@@ -48,6 +51,55 @@ This project was built with [styled-components](https://github.com/styled-compon
 |`onChange`| function | It calls when change selected value
 |`onValueClick`| function | It calls when click over a option value
 |`onInputClear`|function| It calls when input is cleared
+
+## Custom appearance with CSS Variebles
+
+#### Default
+![](https://image.ibb.co/bC4i7k/Captura_de_Tela_2017_06_27_a_s_03_18_09.png)
+
+#### Customized
+![](https://image.ibb.co/bSei7k/Captura_de_Tela_2017_06_27_a_s_03_17_59.png)
+
+* Your react file ex. `MyForm.jsx`
+
+
+    class MyForm extends React.Component {
+      render() {
+        return(){
+          <Select className="dark-theme" />
+        }
+      }
+    }
+
+* Your project CSS file ex. `mysite.css`
+
+
+    .dark-theme {
+      --styled-select-placeholder-color: #999;
+      --styled-select-color: white;
+      --styled-select-background-color: #555;
+      --styled-select-border-color: black;
+      --styled-select-border-width: 3px;
+      --styled-select-border-radius: 5px;
+
+      --styled-select-menu-outer-margin: 10px 0 0 0;
+      --styled-select-menu-outer-padding: 0;
+      --styled-select-menu-outer-background-color: #555;
+      --styled-select-menu-outer-border-color: black;
+      --styled-select-menu-outer-border-style: solid;
+      --styled-select-menu-outer-border-width: 3px;
+
+      --styled-select-option-background-color: #444;
+
+      --styled-select-option-focused-color: #eee;
+      --styled-select-option-focused-background-color: #333;
+
+      --styled-select-option-selected-color: #eee;
+      --styled-select-option-selected-background-color: #444;
+    }
+
+
+
 
 ## Inspiration
 This project was based on [react-select](https://raw.githubusercontent.com/JedWatson/react-select).
