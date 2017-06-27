@@ -1,3 +1,6 @@
+
+[![Issues](https://img.shields.io/github/issues/agutoli/react-styled-select.svg)](https://github.com/agutoli/react-styled-select/issues) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://www.npmjs.com/package/react-styled-select)
+
 react-styled-select
 ============
 

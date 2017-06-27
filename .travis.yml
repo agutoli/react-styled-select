@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '6.10'
+cache:
+  npm: true
+  directories:
+  - node_modules/
+script: npm test
+after_script:
+- git config credential.helper "store --file=.git/credentials"
+- echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+- git config --global user.email "bruno.agutoli@gmail.com"
+- git config --global user.name "Travis CI"
+- rm -rf lib
+- npm run build
