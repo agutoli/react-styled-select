@@ -10,7 +10,8 @@
   "scripts": {
     "lint:css": "stylelint './src/**/*.js'",
     "build": "./tools/build",
-    "test": "mocha -w test/browser.js $(find ./src -name '*.spec.js')",
+    "test": "mocha test/browser.js $(find ./src -name '*.spec.js')",
+    "test:watch": "mocha -w test/browser.js $(find ./src -name '*.spec.js')",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
