@@ -1,0 +1,2 @@
+rm -rf demo/demo.bundle.js
+webpack --config demo/webpack.config.js
