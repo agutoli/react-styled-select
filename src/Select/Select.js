@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import enhanceWithClickOutside from 'react-click-outside'
+import uuid from 'uuid';
 
 import {
   KEY_UP,
@@ -51,7 +52,8 @@ class WrapperSelect extends React.PureComponent {
       valueLabel,
       searchTerm: null,
       focusedIndex: 0,
-      options: props.options
+      options: props.options,
+      'aria-owns': this.props['aria-owns'] || uuid.v4()
     }
 
     this.inputInnerRef = null
@@ -158,7 +160,7 @@ class WrapperSelect extends React.PureComponent {
 
   renderSelectMultiValueWrapper() {
     const { placeholder, classes } = this.props
-    const { value, isSelected, valueLabel, searchTerm } = this.state
+    const { value, isOpened, isSelected, valueLabel, searchTerm } = this.state
 
     let content = '';
 
@@ -191,6 +193,9 @@ class WrapperSelect extends React.PureComponent {
             data-select-input-search
             onKeyDown={this.onSearching}
             innerRef={(n) => this.inputInnerRef = n}
+            aria-expanded={isOpened}
+            aria-autocomplete="list"
+            aria-owns={this.state['aria-owns']}
             role="combobox" type="text" />
         </SelectInput>
       </SelectMultiValueWrapper>
@@ -209,12 +214,16 @@ class WrapperSelect extends React.PureComponent {
       <SelectMenuOuter
         className={classes.selectMenuOuter}
         data-select-menu-outer>
-        <SelectMenu className={classes.selectMenu} data-select-menu>
+        <SelectMenu
+          role="listbox"
+          id={this.state['aria-owns']}
+          className={classes.selectMenu} data-select-menu>
           {options.map((opt, i) => (
             <SelectOption
               className={classes.selectOption}
               key={i}
               isSelected={value === opt.value}
+              aria-selected={value === opt.value}
               isFocused={focusedIndex === i}
               role="option"
               data-select-option={opt.value}
@@ -250,6 +259,7 @@ class WrapperSelect extends React.PureComponent {
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
         <SelectControl
           isOpened={isOpened}
+          aria-haspopup={isOpened}
           className={classes.selectControl}
           data-select-control onMouseDown={this.onSelectFocused}>
           {this.renderSelectMultiValueWrapper()}

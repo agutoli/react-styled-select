@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 
-import Select from './Select'
+import Select from './ShadowDOM'
 
 var options = [
   { value: 'one', label: 'One' },
@@ -23,7 +23,7 @@ storiesOf('Select', module)
         />
       </div>
       <div style={{width: '300px'}}>
-        {/*<Select
+        <Select
           className="secondary"
           name="form-field-name"
           options={options}
@@ -31,7 +31,7 @@ storiesOf('Select', module)
           onChange={action('onChange')}
           onInputClear={action('onInputClear')}
           onValueClick={action('onValueClick')}
-        />*/}
+        />
       </div>
     </div>
   ))
