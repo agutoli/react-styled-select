@@ -1,7 +1,8 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 
-import Select from './ShadowDOM'
+import Select from './Select'
+import SelectShadowDOM from './ShadowDOM'
 
 var options = [
   { value: 'one', label: 'One' },
@@ -23,7 +24,7 @@ storiesOf('Select', module)
         />
       </div>
       <div style={{width: '300px'}}>
-        <Select
+        <SelectShadowDOM
           className="secondary"
           name="form-field-name"
           options={options}

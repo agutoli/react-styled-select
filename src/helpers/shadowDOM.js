@@ -10,13 +10,10 @@ export default (element) => {
       }
     }
 
-    applyStylesheet = (node) => {
-      const { generatedClassName } = node.state
-      const style = document.querySelector(`[data-styled-components*="${generatedClassName}"]`)
-      if (!style) {
-        return;
-      }
-      this.styleTag.innerHTML = style.innerHTML;
+    applyStylesheet = (classNameID) => {
+      const style = document.querySelector(`[data-styled-components*=${classNameID}]`);
+      if (!style) return;
+      this.styleTag.appendChild(style.cloneNode(true));
     }
 
     render() {
@@ -24,8 +21,8 @@ export default (element) => {
       return (
         <ShadowDOM>
           <span>
-            <style ref={(n) => this.styleTag = n} />
-            {React.createElement(element, {...this.props, ref: this.applyStylesheet})}
+            <span ref={(n) => this.styleTag = n} />
+            {React.createElement(element, {...this.props, generatedClassName: this.applyStylesheet})}
           </span>
         </ShadowDOM>
       )

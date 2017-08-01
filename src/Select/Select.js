@@ -65,6 +65,7 @@ class WrapperSelect extends React.PureComponent {
 
   closeOptions() {
     this.setState({ isOpened: false });
+    this.props.onClose();
   }
 
   setFocus() {
@@ -74,8 +75,12 @@ class WrapperSelect extends React.PureComponent {
   }
 
   // react-click-outside callback
-  handleClickOutside() {
-    this.closeOptions()
+  handleClickOutside(event){
+    if (event.target.tagName === 'HTML') {
+      if (this.state.isOpened) {
+        this.closeOptions()
+      }
+    }
   }
 
   resetField() {
@@ -251,11 +256,16 @@ class WrapperSelect extends React.PureComponent {
     );
   }
 
+  componentDidUpdate() {
+    this.props.generatedClassName(this.selectNode.state.generatedClassName);
+  }
+
   render () {
     const { name, disabled, className, classes } = this.props;
     const { value, isSelected, isOpened } = this.state;
     return (
-      <Select data-select className={className}>
+      <Select data-select className={className}
+        ref={(node) => this.selectNode = node} innerRef={(node) => this.selectInnerRef = node}>
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
         <SelectControl
           isOpened={isOpened}
@@ -278,6 +288,7 @@ class WrapperSelect extends React.PureComponent {
 WrapperSelect.propTypes = {
   value: PropTypes.any,
   options: PropTypes.array,
+  onClose: PropTypes.func,
   onOpen: PropTypes.func,
   onChange: PropTypes.func,
   onValueClick: PropTypes.func,
@@ -285,10 +296,12 @@ WrapperSelect.propTypes = {
   clearable: PropTypes.bool,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  generatedClassName: PropTypes.func
 }
 
 WrapperSelect.defaultProps = {
+  onClose: () => {},
   onOpen: () => {},
   onChange: () => {},
   onValueClick: () => {},
@@ -311,7 +324,8 @@ WrapperSelect.defaultProps = {
     selectPlaceholder: '',
     selectValue: '',
     selectValueLabel: ''
-  }
+  },
+  generatedClassName: () => {}
 }
 
 export default enhanceWithClickOutside(WrapperSelect)
