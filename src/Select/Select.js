@@ -76,7 +76,7 @@ class WrapperSelect extends React.PureComponent {
 
   // react-click-outside callback
   handleClickOutside(event){
-    if (event.target.tagName === 'HTML') {
+    if (event.target.tagName === 'HTML' || event.target.tagName === 'DIV') {
       if (this.state.isOpened) {
         this.closeOptions()
       }
