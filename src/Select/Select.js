@@ -198,8 +198,8 @@ class WrapperSelect extends React.PureComponent {
             data-select-input-search
             onKeyDown={this.onSearching}
             innerRef={(n) => this.inputInnerRef = n}
+            aria-label={placeholder}
             aria-expanded={isOpened}
-            aria-autocomplete="list"
             aria-owns={this.state['aria-owns']}
             role="combobox" type="text" />
         </SelectInput>
@@ -211,24 +211,32 @@ class WrapperSelect extends React.PureComponent {
     const { onOpen, classes } = this.props;
     const { value, isOpened, focusedIndex, options } = this.state;
 
-    if (!isOpened) return;
+    if (!isOpened) {
+      return (
+        <div aria-hidden="true" id={this.state['aria-owns']} role="listbox">
+          <div role="option" tabIndex="-1" />
+        </div>
+      );
+    }
 
     onOpen()
 
     return (
       <SelectMenuOuter
+
         className={classes.selectMenuOuter}
         data-select-menu-outer>
         <SelectMenu
           role="listbox"
-          id={this.state['aria-owns']}
           className={classes.selectMenu} data-select-menu>
           {options.map((opt, i) => (
             <SelectOption
+              id={this.state['aria-owns']}
               className={classes.selectOption}
               key={i}
               isSelected={value === opt.value}
               aria-selected={value === opt.value}
+              tabIndex={value === opt.value ? '0' : '-1'}
               isFocused={focusedIndex === i}
               role="option"
               data-select-option={opt.value}

@@ -13,6 +13,8 @@ export default (element) => {
     applyStylesheet = (classNameID) => {
       const style = document.querySelector(`[data-styled-components*=${classNameID}]`);
       if (!style) return;
+
+      this.styleTag.innerHTML = '';
       this.styleTag.appendChild(style.cloneNode(true));
     }
 

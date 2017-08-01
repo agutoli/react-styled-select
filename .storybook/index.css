@@ -1,6 +1,7 @@
 
 input {
   background: red !important;
+  padding: 20px !important;
 }
 
 .secondary {

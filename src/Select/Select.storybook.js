@@ -13,16 +13,6 @@ var options = [
 storiesOf('Select', module)
   .add('default', () => (
     <div style={{display: 'flex', margin: '20px'}}>
-      <div className="primary" style={{width: '300px', margin: '0 20px'}}>
-        <Select
-          name="form-field-name"
-          options={options}
-          onOpen={action('onOpen')}
-          onChange={action('onChange')}
-          onInputClear={action('onInputClear')}
-          onValueClick={action('onValueClick')}
-        />
-      </div>
       <div style={{width: '300px'}}>
         <SelectShadowDOM
           className="secondary"

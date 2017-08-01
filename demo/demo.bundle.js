@@ -25087,8 +25087,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           innerRef: function innerRef(n) {
             return _this4.inputInnerRef = n;
           },
+          'aria-label': placeholder,
           'aria-expanded': isOpened,
-          'aria-autocomplete': 'list',
           'aria-owns': this.state['aria-owns'],
           role: 'combobox', type: 'text' })));
       }
@@ -25106,21 +25106,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             focusedIndex = _state2.focusedIndex,
             options = _state2.options;
 
-        if (!isOpened) return;
+        if (!isOpened) {
+          return _react2.default.createElement('div', { 'aria-hidden': 'true', id: this.state['aria-owns'], role: 'listbox' }, _react2.default.createElement('div', { role: 'option', tabIndex: '-1' }));
+        }
 
         onOpen();
 
         return _react2.default.createElement(_SelectMenuOuter2.default, {
+
           className: classes.selectMenuOuter,
           'data-select-menu-outer': true }, _react2.default.createElement(_SelectMenu2.default, {
           role: 'listbox',
-          id: this.state['aria-owns'],
           className: classes.selectMenu, 'data-select-menu': true }, options.map(function (opt, i) {
           return _react2.default.createElement(_SelectOption2.default, {
+            id: _this5.state['aria-owns'],
             className: classes.selectOption,
             key: i,
             isSelected: value === opt.value,
             'aria-selected': value === opt.value,
+            tabIndex: value === opt.value ? '0' : '-1',
             isFocused: focusedIndex === i,
             role: 'option',
             'data-select-option': opt.value,
