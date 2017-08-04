@@ -19,4 +19,7 @@ export default {
 
   control__borderColor: '#dcdce3',
   control__focused__borderColor: '#40a3f5',
+
+  no__results__color: '#999999',
+  no__results__padding: '8px 10px'
 }
