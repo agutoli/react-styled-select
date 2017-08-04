@@ -12,7 +12,6 @@ export default (element) => {
 
     applyStylesheet = (classNameID) => {
       const style = document.querySelector(`[data-styled-components*=${classNameID}]`);
-      console.log(style, classNameID)
       if (!style) return;
 
       this.styleTag.innerHTML = '';
