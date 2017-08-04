@@ -21,6 +21,7 @@ import SelectInput from './partials/SelectInput'
 import SelectInputField from './partials/SelectInputField'
 import SelectOption from './partials/SelectOption'
 import SelectControl from './partials/SelectControl'
+import SelectNoResults from './partials/SelectNoResults'
 import SelectClearZone from './partials/SelectClearZone'
 import SelectArrowZone from './partials/SelectArrowZone'
 import SelectValueLabel from './partials/SelectValueLabel'
@@ -208,7 +209,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMenuOuter() {
-    const { onOpen, classes } = this.props;
+    const { onOpen, classes, noResultsText } = this.props;
     const { value, isOpened, focusedIndex, options } = this.state;
 
     if (!isOpened) {
@@ -221,29 +222,33 @@ class WrapperSelect extends React.PureComponent {
 
     onOpen()
 
+    let selectOptions = <SelectNoResults>{noResultsText}</SelectNoResults>;
+
+    if (options.length > 0) {
+      selectOptions = options.map((opt, i) => (
+        <SelectOption
+          id={this.state['aria-owns']}
+          className={classes.selectOption}
+          key={i}
+          isSelected={value === opt.value}
+          aria-selected={value === opt.value}
+          tabIndex={value === opt.value ? '0' : '-1'}
+          isFocused={focusedIndex === i}
+          role="option"
+          data-select-option={opt.value}
+          onMouseDown={(e) => this.onSelectValue(opt.value, e)}>
+          {opt.label}
+        </SelectOption>
+      ));
+    }
     return (
       <SelectMenuOuter
-
         className={classes.selectMenuOuter}
         data-select-menu-outer>
         <SelectMenu
           role="listbox"
           className={classes.selectMenu} data-select-menu>
-          {options.map((opt, i) => (
-            <SelectOption
-              id={this.state['aria-owns']}
-              className={classes.selectOption}
-              key={i}
-              isSelected={value === opt.value}
-              aria-selected={value === opt.value}
-              tabIndex={value === opt.value ? '0' : '-1'}
-              isFocused={focusedIndex === i}
-              role="option"
-              data-select-option={opt.value}
-              onMouseDown={(e) => this.onSelectValue(opt.value, e)}>
-              {opt.label}
-            </SelectOption>
-          ))}
+          {selectOptions}
         </SelectMenu>
       </SelectMenuOuter>
     )
@@ -309,6 +314,10 @@ WrapperSelect.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   classes: PropTypes.object,
+  noResultsText: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   generatedClassName: PropTypes.func
 }
 
@@ -321,6 +330,7 @@ WrapperSelect.defaultProps = {
   clearable: false,
   options: [],
   placeholder: 'Select...',
+  noResultsText: 'No results found',
   classes: {
     selectArrow: '',
     selectArrowZone: '',
