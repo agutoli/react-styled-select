@@ -1,6 +1,6 @@
 {
   "name": "react-styled-select",
-  "version": "0.0.8-alpha",
+  "version": "0.0.9-alpha",
   "description": "",
   "main": "lib/index.js",
   "repository": "https://github.com/agutoli/react-styled-select.git",

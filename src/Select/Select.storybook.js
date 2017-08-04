@@ -26,3 +26,18 @@ storiesOf('Select', module)
       </div>
     </div>
   ))
+  .add('no results', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <SelectShadowDOM
+          className="secondary"
+          name="form-field-name"
+          options={[]}
+          onOpen={action('onOpen')}
+          onChange={action('onChange')}
+          onInputClear={action('onInputClear')}
+          onValueClick={action('onValueClick')}
+        />
+      </div>
+    </div>
+  ))

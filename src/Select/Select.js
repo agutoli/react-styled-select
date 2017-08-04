@@ -264,6 +264,10 @@ class WrapperSelect extends React.PureComponent {
     );
   }
 
+  componentDidMount() {
+    this.props.generatedClassName(this.selectNode.state.generatedClassName);
+  }
+
   componentDidUpdate() {
     this.props.generatedClassName(this.selectNode.state.generatedClassName);
   }
