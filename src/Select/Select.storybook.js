@@ -41,3 +41,22 @@ storiesOf('Select', module)
       </div>
     </div>
   ))
+  .add('valueRenderer', () => {
+    const customValueRenderer = (option) => {
+      return (
+        <span>{option.value} - {option.label}</span>
+      );
+    }
+    return (
+      <div style={{display: 'flex', margin: '20px'}}>
+        <div style={{width: '300px'}}>
+          <SelectShadowDOM
+            className="secondary"
+            name="form-field-name"
+            options={options}
+            valueRenderer={customValueRenderer}
+          />
+        </div>
+      </div>
+    )
+  })
