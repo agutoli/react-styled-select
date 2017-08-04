@@ -24,10 +24,11 @@ import SelectControl from './partials/SelectControl'
 import SelectNoResults from './partials/SelectNoResults'
 import SelectClearZone from './partials/SelectClearZone'
 import SelectArrowZone from './partials/SelectArrowZone'
-import SelectValueLabel from './partials/SelectValueLabel'
 import SelectMenuOuter from './partials/SelectMenuOuter'
 import SelectPlaceholder from './partials/SelectPlaceholder'
 import SelectMultiValueWrapper from './partials/SelectMultiValueWrapper'
+
+import ValueRenderer from './renderers/ValueRenderer'
 
 import stringifyValue from './functions/stringifyValue'
 
@@ -165,7 +166,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMultiValueWrapper() {
-    const { placeholder, classes } = this.props
+    const { placeholder, classes, valueRenderer } = this.props
     const { value, isOpened, isSelected, valueLabel, searchTerm } = this.state
 
     let content = '';
@@ -173,9 +174,7 @@ class WrapperSelect extends React.PureComponent {
     if (value && !searchTerm) {
       content = (
         <SelectValue className={classes.selectValue} data-select-value>
-          <SelectValueLabel
-            className={classes.selectValueLabel}
-            data-select-value-label>{valueLabel}</SelectValueLabel>
+          {valueRenderer({ value, label: valueLabel }, classes.selectValueLabel)}
         </SelectValue>
       );
     }
@@ -347,6 +346,7 @@ WrapperSelect.defaultProps = {
     selectValue: '',
     selectValueLabel: ''
   },
+  valueRenderer: ValueRenderer,
   generatedClassName: () => {}
 }
 
