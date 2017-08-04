@@ -65,6 +65,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 |`onChange`| function | It calls when change selected value
 |`onValueClick`| function | It calls when click over a option value
 |`onInputClear`|function| It calls when input is cleared
+|`valueRenderer`|function| function which returns a custom way to render the value selected function (option) {}
 
 ## Custom appearance with CSS Variebles
 
