@@ -19,7 +19,6 @@ import SelectClear from './partials/SelectClear'
 import SelectArrow from './partials/SelectArrow'
 import SelectInput from './partials/SelectInput'
 import SelectInputField from './partials/SelectInputField'
-import SelectOption from './partials/SelectOption'
 import SelectControl from './partials/SelectControl'
 import SelectNoResults from './partials/SelectNoResults'
 import SelectClearZone from './partials/SelectClearZone'
@@ -29,6 +28,7 @@ import SelectPlaceholder from './partials/SelectPlaceholder'
 import SelectMultiValueWrapper from './partials/SelectMultiValueWrapper'
 
 import ValueRenderer from './renderers/ValueRenderer'
+import OptionRenderer from './renderers/OptionRenderer'
 
 import stringifyValue from './functions/stringifyValue'
 
@@ -208,7 +208,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMenuOuter() {
-    const { onOpen, classes, noResultsText } = this.props;
+    const { onOpen, classes, noResultsText, optionRenderer } = this.props;
     const { value, isOpened, focusedIndex, options } = this.state;
 
     if (!isOpened) {
@@ -224,21 +224,19 @@ class WrapperSelect extends React.PureComponent {
     let selectOptions = <SelectNoResults>{noResultsText}</SelectNoResults>;
 
     if (options.length > 0) {
-      selectOptions = options.map((opt, i) => (
-        <SelectOption
-          id={this.state['aria-owns']}
-          className={classes.selectOption}
-          key={i}
-          isSelected={value === opt.value}
-          aria-selected={value === opt.value}
-          tabIndex={value === opt.value ? '0' : '-1'}
-          isFocused={focusedIndex === i}
-          role="option"
-          data-select-option={opt.value}
-          onMouseDown={(e) => this.onSelectValue(opt.value, e)}>
-          {opt.label}
-        </SelectOption>
-      ));
+      selectOptions = options.map((opt, i) => {
+        const isSelected = value === opt.value;
+        const isFocused = focusedIndex === i;
+        return optionRenderer(Object.assign({
+          key: i,
+          isSelected,
+          id: this.state['aria-owns'],
+          className: classes.selectOption,
+          isFocused: focusedIndex === i,
+          tabIndex: value === opt.value ? '0' : '-1',
+          onMouseDown: (e) => this.onSelectValue(opt.value, e)
+        }, opt), i);
+      });
     }
     return (
       <SelectMenuOuter
@@ -347,6 +345,7 @@ WrapperSelect.defaultProps = {
     selectValueLabel: ''
   },
   valueRenderer: ValueRenderer,
+  optionRenderer: OptionRenderer,
   generatedClassName: () => {}
 }
 

@@ -60,3 +60,21 @@ storiesOf('Select', module)
       </div>
     )
   })
+  .add('optionRenderer', () => {
+    const customOptionRenderer = (option) => {
+      return (
+        <li onMouseDown={option.onMouseDown}
+          style={{border: '1px solid red'}}>Custom Item: {option.label}</li>
+      );
+    }
+    return (
+      <div style={{display: 'flex', margin: '20px'}}>
+        <div style={{width: '300px'}}>
+          <SelectShadowDOM
+            options={options}
+            optionRenderer={customOptionRenderer}
+          />
+        </div>
+      </div>
+    )
+  })
