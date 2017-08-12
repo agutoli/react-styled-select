@@ -105,8 +105,10 @@ class WrapperSelect extends React.PureComponent {
     if (value != newValue) {
       this.setState({
         value: newValue,
-        valueLabel: label
+        valueLabel: label,
+        searchTerm: null
       }, () => {
+        this.inputInnerRef.value = ''
         this.props.onChange(newValue);
       })
     }
