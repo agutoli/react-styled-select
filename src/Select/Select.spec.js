@@ -115,6 +115,7 @@ describe('<Select />', () => {
     expect(wrapper.find('[data-select-placeholder]').length).to.equal(1);
   })
 
+
   it('should hidden placeholder when sarching', (done) => {
     const wrapper = mount(<Select />);
     const input = wrapper.find('[data-select-input-search]').at(0)
@@ -158,4 +159,31 @@ describe('<Select />', () => {
       done()
     });
   });
+
+  it('should render a custom value renderer', () => {
+    const valueRenderer = () => {
+      return (<div className="my-value" />);
+    }
+
+    const wrapper = mount(
+      <Select options={options} valueRenderer={valueRenderer} />
+    );
+
+    wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
+    wrapper.find('[data-select-option]').at(0).simulate('mouseDown');
+    expect(wrapper.find('.my-value')).to.have.property('length', 1);
+  })
+
+  it('should render a custom option renderer', () => {
+    const optionRenderer = () => {
+      return (<div className="my-option" />);
+    }
+
+    const wrapper = mount(
+      <Select options={options} optionRenderer={optionRenderer} />
+    );
+
+    wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
+    expect(wrapper.find('.my-option')).to.have.property('length', 2);
+  })
 });
