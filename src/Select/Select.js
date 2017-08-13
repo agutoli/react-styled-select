@@ -127,43 +127,53 @@ class WrapperSelect extends React.PureComponent {
   onSearching = (event) => {
     const { focusedIndex, options, isOpened } = this.state;
 
-    setTimeout(() => {
+    const typing = () => {
       const filteredOptions = this.props.options.filter((opt) => {
         const label = opt.label.toLowerCase()
         const term = this.inputInnerRef.value.toLowerCase()
         return label.indexOf(term) !== -1
       });
-      this.setState({ searchTerm: this.inputInnerRef.value, options: filteredOptions })
-    }, 1)
+
+      this.setState({
+        searchTerm: this.inputInnerRef.value,
+        options: filteredOptions,
+        isOpened: true
+      })
+    }
 
     const lastIndex = (options.length - 1)
     switch (event.keyCode) {
       case KEY_BACKSPACE: // backspace
         if (!this.inputInnerRef.value) {
           this.resetField()
+          break;
         }
+        setTimeout(typing, 1);
+        break;
       case KEY_UP:
         this.setState({
           focusedIndex: (focusedIndex <= 0 ? lastIndex : (focusedIndex - 1))
         })
-        return;
+        break;
       case KEY_DOWN:
         if (!isOpened) {
           this.openOptions();
-          return;
+          break;
         }
-
         this.setState({
           focusedIndex: (focusedIndex >= lastIndex ? 0 : (focusedIndex + 1))
         })
-        return;
+        break;
       case KEY_ENTER:
-        if (!options.length) return;
+        if (!options.length) break;
         const newValue = options[focusedIndex].value
         this.onSelectValue(newValue, event)
-        return;
+        break;
       case KEY_ESC:
         this.closeOptions()
+        break;
+      default:
+        setTimeout(typing, 1);
     }
   }
 

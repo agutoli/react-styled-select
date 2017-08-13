@@ -13364,14 +13364,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             options = _this$state.options,
             isOpened = _this$state.isOpened;
 
-        setTimeout(function () {
+        var typing = function typing() {
           var filteredOptions = _this.props.options.filter(function (opt) {
             var label = opt.label.toLowerCase();
             var term = _this.inputInnerRef.value.toLowerCase();
             return label.indexOf(term) !== -1;
           });
-          _this.setState({ searchTerm: _this.inputInnerRef.value, options: filteredOptions });
-        }, 1);
+
+          _this.setState({
+            searchTerm: _this.inputInnerRef.value,
+            options: filteredOptions,
+            isOpened: true
+          });
+        };
 
         var lastIndex = options.length - 1;
         switch (event.keyCode) {
@@ -13379,29 +13384,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             // backspace
             if (!_this.inputInnerRef.value) {
               _this.resetField();
+              break;
             }
+            setTimeout(typing, 1);
+            break;
           case _constants.KEY_UP:
             _this.setState({
               focusedIndex: focusedIndex <= 0 ? lastIndex : focusedIndex - 1
             });
-            return;
+            break;
           case _constants.KEY_DOWN:
             if (!isOpened) {
               _this.openOptions();
-              return;
+              break;
             }
-
             _this.setState({
               focusedIndex: focusedIndex >= lastIndex ? 0 : focusedIndex + 1
             });
-            return;
+            break;
           case _constants.KEY_ENTER:
-            if (!options.length) return;
+            if (!options.length) break;
             var newValue = options[focusedIndex].value;
             _this.onSelectValue(newValue, event);
-            return;
+            break;
           case _constants.KEY_ESC:
             _this.closeOptions();
+            break;
+          default:
+            setTimeout(typing, 1);
         }
       };
 

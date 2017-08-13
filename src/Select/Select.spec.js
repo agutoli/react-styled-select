@@ -72,7 +72,7 @@ describe('<Select />', () => {
     const onValueClickSpy = sinon.spy()
     const wrapper = mount(<Select onValueClick={onValueClickSpy} />);
     wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
-    document.body.click()// Click outside
+    document.querySelector('html').click()// Click outside
     expect(wrapper.find('[data-select-menu-outer]').length).to.equal(0);
   })
 
