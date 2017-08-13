@@ -175,8 +175,8 @@ describe('<Select />', () => {
   })
 
   it('should render a custom option renderer', () => {
-    const optionRenderer = () => {
-      return (<div className="my-option" />);
+    const optionRenderer = (opt, index) => {
+      return (<div className="my-option" key={index} />);
     }
 
     const wrapper = mount(
