@@ -8,6 +8,7 @@
     "dist": "dist"
   },
   "scripts": {
+    "build:demo": "./tools/build-demo", 
     "show-css-variables": "node bin/extract-css-variables.js",
     "coverage": "nyc npm test",
     "lint:css": "stylelint './src/**/*.js'",

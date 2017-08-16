@@ -13475,7 +13475,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       value: function resetField() {
         var _this3 = this;
 
-        this.setState({ value: null, searchTerm: null }, function () {
+        this.setState({
+          value: null,
+          searchTerm: null,
+          options: this.props.options
+        }, function () {
           _this3.closeOptions();
           _this3.inputInnerRef.value = '';
           _this3.props.onInputClear();
@@ -13488,6 +13492,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         var _props = this.props,
             placeholder = _props.placeholder,
+            searchable = _props.searchable,
             classes = _props.classes,
             valueRenderer = _props.valueRenderer;
         var _state = this.state,
@@ -13507,6 +13512,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           content = _react2.default.createElement(_SelectPlaceholder2.default, {
             className: classes.selectPlaceholder,
             'data-select-placeholder': true }, placeholder);
+        }
+
+        if (!searchable) {
+          return _react2.default.createElement(_SelectMultiValueWrapper2.default, {
+            className: classes.selectMultiValueWrapper,
+            'data-select-multi-value-wrapper': true }, content);
         }
 
         return _react2.default.createElement(_SelectMultiValueWrapper2.default, {
@@ -13649,6 +13660,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onValueClick: function onValueClick() {},
     onInputClear: function onInputClear() {},
     clearable: false,
+    searchable: true,
     options: [],
     placeholder: 'Select...',
     noResultsText: 'No results found',

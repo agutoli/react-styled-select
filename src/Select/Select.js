@@ -86,7 +86,11 @@ class WrapperSelect extends React.PureComponent {
   }
 
   resetField() {
-    this.setState({ value: null, searchTerm: null }, () => {
+    this.setState({
+      value: null,
+      searchTerm: null,
+      options: this.props.options,
+    }, () => {
       this.closeOptions()
       this.inputInnerRef.value = ''
       this.props.onInputClear()
@@ -178,7 +182,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMultiValueWrapper() {
-    const { placeholder, classes, valueRenderer } = this.props
+    const { placeholder, searchable, classes, valueRenderer } = this.props
     const { value, isOpened, isSelected, valueLabel, searchTerm } = this.state
 
     let content = '';
@@ -198,6 +202,17 @@ class WrapperSelect extends React.PureComponent {
           data-select-placeholder>{placeholder}</SelectPlaceholder>
       )
     }
+
+    if (!searchable) {
+      return (
+        <SelectMultiValueWrapper
+        className={classes.selectMultiValueWrapper}
+        data-select-multi-value-wrapper>
+          {content}
+        </SelectMultiValueWrapper>
+      );
+    }
+
 
     return (
       <SelectMultiValueWrapper
@@ -337,6 +352,7 @@ WrapperSelect.defaultProps = {
   onValueClick: () => {},
   onInputClear: () => {},
   clearable: false,
+  searchable: true,
   options: [],
   placeholder: 'Select...',
   noResultsText: 'No results found',

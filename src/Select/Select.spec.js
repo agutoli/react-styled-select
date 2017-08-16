@@ -83,6 +83,12 @@ describe('<Select />', () => {
     expect(wrapper.find('[data-select-menu-outer]').length).to.equal(0);
   })
 
+  it('should search disabled when searchable=false', () => {
+    const wrapper = mount(<Select options={options} searchable={false} />);
+    wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
+    expect(wrapper.find('[data-select-input]').length).to.equal(0);
+  })
+
   it('should change field value when click over a option', () => {
     const wrapper = mount(<Select options={options} />);
     wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
@@ -102,7 +108,7 @@ describe('<Select />', () => {
     expect(wrapper.find('[data-select-clear-zone]').length).to.equal(1);
   })
 
-  it('should hidden clear button when disabled', () => {
+  it('should hidden clear button when clearable=false', () => {
     const onValueClickSpy = sinon.spy()
     const wrapper = mount(<Select clearable={false} />);
     expect(wrapper.find('[data-select-clear-zone]').length).to.equal(0);

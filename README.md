@@ -57,6 +57,8 @@ This project was built with [styled-components](https://github.com/styled-compon
 | Property | Type | Description
 :---|:---|:---
 | `classes` | object | You can specify `className` for each element. Possible values: `selectArrow`, `selectArrowZone`, `selectClear`, `selectClearZone`, `selectControl`, `selectInput`, `selectInputField`, `selectMenu`, `selectMenuOuter`, `selectMultiValueWrapper`, `selectOption`, `selectPlaceholder`, `selectValue`, `selectValueLabel`
+|`clearable` |bool| should it be possible to reset value `default=false`
+|`searchable`|bool| whether to enable searching feature or not `default=true`
 |`placeholder`|string| The short hint is displayed in the input field before the user enters a value
 | `className` | string | Root element className
 | `value` | any | If you want to specify a pre selected value
