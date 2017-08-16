@@ -121,19 +121,25 @@ class MyForm extends React.Component {
 ## Available CSS variables
 
 <pre>
---styled-<b>select-arrow</b>-color
---styled-<b>select-arrow</b>-font-family
+
+--styled-<b>select-</b>color
 --styled-<b>select</b>-background-color
 --styled-<b>select</b>-border-radius
 --styled-<b>select</b>-border-style
 --styled-<b>select</b>-border-width
+
+--styled-<b>select-arrow</b>-color
+--styled-<b>select-arrow</b>-font-family
+
 --styled-<b>select-clear</b>-font-family
 --styled-<b>select-clear</b>-font-size
---styled-<b>select-</b>color
+
 --styled-<b>select-control</b>-border-color
 --styled-<b>select-control-focused</b>-border-color
+
 --styled-<b>select-input</b>-height
 --styled-<b>select-input</b>-padding
+
 --styled-<b>select-menu-outer</b>-background-color
 --styled-<b>select-menu-outer</b>-border-color
 --styled-<b>select-menu-outer</b>-border-raius
@@ -141,17 +147,21 @@ class MyForm extends React.Component {
 --styled-<b>select-menu-outer</b>-border-width
 --styled-<b>select-menu-outer</b>-margin
 --styled-<b>select-menu-outer</b>-padding
+
 --styled-<b>select-no-results</b>-color
 --styled-<b>select-no-results</b>-padding
---styled-<b>select-option</b>-background-color
---styled-<b>select-option-focused</b>-background-color
---styled-<b>select-option-focused</b>-color
+
 --styled-<b>select-option</b>-font-family
---styled-<b>select-option-selected</b>-background-color
+--styled-<b>select-option</b>-background-color
+--styled-<b>select-option-focused</b>-color
+--styled-<b>select-option-focused</b>-background-color
 --styled-<b>select-option-selected</b>-color
+--styled-<b>select-option-selected</b>-background-color
+
 --styled-<b>select-placeholder</b>-color
 --styled-<b>select-placeholder</b>-font-family
 --styled-<b>select-placeholder</b>-font-size
+
 --styled-<b>select-value-label</b>-font-family
 </pre>
 
