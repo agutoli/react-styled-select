@@ -17,6 +17,6 @@ glob("src/**/*.js", {}, function (er, files) {
     }
   })
   Object.keys(variables).sort().forEach((varname, _filename) => {
-    console.log(`${variables[varname]}: \t`, varname);
+    console.log(varname);
   });
 });

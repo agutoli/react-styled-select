@@ -118,6 +118,42 @@ class MyForm extends React.Component {
 }
 ```
 
+## Available CSS variables
+
+
+    --styled-select-arrow-color
+    --styled-select-arrow-font-family
+    --styled-select-background-color
+    --styled-select-border-radius
+    --styled-select-border-style
+    --styled-select-border-width
+    --styled-select-clear-font-family
+    --styled-select-clear-font-size
+    --styled-select-color
+    --styled-select-control-border-color
+    --styled-select-control-focused-border-color
+    --styled-select-input-height
+    --styled-select-input-padding
+    --styled-select-menu-outer-background-color
+    --styled-select-menu-outer-border-color
+    --styled-select-menu-outer-border-raius
+    --styled-select-menu-outer-border-style
+    --styled-select-menu-outer-border-width
+    --styled-select-menu-outer-margin
+    --styled-select-menu-outer-padding
+    --styled-select-no-results-color
+    --styled-select-no-results-padding
+    --styled-select-option-background-color
+    --styled-select-option-focused-background-color
+    --styled-select-option-focused-color
+    --styled-select-option-font-family
+    --styled-select-option-selected-background-color
+    --styled-select-option-selected-color
+    --styled-select-placeholder-color
+    --styled-select-placeholder-font-family
+    --styled-select-placeholder-font-size
+    --styled-select-value-label-font-family
+
 
 ## Inspiration
 This project was based on [react-select](https://raw.githubusercontent.com/JedWatson/react-select).

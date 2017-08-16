@@ -1,8 +1,10 @@
 import styled from 'styled-components'
+import defaults from '../defaults.js'
 
 export default styled.div`
-  height: 34px;
-  padding-left: 10px;
-  padding-right: 10px;
+  height: ${defaults.input__height};
+  height: var(--styled-select-input-height, ${defaults.input__height});
+  padding: ${defaults.input__padding};
+  padding: var(--styled-select-input-padding, ${defaults.input__padding});
   vertical-align: middle;
 `
