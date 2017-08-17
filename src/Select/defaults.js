@@ -2,6 +2,21 @@
 const Select = {
   fontFamily: '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif',
 
+  // SelectValue
+  value__left: '0',
+  value__right: '0',
+  value__top: '0',
+  value__maxWidth: '100%',
+  value__color: '#aaa',
+  value__bottom: '0',
+  value__position: 'absolute',
+  value__overflow: 'overflow',
+  value__padding: '0 10px',
+  value__lineHeight: '34px',
+  value__overflow: 'hidden',
+  value__whiteSpace: 'nowrap',
+  value__textOverflow: 'ellipsis',
+
   // SelectValueLabel
   valueLabel__color: '#777',
 

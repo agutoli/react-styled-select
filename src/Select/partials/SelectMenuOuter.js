@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export default styled.div`
   box-sizing: border-box;
   border-radius: 2px;
-  border-radius: var(--styled-select-menu-outer-border-raius, 2px);
+  border-radius: var(--styled-select-menu-outer-border-radius, 2px);
 
   background-color: #fff;
   background-color: var(--styled-select-menu-outer-background-color, #fff);
