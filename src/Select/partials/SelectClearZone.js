@@ -6,9 +6,9 @@ export default styled.div`
   color: ${defaults.clearZone__color};
   color: var(--styled-select-clear-font-size, ${defaults.clearZone__color});
   cursor: pointer;
-  display: table-cell;
   position: relative;
   text-align: center;
   vertical-align: middle;
   width: 17px;
+  display: table-cell;
 `

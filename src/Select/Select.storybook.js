@@ -8,6 +8,10 @@ var options = [
   { value: 'one', label: 'One' },
   { value: 'two', label: 'Two' },
   { value: 'tree', label: 'Tree' },
+  { value: 'four', label: 'Four' },
+  { value: 'five', label: 'Five' },
+  { value: 'six', label: 'Six' },
+  { value: 'seven', label: 'Seven' },
 ]
 
 storiesOf('Select', module)
@@ -83,6 +87,16 @@ storiesOf('Select', module)
       <div style={{width: '300px'}}>
         <SelectShadowDOM
           searchable={false}
+          options={options}
+        />
+      </div>
+    </div>
+  ))
+  .add('clearable=true', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <SelectShadowDOM
+          clearable
           options={options}
         />
       </div>

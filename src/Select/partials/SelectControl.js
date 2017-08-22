@@ -7,7 +7,7 @@ const isOpened = () => `
 `
 
 export default styled.div`
-  display: flex;
+  display: table;
   align-items: center;
   box-sizing: border-box;
   background-color: #fff;

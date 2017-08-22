@@ -15,6 +15,7 @@ import {
 import Select from './partials/Select'
 import SelectMenu from './partials/SelectMenu'
 import SelectValue from './partials/SelectValue'
+import SelectMultiValue from './partials/SelectMultiValue'
 import SelectClear from './partials/SelectClear'
 import SelectArrow from './partials/SelectArrow'
 import SelectInput from './partials/SelectInput'
@@ -25,6 +26,7 @@ import SelectClearZone from './partials/SelectClearZone'
 import SelectArrowZone from './partials/SelectArrowZone'
 import SelectMenuOuter from './partials/SelectMenuOuter'
 import SelectPlaceholder from './partials/SelectPlaceholder'
+import SelectValueWrapper from './partials/SelectValueWrapper'
 import SelectMultiValueWrapper from './partials/SelectMultiValueWrapper'
 
 import ValueRenderer from './renderers/ValueRenderer'
@@ -41,21 +43,21 @@ class WrapperSelect extends React.PureComponent {
       return agregate
     }, {})
 
-    let valueLabel = null
+    let values = [];
     if (props.value && this.optionsMap.hasOwnProperty(props.value)) {
-      valueLabel = this.optionsMap[props.value].label
+      values.push( props.value );
     }
 
     this.state = {
+      values: new Set(values),
       isOpened: false,
       isFocused: false,
       isSelected: false,
-      value: props.value,
-      valueLabel,
       searchTerm: null,
       focusedIndex: 0,
       options: props.options,
-      'aria-owns': this.props['aria-owns'] || uuid.v4()
+      'aria-owns': this.props['aria-owns'] || uuid.v4(),
+      'input-field-id': uuid.v4()
     }
 
     this.inputInnerRef = null
@@ -87,7 +89,7 @@ class WrapperSelect extends React.PureComponent {
 
   resetField() {
     this.setState({
-      value: null,
+      values: new Set([]),
       searchTerm: null,
       options: this.props.options,
     }, () => {
@@ -104,16 +106,19 @@ class WrapperSelect extends React.PureComponent {
   }
 
   onSelectValue = (newValue, event) => {
-    const { value } = this.state;
-    const label = this.optionsMap[newValue].label;
-    if (value != newValue) {
+    const { values } = this.state;
+
+    if (!values.has(newValue)) {
+
+      values.add(newValue);
+
       this.setState({
-        value: newValue,
-        valueLabel: label,
+        values,
         searchTerm: null
       }, () => {
         this.inputInnerRef.value = ''
         this.props.onChange(newValue);
+        console.log(this.state)
       })
     }
     this.closeOptions()
@@ -182,20 +187,23 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMultiValueWrapper() {
-    const { placeholder, searchable, classes, valueRenderer } = this.props
-    const { value, isOpened, isSelected, valueLabel, searchTerm } = this.state
+    const { multi, placeholder, searchable, classes, valueRenderer } = this.props;
+    const { values, isOpened, isSelected, searchTerm } = this.state;
+
+    const SelectValueComp = multi ? SelectMultiValue : SelectValue;
+    const SelectWrapperComp = multi ? SelectMultiValueWrapper : SelectValueWrapper;
 
     let content = '';
 
-    if (value && !searchTerm) {
-      content = (
-        <SelectValue className={classes.selectValue} data-select-value>
-          {valueRenderer({ value, label: valueLabel }, classes.selectValueLabel)}
-        </SelectValue>
-      );
+    if (values.size && !searchTerm) {
+      content = Array.from(values).map((value, key) => (
+        <SelectValueComp key={key} className={classes.selectValue} data-select-value data-multi-value={multi}>
+          {valueRenderer({ value, label: this.optionsMap[value].label }, classes.selectValueLabel)}
+        </SelectValueComp>
+      ));
     }
 
-    if (!value && !searchTerm) {
+    if (!values.size && !searchTerm) {
       content = (
         <SelectPlaceholder
           className={classes.selectPlaceholder}
@@ -205,22 +213,24 @@ class WrapperSelect extends React.PureComponent {
 
     if (!searchable) {
       return (
-        <SelectMultiValueWrapper
-        className={classes.selectMultiValueWrapper}
-        data-select-multi-value-wrapper>
+        <SelectWrapperComp
+          for={this.state['input-field-id']}
+          className={classes.selectMultiValueWrapper}
+          data-select-multi-value-wrapper={multi}>
           {content}
-        </SelectMultiValueWrapper>
+        </SelectWrapperComp>
       );
     }
 
-
     return (
-      <SelectMultiValueWrapper
+      <SelectWrapperComp
+        for={this.state['input-field-id']}
         className={classes.selectMultiValueWrapper}
-        data-select-multi-value-wrapper>
+        data-select-multi-value-wrapper={multi}>
         {content}
         <SelectInput data-select-input className={classes.selectInput}>
           <SelectInputField
+            id={this.state['input-field-id']}
             className={classes.selectInputField}
             data-select-input-search
             onKeyDown={this.onSearching}
@@ -230,17 +240,17 @@ class WrapperSelect extends React.PureComponent {
             aria-owns={this.state['aria-owns']}
             role="combobox" type="text" />
         </SelectInput>
-      </SelectMultiValueWrapper>
+      </SelectWrapperComp>
     );
   }
 
   renderSelectMenuOuter() {
     const { onOpen, classes, noResultsText, optionRenderer } = this.props;
-    const { value, isOpened, focusedIndex, options } = this.state;
+    const { values, isOpened, focusedIndex, options } = this.state;
 
     if (!isOpened) {
       return (
-        <div aria-hidden="true" id={this.state['aria-owns']} role="listbox">
+        <div aria-hidden="true" id={['aria-owns']} role="listbox">
           <div role="option" tabIndex="-1" />
         </div>
       );
@@ -252,7 +262,7 @@ class WrapperSelect extends React.PureComponent {
 
     if (options.length > 0) {
       selectOptions = options.map((opt, i) => {
-        const isSelected = value === opt.value;
+        const isSelected = values === opt.value;
         const isFocused = focusedIndex === i;
         return optionRenderer(Object.assign({
           key: i,
@@ -260,7 +270,7 @@ class WrapperSelect extends React.PureComponent {
           id: this.state['aria-owns'],
           className: classes.selectOption,
           isFocused: focusedIndex === i,
-          tabIndex: value === opt.value ? '0' : '-1',
+          tabIndex: values === opt.value ? '0' : '-1',
           onMouseDown: (e) => this.onSelectValue(opt.value, e)
         }, opt), i);
       });
@@ -353,6 +363,7 @@ WrapperSelect.defaultProps = {
   onInputClear: () => {},
   clearable: false,
   searchable: true,
+  multi: true,
   options: [],
   placeholder: 'Select...',
   noResultsText: 'No results found',
