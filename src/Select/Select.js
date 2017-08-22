@@ -12,6 +12,8 @@ import {
   KEY_BACKSPACE
 } from './constants'
 
+const SEARCH_INPUT_MIN_SIZE = 1;
+
 import Select from './partials/Select'
 import SelectMenu from './partials/SelectMenu'
 import SelectValue from './partials/SelectValue'
@@ -20,6 +22,7 @@ import SelectClear from './partials/SelectClear'
 import SelectArrow from './partials/SelectArrow'
 import SelectInput from './partials/SelectInput'
 import SelectInputField from './partials/SelectInputField'
+import SelectInputFieldSize from './partials/SelectInputFieldSize'
 import SelectControl from './partials/SelectControl'
 import SelectNoResults from './partials/SelectNoResults'
 import SelectClearZone from './partials/SelectClearZone'
@@ -54,6 +57,7 @@ class WrapperSelect extends React.PureComponent {
       isFocused: false,
       isSelected: false,
       searchTerm: null,
+      searchWidth: 1,
       focusedIndex: 0,
       options: props.options,
       'aria-owns': this.props['aria-owns'] || uuid.v4(),
@@ -61,6 +65,7 @@ class WrapperSelect extends React.PureComponent {
     }
 
     this.inputInnerRef = null
+    this.searchSizeRef = null;
   }
 
   openOptions() {
@@ -91,6 +96,7 @@ class WrapperSelect extends React.PureComponent {
     this.setState({
       values: new Set([]),
       searchTerm: null,
+      focusedIndex: 0,
       options: this.props.options,
     }, () => {
       this.closeOptions()
@@ -134,20 +140,35 @@ class WrapperSelect extends React.PureComponent {
   }
 
   onSearching = (event) => {
-    const { focusedIndex, options, isOpened } = this.state;
+    const { focusedIndex, options, isOpened, values } = this.state;
 
     const typing = () => {
       const filteredOptions = this.props.options.filter((opt) => {
-        const label = opt.label.toLowerCase()
-        const term = this.inputInnerRef.value.toLowerCase()
+        const label = opt.label.toLowerCase().trim()
+        if (values.has(label)) {
+          return false;
+        }
+        const term = this.inputInnerRef.value.toLowerCase().trim()
         return label.indexOf(term) !== -1
       });
 
       this.setState({
         searchTerm: this.inputInnerRef.value,
+        searchWidth,
         options: filteredOptions,
-        isOpened: true
+        isOpened: true,
+        focusedIndex: 0
       })
+
+      let searchWidth = SEARCH_INPUT_MIN_SIZE;
+      if (this.searchSizeRef) {
+        const width = this.searchSizeRef.getBoundingClientRect().width;
+        searchWidth = width > SEARCH_INPUT_MIN_SIZE ? width : SEARCH_INPUT_MIN_SIZE;
+      }
+
+      setTimeout(() => {
+        this.setState({ searchWidth })
+      }, 1);
     }
 
     const lastIndex = (options.length - 1)
@@ -188,14 +209,14 @@ class WrapperSelect extends React.PureComponent {
 
   renderSelectMultiValueWrapper() {
     const { multi, placeholder, searchable, classes, valueRenderer } = this.props;
-    const { values, isOpened, isSelected, searchTerm } = this.state;
+    const { values, isOpened, isSelected, searchTerm, searchWidth } = this.state;
 
     const SelectValueComp = multi ? SelectMultiValue : SelectValue;
     const SelectWrapperComp = multi ? SelectMultiValueWrapper : SelectValueWrapper;
 
     let content = '';
 
-    if (values.size && !searchTerm) {
+    if (values.size) {
       content = Array.from(values).map((value, key) => (
         <SelectValueComp key={key} className={classes.selectValue} data-select-value data-multi-value={multi}>
           {valueRenderer({ value, label: this.optionsMap[value].label }, classes.selectValueLabel)}
@@ -230,6 +251,7 @@ class WrapperSelect extends React.PureComponent {
         {content}
         <SelectInput data-select-input className={classes.selectInput}>
           <SelectInputField
+            style={{width: `${searchWidth}px`}}
             id={this.state['input-field-id']}
             className={classes.selectInputField}
             data-select-input-search
@@ -240,6 +262,9 @@ class WrapperSelect extends React.PureComponent {
             aria-owns={this.state['aria-owns']}
             role="combobox" type="text" />
         </SelectInput>
+        <SelectInputFieldSize
+          data-select-input-size
+          innerRef={(n) => this.searchSizeRef = n}>{searchTerm}</SelectInputFieldSize>
       </SelectWrapperComp>
     );
   }
