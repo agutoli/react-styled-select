@@ -11,7 +11,7 @@ export default styled.div`
   display: inline-block;
   font-size: 0.9em;
   line-height: 1.4;
-  margin-left: 5px;
+  margin-right: 5px;
   margin-top: 5px;
   vertical-align: top;
   padding: 0 4px;

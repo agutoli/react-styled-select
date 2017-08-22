@@ -69,7 +69,10 @@ class WrapperSelect extends React.PureComponent {
   }
 
   openOptions() {
-    this.setState({ isOpened: true });
+    this.setState({
+      isOpened: true,
+      options: this.getOptions()
+    });
   }
 
   closeOptions() {
@@ -128,11 +131,11 @@ class WrapperSelect extends React.PureComponent {
 
       this.setState({
         values,
-        searchTerm: null
+        searchTerm: null,
+        focusedIndex: 0
       }, () => {
         this.inputInnerRef.value = ''
         this.props.onChange(newValue);
-        console.log(this.state)
       })
     }
     this.closeOptions()
@@ -140,22 +143,30 @@ class WrapperSelect extends React.PureComponent {
   }
 
   onSelectFocused = () => {
-    this.openOptions();
     this.setState({
       isFocused: true
     })
+    this.openOptions();
     this.setFocus();
   }
 
+  getOptions() {
+    const { values } = this.state;
+    return this.props.options.filter((opt) => {
+      const label = opt.label.toLowerCase().trim()
+      if (values.has(label)) {
+        return false;
+      }
+      return true;
+    });
+  }
+
   onSearching = (event) => {
-    const { focusedIndex, options, isOpened, values } = this.state;
+    const { focusedIndex, options, isOpened } = this.state;
 
     const typing = () => {
-      const filteredOptions = this.props.options.filter((opt) => {
+      const filteredOptions = this.getOptions().filter((opt) => {
         const label = opt.label.toLowerCase().trim()
-        if (values.has(label)) {
-          return false;
-        }
         const term = this.inputInnerRef.value.toLowerCase().trim()
         return label.indexOf(term) !== -1
       });
@@ -176,7 +187,7 @@ class WrapperSelect extends React.PureComponent {
 
       setTimeout(() => {
         this.setState({ searchWidth })
-      }, 1);
+      });
     }
 
     const lastIndex = (options.length - 1)

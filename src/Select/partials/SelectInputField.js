@@ -13,7 +13,6 @@ export default styled.input`
   font-size: inherit;
   margin: 0;
   outline: none;
-  line-height: 14px;
-  padding: 8px 0 12px;
+  line-height: 32px;
   -webkit-appearance: none;
 `
