@@ -93,8 +93,16 @@ class WrapperSelect extends React.PureComponent {
   }
 
   resetField() {
+    const { multi } = this.props;
+
+    let values = [];
+    if (multi) {
+      values = Array.from(this.state.values);
+      values.pop();
+    }
+
     this.setState({
-      values: new Set([]),
+      values: new Set(values),
       searchTerm: null,
       focusedIndex: 0,
       options: this.props.options,

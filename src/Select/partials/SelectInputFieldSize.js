@@ -7,6 +7,5 @@ export default SelectInputField.withComponent('div').extend`
   left: 0px;
   visibility: hidden;
   height: 0px;
-  overflow: scroll;
   white-space: pre;
 `;
