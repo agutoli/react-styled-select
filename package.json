@@ -8,7 +8,7 @@
     "dist": "dist"
   },
   "scripts": {
-    "build:demo": "./tools/build-demo", 
+    "build:demo": "./tools/build-demo",
     "show-css-variables": "node bin/extract-css-variables.js",
     "coverage": "nyc npm test",
     "lint:css": "stylelint './src/**/*.js'",
@@ -78,6 +78,7 @@
     "react-shadow": "^2.0.2",
     "sinon": "^2.3.5",
     "styled-components": "2.1.1",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "webcomponents.js": "^0.7.24"
   }
 }

@@ -2,12 +2,14 @@ import React from 'react'
 import ShadowDOM from 'react-shadow'
 
 export default (element) => {
+  console.log('asdasdas');
   return class ShadowDOMHelper extends React.PureComponent {
     constructor(props) {
       super(props)
       this.state = {
         stylesheet: false
       }
+
     }
 
     applyStylesheet = (classNameID) => {

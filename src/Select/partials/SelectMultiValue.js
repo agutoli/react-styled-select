@@ -1,7 +1,9 @@
+import React from 'react'
 import styled from 'styled-components'
 import defaults from '../defaults.js'
+import SelectValueIcon from './SelectValueIcon'
 
-export default styled.div`
+const SelectMultiValue = styled.div`
   background-color: #ebf5ff;
   background-color: rgba(0, 126, 255, 0.08);
   border-radius: 2px;
@@ -13,6 +15,13 @@ export default styled.div`
   line-height: 1.4;
   margin-right: 5px;
   margin-top: 5px;
+  overflow: hidden;
   vertical-align: top;
-  padding: 0 4px;
 `
+
+export default (props) => (
+  <SelectMultiValue {...props}>
+    <SelectValueIcon>x</SelectValueIcon>
+    {props.children}
+  </SelectMultiValue>
+)
