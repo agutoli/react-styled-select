@@ -8,7 +8,7 @@
     "dist": "dist"
   },
   "scripts": {
-    "build:demo": "./tools/build-demo", 
+    "build:demo": "./tools/build-demo",
     "show-css-variables": "node bin/extract-css-variables.js",
     "coverage": "nyc npm test",
     "lint:css": "stylelint './src/**/*.js'",
@@ -59,17 +59,17 @@
     "jsdom": "^9.11.0",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
-    "react": "^15.6.1",
+    "react": "^15.1.0",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.6.1",
+    "react-dom": "^15.1.0",
     "react-storybook-addon-backgrounds": "0.0.7",
     "stylelint": "^7.11.1",
     "stylelint-config-standard": "^16.0.0",
     "webpack": "^3.4.1"
   },
   "peerDependencies": {
-    "react": "~0.14.8 || ^15.6.1",
-    "react-dom": "~0.14.8 || ^15.6.1"
+    "react": "~0.14.8 || ^15.1.0",
+    "react-dom": "~0.14.8 || ^15.1.0"
   },
   "dependencies": {
     "babel-runtime": "^6.6.1",
@@ -78,6 +78,7 @@
     "react-shadow": "^2.0.2",
     "sinon": "^2.3.5",
     "styled-components": "2.1.1",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "webcomponents.js": "^0.7.24"
   }
 }
