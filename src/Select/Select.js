@@ -62,7 +62,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   openOptions() {
-    this.setState({ isOpened: true });
+    this.setState({ focusedIndex: 0, isOpened: true });
   }
 
   closeOptions() {
@@ -265,6 +265,10 @@ class WrapperSelect extends React.PureComponent {
           onMouseOver: (e) => {
             const dataKey = e.target.getAttribute('data-key');
             this.setState({ focusedIndex: dataKey });
+          },
+          onMouseOut: (e) => {
+            console.log('asdsad')
+            this.setState({ focusedIndex: null });
           },
           onMouseDown: (e) => this.onSelectValue(opt.value, e)
         }, opt), i);

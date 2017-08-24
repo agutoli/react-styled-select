@@ -19770,7 +19770,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     _createClass(WrapperSelect, [{
       key: 'openOptions',
       value: function openOptions() {
-        this.setState({ isOpened: true });
+        this.setState({ focusedIndex: 0, isOpened: true });
       }
     }, {
       key: 'closeOptions',
@@ -19899,6 +19899,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               onMouseOver: function onMouseOver(e) {
                 var dataKey = e.target.getAttribute('data-key');
                 _this5.setState({ focusedIndex: dataKey });
+              },
+              onMouseOut: function onMouseOut(e) {
+                console.log('asdsad');
+                _this5.setState({ focusedIndex: null });
               },
               onMouseDown: function onMouseDown(e) {
                 return _this5.onSelectValue(opt.value, e);
@@ -36911,6 +36915,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       'data-key': option['data-key'],
       role: 'option',
       'data-select-option': option.value,
+      onMouseOut: option.onMouseOut,
       onMouseOver: option.onMouseOver,
       onMouseDown: option.onMouseDown }, option.label);
   };
@@ -36956,7 +36961,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n\n  font-family: ', ';\n  font-family: var(--styled-select-option-font-family, ', ');\n\n  background-color: #fff;\n  background-color: var(--styled-select-option-background-color, #fff);\n\n  color: #666666;\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n\n  ', '\n  ', '\n\n\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n'], ['\n  box-sizing: border-box;\n\n  font-family: ', ';\n  font-family: var(--styled-select-option-font-family, ', ');\n\n  background-color: #fff;\n  background-color: var(--styled-select-option-background-color, #fff);\n\n  color: #666666;\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n\n  ', '\n  ', '\n\n\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n']);
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n\n  font-family: ', ';\n  font-family: var(--styled-select-option-font-family, ', ');\n\n  background-color: #fff;\n  background-color: var(--styled-select-option-background-color, #fff);\n\n  color: #666666;\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n\n  ', '\n  ', '\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n'], ['\n  box-sizing: border-box;\n\n  font-family: ', ';\n  font-family: var(--styled-select-option-font-family, ', ');\n\n  background-color: #fff;\n  background-color: var(--styled-select-option-background-color, #fff);\n\n  color: #666666;\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n\n  ', '\n  ', '\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n']);
 
   function _taggedTemplateLiteral(strings, raw) {
     return Object.freeze(Object.defineProperties(strings, {
@@ -36975,9 +36980,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   };
 
   exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily, function (props) {
-    return props.isSelected && isSelected();
-  }, function (props) {
     return props.isFocused && isFocused();
+  }, function (props) {
+    return props.isSelected && isSelected();
   });
 });
 //# sourceMappingURL=SelectOption.js.map

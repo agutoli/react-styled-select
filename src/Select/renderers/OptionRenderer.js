@@ -14,6 +14,7 @@ export default (option, index) => {
       data-key={option['data-key']}
       role="option"
       data-select-option={option.value}
+      onMouseOut={option.onMouseOut}
       onMouseOver={option.onMouseOver}
       onMouseDown={option.onMouseDown}>
       {option.label}

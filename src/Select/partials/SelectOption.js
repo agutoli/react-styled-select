@@ -29,10 +29,8 @@ export default styled.div`
   display: block;
   padding: 8px 10px;
 
-  ${props => props.isSelected && isSelected()}
   ${props => props.isFocused && isFocused()}
-
-
+  ${props => props.isSelected && isSelected()}
 
   &:last-child {
     border-bottom-right-radius: 4px;
