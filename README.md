@@ -73,7 +73,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 ## Custom appearance with CSS Variebles
 
 #### Multi Select (NEW)
-![](https://image.ibb.co/jmJi2Q/Screen_Shot_2017_08_25_at_1_38_59_AM.png)
+![](https://image.ibb.co/h69O2Q/print_multi_select.png)
 
 #### Default
 ![](https://image.ibb.co/bC4i7k/Captura_de_Tela_2017_06_27_a_s_03_18_09.png)
