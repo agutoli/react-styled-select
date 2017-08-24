@@ -41,7 +41,7 @@ const Select = {
   no__results__padding: '8px 10px',
 
   // SelectInput
-  input__height: '30px',
+  input__height: '23px',
   input__padding: '0'
 };
 
