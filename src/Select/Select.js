@@ -267,7 +267,6 @@ class WrapperSelect extends React.PureComponent {
             this.setState({ focusedIndex: dataKey });
           },
           onMouseOut: (e) => {
-            console.log('asdsad')
             this.setState({ focusedIndex: null });
           },
           onMouseDown: (e) => this.onSelectValue(opt.value, e)
