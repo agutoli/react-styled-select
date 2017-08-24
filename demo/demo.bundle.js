@@ -3978,9 +3978,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     value__bottom: '0',
     value__position: 'absolute',
     value__overflow: 'overflow',
-    value__padding: '0 10px',
+    value__padding: '0 5px',
     value__lineHeight: '34px'
-  }, _defineProperty(_Select, 'value__overflow', 'hidden'), _defineProperty(_Select, 'value__whiteSpace', 'nowrap'), _defineProperty(_Select, 'value__textOverflow', 'ellipsis'), _defineProperty(_Select, 'valueLabel__color', '#777'), _defineProperty(_Select, 'arrow__color', '#9b9ba5'), _defineProperty(_Select, 'clear__fontSize', '14px'), _defineProperty(_Select, 'clearZone__color', '#999'), _defineProperty(_Select, 'option__focused__backgroundColor', ''), _defineProperty(_Select, 'control__borderColor', '#dcdce3'), _defineProperty(_Select, 'control__focused__borderColor', '#40a3f5'), _defineProperty(_Select, 'no__results__color', '#999999'), _defineProperty(_Select, 'no__results__padding', '8px 10px'), _defineProperty(_Select, 'input__height', '30px'), _defineProperty(_Select, 'input__padding', '0'), _Select);
+  }, _defineProperty(_Select, 'value__overflow', 'hidden'), _defineProperty(_Select, 'value__whiteSpace', 'nowrap'), _defineProperty(_Select, 'value__textOverflow', 'ellipsis'), _defineProperty(_Select, 'valueLabel__color', '#777'), _defineProperty(_Select, 'arrow__color', '#9b9ba5'), _defineProperty(_Select, 'clear__fontSize', '14px'), _defineProperty(_Select, 'clearZone__color', '#999'), _defineProperty(_Select, 'option__focused__backgroundColor', ''), _defineProperty(_Select, 'control__borderColor', '#dcdce3'), _defineProperty(_Select, 'control__focused__borderColor', '#40a3f5'), _defineProperty(_Select, 'no__results__color', '#999999'), _defineProperty(_Select, 'no__results__padding', '8px 10px'), _defineProperty(_Select, 'input__height', '23px'), _defineProperty(_Select, 'input__padding', '0'), _Select);
 
   exports.default = Select;
 });
@@ -19672,6 +19672,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         values.push(props.value);
       }
 
+      if (Array.isArray(props.value)) {
+        values = values.concat(props.value);
+      }
+
       _this.state = {
         values: new Set(values),
         isOpened: false,
@@ -19694,9 +19698,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       key: 'openOptions',
       value: function openOptions() {
         this.setState({
-          isOpened: true,
-          options: this.getOptions()
+          options: this.getOptions(),
+          focusedIndex: 0,
+          isOpened: true
         });
+        this.props.onOpen();
       }
     }, {
       key: 'closeOptions',
@@ -19733,6 +19739,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         if (multi) {
           values = Array.from(this.state.values);
           values.pop();
+          this.props.onChange(values);
         }
 
         this.setState({
@@ -19749,11 +19756,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'getOptions',
       value: function getOptions() {
+        var multi = this.props.multi;
         var values = this.state.values;
 
         return this.props.options.filter(function (opt) {
           var label = opt.label.toLowerCase().trim();
-          if (values.has(label)) {
+          if (values.has(label) && multi) {
             return false;
           }
           return true;
@@ -19784,7 +19792,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         if (values.size) {
           content = Array.from(values).map(function (value, key) {
-            return _react2.default.createElement(SelectValueComp, { key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ value: value, label: _this4.optionsMap[value].label }, classes.selectValueLabel));
+            return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this4.onRemoveTag, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: _this4.optionsMap[value].label }, classes.selectValueLabel));
           });
         }
 
@@ -19828,7 +19836,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var _this5 = this;
 
         var _props2 = this.props,
-            onOpen = _props2.onOpen,
             classes = _props2.classes,
             noResultsText = _props2.noResultsText,
             optionRenderer = _props2.optionRenderer;
@@ -19842,21 +19849,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           return _react2.default.createElement('div', { 'aria-hidden': 'true', id: ['aria-owns'], role: 'listbox' }, _react2.default.createElement('div', { role: 'option', tabIndex: '-1' }));
         }
 
-        onOpen();
-
         var selectOptions = _react2.default.createElement(_SelectNoResults2.default, null, noResultsText);
 
         if (options.length > 0) {
           selectOptions = options.map(function (opt, i) {
-            var isSelected = values === opt.value;
+            var isSelected = values.has(opt.value);
             var isFocused = focusedIndex === i;
             return optionRenderer(Object.assign({
               key: i,
+              'data-key': i,
               isSelected: isSelected,
               id: _this5.state['aria-owns'],
               className: classes.selectOption,
-              isFocused: focusedIndex === i,
-              tabIndex: values === opt.value ? '0' : '-1',
+              isFocused: focusedIndex == i,
+              tabIndex: values.has(opt.value) ? '0' : '-1',
+              onMouseOver: function onMouseOver(e) {
+                var dataKey = e.target.getAttribute('data-key');
+                _this5.setState({ focusedIndex: dataKey });
+              },
+              onMouseOut: function onMouseOut(e) {
+                _this5.setState({ focusedIndex: null });
+              },
               onMouseDown: function onMouseDown(e) {
                 return _this5.onSelectValue(opt.value, e);
               }
@@ -19928,6 +19941,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   var _initialiseProps = function _initialiseProps() {
     var _this7 = this;
 
+    this.onRemoveTag = function (props, e) {
+      e.stopPropagation();
+      var multi = _this7.props.multi;
+
+      _this7.state.values.delete(props.value);
+
+      _this7.setState({
+        values: new Set(Array.from(_this7.state.values))
+      }, function () {
+        _this7.props.onChange(Array.from(_this7.state.values));
+      });
+    };
+
     this.onClearValue = function (event) {
       event.preventDefault();
       event.stopPropagation();
@@ -19935,23 +19961,24 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     };
 
     this.onSelectValue = function (newValue, event) {
+      var multi = _this7.props.multi;
       var values = _this7.state.values;
 
+      !multi && values.clear(); // when is not multi select
+
       if (!values.has(newValue)) {
-
         values.add(newValue);
-
         _this7.setState({
           values: values,
           searchTerm: null,
           focusedIndex: 0
         }, function () {
           _this7.inputInnerRef.value = '';
-          _this7.props.onChange(newValue);
+          _this7.props.onChange(multi ? Array.from(values) : newValue);
         });
       }
       _this7.closeOptions();
-      _this7.props.onValueClick(newValue, event);
+      _this7.props.onValueClick(multi ? Array.from(values) : newValue, event);
     };
 
     this.onSelectFocused = function () {
@@ -20056,7 +20083,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onInputClear: function onInputClear() {},
     clearable: false,
     searchable: true,
-    multi: true,
+    multi: false,
     options: [],
     placeholder: 'Select...',
     noResultsText: 'No results found',
@@ -20285,17 +20312,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  color: #333;\n  color: var(--styled-select-color, #333);\n  box-sizing: content-box;\n  background: none transparent;\n  border: 0 none;\n  box-shadow: none;\n  cursor: default;\n  display: inline-block;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  outline: none;\n  line-height: 32px;\n  -webkit-appearance: none;\n'], ['\n  color: #333;\n  color: var(--styled-select-color, #333);\n  box-sizing: content-box;\n  background: none transparent;\n  border: 0 none;\n  box-shadow: none;\n  cursor: default;\n  display: inline-block;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  outline: none;\n  line-height: 32px;\n  -webkit-appearance: none;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.input(_templateObject);
+  exports.default = _styledComponents2.default.input.withConfig({
+    displayName: 'SelectInputField'
+  })(['color:#333;color:var(--styled-select-color,#333);box-sizing:content-box;background:none transparent;border:0 none;box-shadow:none;cursor:default;display:inline-block;font-family:inherit;font-size:inherit;margin:0;outline:none;line-height:23px;-webkit-appearance:none;']);
 });
 //# sourceMappingURL=SelectInputField.js.map
 
@@ -23297,11 +23316,25 @@ var _ShadowDOM2 = _interopRequireDefault(_ShadowDOM);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }, { value: 'tree', label: 'Tree' }];
+var options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }, { value: 'tree', label: 'Tree' }, { value: 'four', label: 'Four' }, { value: 'five', label: 'Five' }, { value: 'six', label: 'Six' }, { value: 'seven', label: 'Seven' }];
 
 _reactDom2.default.render(_react2.default.createElement(
   'div',
   null,
+  _react2.default.createElement(
+    'div',
+    { style: { width: '300px' } },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'Multi Select'
+    ),
+    _react2.default.createElement(_ShadowDOM2.default, {
+      multi: true,
+      value: ['one', 'two'],
+      options: options
+    })
+  ),
   _react2.default.createElement(
     'div',
     { style: { width: '300px' } },
@@ -36230,17 +36263,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  position: relative;\n'], ['\n  box-sizing: border-box;\n  position: relative;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'Select'
+  })(['box-sizing:border-box;position:relative;']);
 });
 //# sourceMappingURL=Select.js.map
 
@@ -36281,17 +36306,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  max-height: 198px;\n  overflow-y: auto;\n'], ['\n  box-sizing: border-box;\n  max-height: 198px;\n  overflow-y: auto;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectMenu'
+  })(['box-sizing:border-box;max-height:198px;overflow-y:auto;']);
 });
 //# sourceMappingURL=SelectMenu.js.map
 
@@ -36334,17 +36351,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  color: ', ';\n  color: var(--styled-select-value-color, ', ');\n\n  line-height: ', ';\n  line-height: var(--styled-select-value-line-height, ', ');\n\n  padding: ', ';\n  padding: var(--styled-select-value-padding, ', ');\n\n  max-width: ', ';\n  max-width: var(--styled-select-value-max-width, ', ');\n\n  overflow: ', ';\n  overflow: var(--styled-select-value-overflow, ', ');\n\n  text-overflow: ', ';\n  text-overflow: var(--styled-select-value-text-overflow, ', ');\n\n  white-space: ', ';\n  white-space: var(--styled-select-value-white-space, ', ');\n  display: inline-block;\n  vertical-align: top;\n'], ['\n  color: ', ';\n  color: var(--styled-select-value-color, ', ');\n\n  line-height: ', ';\n  line-height: var(--styled-select-value-line-height, ', ');\n\n  padding: ', ';\n  padding: var(--styled-select-value-padding, ', ');\n\n  max-width: ', ';\n  max-width: var(--styled-select-value-max-width, ', ');\n\n  overflow: ', ';\n  overflow: var(--styled-select-value-overflow, ', ');\n\n  text-overflow: ', ';\n  text-overflow: var(--styled-select-value-text-overflow, ', ');\n\n  white-space: ', ';\n  white-space: var(--styled-select-value-white-space, ', ');\n  display: inline-block;\n  vertical-align: top;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.value__color, _defaults2.default.value__color, _defaults2.default.value__lineHeight, _defaults2.default.value__lineHeight, _defaults2.default.value__padding, _defaults2.default.value__padding, _defaults2.default.value__maxWidth, _defaults2.default.value__maxWidth, _defaults2.default.value__overflow, _defaults2.default.value__overflow, _defaults2.default.value__textOverflow, _defaults2.default.value__textOverflow, _defaults2.default.value__whiteSpace, _defaults2.default.value__whiteSpace);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectValue'
+  })(['color:', ';color:var(--styled-select-value-color,', ');line-height:', ';line-height:var(--styled-select-value-line-height,', ');padding:', ';padding:var(--styled-select-value-padding,', ');max-width:', ';max-width:var(--styled-select-value-max-width,', ');overflow:', ';overflow:var(--styled-select-value-overflow,', ');text-overflow:', ';text-overflow:var(--styled-select-value-text-overflow,', ');white-space:', ';white-space:var(--styled-select-value-white-space,', ');display:inline-block;vertical-align:top;'], _defaults2.default.value__color, _defaults2.default.value__color, _defaults2.default.value__lineHeight, _defaults2.default.value__lineHeight, _defaults2.default.value__padding, _defaults2.default.value__padding, _defaults2.default.value__maxWidth, _defaults2.default.value__maxWidth, _defaults2.default.value__overflow, _defaults2.default.value__overflow, _defaults2.default.value__textOverflow, _defaults2.default.value__textOverflow, _defaults2.default.value__whiteSpace, _defaults2.default.value__whiteSpace);
 });
 //# sourceMappingURL=SelectValue.js.map
 
@@ -36391,20 +36400,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  background-color: #ebf5ff;\n  background-color: rgba(0, 126, 255, 0.08);\n  border-radius: 2px;\n  border: 1px solid #c2e0ff;\n  border: 1px solid rgba(0, 126, 255, 0.24);\n  color: #007eff;\n  display: inline-block;\n  font-size: 0.9em;\n  line-height: 1.4;\n  margin-right: 5px;\n  margin-top: 5px;\n  overflow: hidden;\n  vertical-align: top;\n'], ['\n  background-color: #ebf5ff;\n  background-color: rgba(0, 126, 255, 0.08);\n  border-radius: 2px;\n  border: 1px solid #c2e0ff;\n  border: 1px solid rgba(0, 126, 255, 0.24);\n  color: #007eff;\n  display: inline-block;\n  font-size: 0.9em;\n  line-height: 1.4;\n  margin-right: 5px;\n  margin-top: 5px;\n  overflow: hidden;\n  vertical-align: top;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  var SelectMultiValue = _styledComponents2.default.div(_templateObject);
+  var SelectMultiValue = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectMultiValue__SelectMultiValue'
+  })(['background-color:#ebf5ff;background-color:rgba(0,126,255,0.08);border-radius:2px;border:1px solid #c2e0ff;border:1px solid rgba(0,126,255,0.24);font-size:0.9em;line-height:1.4;margin-right:5px;margin-top:2px;margin-bottom:2px;box-shadow:rgba(0,0,0,0.2) 0px 0px 3px;&:hover{border:1px solid #aaa;}']);
 
   exports.default = function (props) {
-    return _react2.default.createElement(SelectMultiValue, props, _react2.default.createElement(_SelectValueIcon2.default, null, 'x'), props.children);
+    return _react2.default.createElement(SelectMultiValue, props, _react2.default.createElement(_SelectValueIcon2.default, { onMouseDown: function onMouseDown(e) {
+        return props.onRemoveTag(props, e);
+      } }, '\xD7'), props.children);
   };
 });
 //# sourceMappingURL=SelectMultiValue.js.map
@@ -36448,17 +36451,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  font-family: ', ';\n  font-family: var(--styled-select-value-label-font-family, ', ');\n  color: ', ';\n  color: var(--styled-select-color, ', ');\n  box-sizing: border-box;\n  border-right: 1px solid;\n  display: inline-block;\n'], ['\n  font-family: ', ';\n  font-family: var(--styled-select-value-label-font-family, ', ');\n  color: ', ';\n  color: var(--styled-select-color, ', ');\n  box-sizing: border-box;\n  border-right: 1px solid;\n  display: inline-block;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.valueLabel__color, _defaults2.default.valueLabel__color);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectValueIcon'
+  })(['font-family:', ';font-family:var(--styled-select-value-label-font-family,', ');color:', ';color:var(--styled-select-color,', ');box-sizing:border-box;border-right:1px solid;display:inline-block;padding:1px 5px;&:hover{background-color:#ccc;cursor:pointer;}'], _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.valueLabel__color, _defaults2.default.valueLabel__color);
 });
 //# sourceMappingURL=SelectValueIcon.js.map
 
@@ -36501,17 +36496,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  font-family: ', ';\n  font-family: var(--styled-select-clear-font-family, ', ');\n  font-size: ', ';\n  font-size: var(--styled-select-clear-font-size, ', ');\n  box-sizing: border-box;\n  display: inline-block;\n  line-height: 1;\n'], ['\n  font-family: ', ';\n  font-family: var(--styled-select-clear-font-family, ', ');\n  font-size: ', ';\n  font-size: var(--styled-select-clear-font-size, ', ');\n  box-sizing: border-box;\n  display: inline-block;\n  line-height: 1;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.clear__fontSize, _defaults2.default.clear__fontSize);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectClear'
+  })(['font-family:', ';font-family:var(--styled-select-clear-font-family,', ');font-size:', ';font-size:var(--styled-select-clear-font-size,', ');box-sizing:border-box;display:inline-block;line-height:1;'], _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.clear__fontSize, _defaults2.default.clear__fontSize);
 });
 //# sourceMappingURL=SelectClear.js.map
 
@@ -36554,21 +36541,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  font-family: ', ';\n  font-family: var(--styled-select-arrow-font-family, ', ');\n\n  border-style: none;\n\n  /* FALLBACK */\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-right-color: ', ';\n  border-bottom-color: ', ';\n  /* FALLBACK */\n\n  border-right: 1px var(--styled-select-arrow-color, ', ') solid;\n  border-bottom: 1px var(--styled-select-arrow-color, ', ') solid;\n\n  border-bottom-right-radius: 25%;\n  transform: translateY(-25%) rotate(45deg);\n\n  ', '\n\n  display: inline-block;\n  height: 8px;\n  width: 8px;\n  position: relative;\n'], ['\n  box-sizing: border-box;\n  font-family: ', ';\n  font-family: var(--styled-select-arrow-font-family, ', ');\n\n  border-style: none;\n\n  /* FALLBACK */\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-right-color: ', ';\n  border-bottom-color: ', ';\n  /* FALLBACK */\n\n  border-right: 1px var(--styled-select-arrow-color, ', ') solid;\n  border-bottom: 1px var(--styled-select-arrow-color, ', ') solid;\n\n  border-bottom-right-radius: 25%;\n  transform: translateY(-25%) rotate(45deg);\n\n  ', '\n\n  display: inline-block;\n  height: 8px;\n  width: 8px;\n  position: relative;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
   var isOpened = function isOpened() {
     return '\n  transform: translateY(18%) rotate(-134deg);\n';
   };
 
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.arrow__color, _defaults2.default.arrow__color, _defaults2.default.arrow__color, _defaults2.default.arrow__color, function (props) {
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectArrow'
+  })(['box-sizing:border-box;font-family:', ';font-family:var(--styled-select-arrow-font-family,', ');border-style:none;border-right-style:solid;border-bottom-style:solid;border-right-width:1px;border-bottom-width:1px;border-right-color:', ';border-bottom-color:', ';border-right:1px var(--styled-select-arrow-color,', ') solid;border-bottom:1px var(--styled-select-arrow-color,', ') solid;border-bottom-right-radius:25%;transform:translateY(-25%) rotate(45deg);', ' display:inline-block;height:8px;width:8px;position:relative;'], _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.arrow__color, _defaults2.default.arrow__color, _defaults2.default.arrow__color, _defaults2.default.arrow__color, function (props) {
     return props.isOpened && isOpened();
   });
 });
@@ -36666,21 +36645,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  display: table;\n  align-items: center;\n  box-sizing: border-box;\n  background-color: #fff;\n  background-color: var(--styled-select-background-color, #fff);\n\n  border-color: ', '; /* fallback */\n  border-color: var(--styled-select-control-border-color, ', ');\n\n  ', '\n\n  border-width: 1px; /* fallback */\n  border-width: var(--styled-select-border-width, 1px);\n\n  border-style: solid; /* fallback */\n  border-style: var(--styled-select-border-style, solid);\n\n  border-radius: 2px;\n  border-radius: var(--styled-select-border-radius, 2px);\n\n  color: #333;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  height: 36px;\n  outline: none;\n  overflow: hidden;\n  position: relative;\n  width: 100%;\n '], ['\n  display: table;\n  align-items: center;\n  box-sizing: border-box;\n  background-color: #fff;\n  background-color: var(--styled-select-background-color, #fff);\n\n  border-color: ', '; /* fallback */\n  border-color: var(--styled-select-control-border-color, ', ');\n\n  ', '\n\n  border-width: 1px; /* fallback */\n  border-width: var(--styled-select-border-width, 1px);\n\n  border-style: solid; /* fallback */\n  border-style: var(--styled-select-border-style, solid);\n\n  border-radius: 2px;\n  border-radius: var(--styled-select-border-radius, 2px);\n\n  color: #333;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  height: 36px;\n  outline: none;\n  overflow: hidden;\n  position: relative;\n  width: 100%;\n ']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
   var isOpened = function isOpened() {
     return '\n  border-color: ' + _defaults2.default.control__focused__borderColor + '; /* fallback */\n  border-color: var(--styled-select-control-focused-border-color, ' + _defaults2.default.control__focused__borderColor + ');\n';
   };
 
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.control__borderColor, _defaults2.default.control__borderColor, function (props) {
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectControl'
+  })(['display:flex;align-items:center;box-sizing:border-box;background-color:#fff;background-color:var(--styled-select-background-color,#fff);border-color:', ';border-color:var(--styled-select-control-border-color,', ');', ' border-width:1px;border-width:var(--styled-select-border-width,1px);border-style:solid;border-style:var(--styled-select-border-style,solid);border-radius:2px;border-radius:var(--styled-select-border-radius,2px);color:#333;cursor:default;border-spacing:0;border-collapse:separate;min-height:36px;outline:none;overflow:hidden;position:relative;width:100%;'], _defaults2.default.control__borderColor, _defaults2.default.control__borderColor, function (props) {
     return props.isOpened && isOpened();
   });
 });
@@ -36725,17 +36696,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  color: ', ';\n  color: var(--styled-select-no-results-color, ', ');\n  cursor: default;\n  display: block;\n  padding: ', ';\n  padding: var(--styled-select-no-results-padding, ', ');\n'], ['\n  box-sizing: border-box;\n  color: ', ';\n  color: var(--styled-select-no-results-color, ', ');\n  cursor: default;\n  display: block;\n  padding: ', ';\n  padding: var(--styled-select-no-results-padding, ', ');\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.no__results__color, _defaults2.default.no__results__color, _defaults2.default.no__results__padding, _defaults2.default.no__results__padding);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectNoResults'
+  })(['box-sizing:border-box;color:', ';color:var(--styled-select-no-results-color,', ');cursor:default;display:block;padding:', ';padding:var(--styled-select-no-results-padding,', ');'], _defaults2.default.no__results__color, _defaults2.default.no__results__color, _defaults2.default.no__results__padding, _defaults2.default.no__results__padding);
 });
 //# sourceMappingURL=SelectNoResults.js.map
 
@@ -36778,17 +36741,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  color: ', ';\n  color: var(--styled-select-clear-font-size, ', ');\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  width: 17px;\n  display: table-cell;\n'], ['\n  box-sizing: border-box;\n  color: ', ';\n  color: var(--styled-select-clear-font-size, ', ');\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  width: 17px;\n  display: table-cell;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.clearZone__color, _defaults2.default.clearZone__color);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectClearZone'
+  })(['box-sizing:border-box;color:', ';color:var(--styled-select-clear-font-size,', ');cursor:pointer;position:relative;text-align:center;vertical-align:middle;width:17px;display:table-cell;'], _defaults2.default.clearZone__color, _defaults2.default.clearZone__color);
 });
 //# sourceMappingURL=SelectClearZone.js.map
 
@@ -36829,17 +36784,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  width: 25px;\n  padding-right: 5px;\n  display: table-cell;\n  \n'], ['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  width: 25px;\n  padding-right: 5px;\n  display: table-cell;\n  \n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectArrowZone'
+  })(['box-sizing:border-box;cursor:pointer;position:relative;text-align:center;vertical-align:middle;width:25px;padding-right:5px;display:table-cell;']);
 });
 //# sourceMappingURL=SelectArrowZone.js.map
 
@@ -36880,17 +36827,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  border-radius: 2px;\n  border-radius: var(--styled-select-menu-outer-border-radius, 2px);\n\n  background-color: #fff;\n  background-color: var(--styled-select-menu-outer-background-color, #fff);\n\n  border-color:  #f0f0f5;\n  border-color: var(--styled-select-menu-outer-border-color, #f0f0f5);\n\n  border-width: 1px;\n  border-width: var(--styled-select-menu-outer-border-width, 1px);\n\n  border-style: solid;\n  border-style: var(--styled-select-menu-outer-border-style, solid);\n\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n  box-sizing: border-box;\n\n  margin: 5px 0 0 0;\n  margin: var(--styled-select-menu-outer-margin, 5px 0 0 0);\n\n  padding: 0;\n  padding: var(--styled-select-menu-outer-padding, 0);\n\n  max-height: 200px;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n'], ['\n  box-sizing: border-box;\n  border-radius: 2px;\n  border-radius: var(--styled-select-menu-outer-border-radius, 2px);\n\n  background-color: #fff;\n  background-color: var(--styled-select-menu-outer-background-color, #fff);\n\n  border-color:  #f0f0f5;\n  border-color: var(--styled-select-menu-outer-border-color, #f0f0f5);\n\n  border-width: 1px;\n  border-width: var(--styled-select-menu-outer-border-width, 1px);\n\n  border-style: solid;\n  border-style: var(--styled-select-menu-outer-border-style, solid);\n\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n  box-sizing: border-box;\n\n  margin: 5px 0 0 0;\n  margin: var(--styled-select-menu-outer-margin, 5px 0 0 0);\n\n  padding: 0;\n  padding: var(--styled-select-menu-outer-padding, 0);\n\n  max-height: 200px;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectMenuOuter'
+  })(['box-sizing:border-box;border-radius:2px;border-radius:var(--styled-select-menu-outer-border-radius,2px);background-color:#fff;background-color:var(--styled-select-menu-outer-background-color,#fff);border-color:#f0f0f5;border-color:var(--styled-select-menu-outer-border-color,#f0f0f5);border-width:1px;border-width:var(--styled-select-menu-outer-border-width,1px);border-style:solid;border-style:var(--styled-select-menu-outer-border-style,solid);box-shadow:0 2px 4px rgba(0,0,0,0.05);box-sizing:border-box;margin:5px 0 0 0;margin:var(--styled-select-menu-outer-margin,5px 0 0 0);padding:0;padding:var(--styled-select-menu-outer-padding,0);max-height:200px;position:absolute;top:100%;width:100%;z-index:1;']);
 });
 //# sourceMappingURL=SelectMenuOuter.js.map
 
@@ -36933,17 +36872,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  bottom: 0;\n  font-size: 12px;\n  font-size: var(--styled-select-placeholder-font-size, 12px);\n  font-family: ', ';\n  font-family: var(--styled-select-placeholder-font-family, ', ');\n  color: #d2d2d9;\n  color: var(--styled-select-placeholder-color, #d2d2d9);\n  left: 0;\n  line-height: 34px;\n  padding-left: 10px;\n  padding-right: 10px;\n  position: absolute;\n  right: 0;\n  top: 0;\n  max-width: 100%;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  display: inline-block;\n'], ['\n  bottom: 0;\n  font-size: 12px;\n  font-size: var(--styled-select-placeholder-font-size, 12px);\n  font-family: ', ';\n  font-family: var(--styled-select-placeholder-font-family, ', ');\n  color: #d2d2d9;\n  color: var(--styled-select-placeholder-color, #d2d2d9);\n  left: 0;\n  line-height: 34px;\n  padding-left: 10px;\n  padding-right: 10px;\n  position: absolute;\n  right: 0;\n  top: 0;\n  max-width: 100%;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  display: inline-block;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectPlaceholder'
+  })(['bottom:0;font-size:12px;font-size:var(--styled-select-placeholder-font-size,12px);font-family:', ';font-family:var(--styled-select-placeholder-font-family,', ');color:#d2d2d9;color:var(--styled-select-placeholder-color,#d2d2d9);left:0;line-height:34px;padding-left:10px;padding-right:10px;position:absolute;right:0;top:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;'], _defaults2.default.fontFamily, _defaults2.default.fontFamily);
 });
 //# sourceMappingURL=SelectPlaceholder.js.map
 
@@ -36984,17 +36915,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: inline-block;\n'], ['\n  box-sizing: border-box;\n  display: inline-block;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectValueWrapper'
+  })(['box-sizing:border-box;display:flex;align-items:center;align-content:space-around;padding:0 0 0 5px;flex:2 100%;']);
 });
 //# sourceMappingURL=SelectValueWrapper.js.map
 
@@ -37035,17 +36958,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: inline-table;\n  overflow: hidden;\n  padding-left: 5px;\n'], ['\n  box-sizing: border-box;\n  display: inline-table;\n  overflow: hidden;\n  padding-left: 5px;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectMultiValueWrapper'
+  })(['box-sizing:border-box;display:flex;align-items:center;align-content:space-around;padding:3px 0 3px 5px;flex:2 100%;flex-wrap:wrap;']);
 });
 //# sourceMappingURL=SelectMultiValueWrapper.js.map
 
@@ -37091,6 +37006,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   exports.default = function (option, className) {
     return _react2.default.createElement(_SelectValueLabel2.default, {
       key: option.key,
+      multi: option.multi,
       className: className,
       'data-select-value-label': true }, option.label);
   };
@@ -37136,17 +37052,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  font-family: ', ';\n  font-family: var(--styled-select-value-label-font-family, ', ');\n  color: ', ';\n  color: var(--styled-select-color, ', ');\n  box-sizing: border-box;\n  display: inline-block;\n'], ['\n  font-family: ', ';\n  font-family: var(--styled-select-value-label-font-family, ', ');\n  color: ', ';\n  color: var(--styled-select-color, ', ');\n  box-sizing: border-box;\n  display: inline-block;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.valueLabel__color, _defaults2.default.valueLabel__color);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectValueLabel'
+  })(['font-family:', ';font-family:var(--styled-select-value-label-font-family,', ');color:', ';color:var(--styled-select-color,', ');box-sizing:border-box;display:inline-block;', ''], _defaults2.default.fontFamily, _defaults2.default.fontFamily, _defaults2.default.valueLabel__color, _defaults2.default.valueLabel__color, function (props) {
+    return props.multi && 'padding: 1px 6px;';
+  });
 });
 //# sourceMappingURL=SelectValueLabel.js.map
 
@@ -37198,8 +37108,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       'aria-selected': option.isSelected,
       tabIndex: option.tabIndex,
       isFocused: option.isFocused,
+      'data-key': option['data-key'],
       role: 'option',
       'data-select-option': option.value,
+      onMouseOut: option.onMouseOut,
+      onMouseOver: option.onMouseOver,
       onMouseDown: option.onMouseDown }, option.label);
   };
 });
@@ -37244,16 +37157,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n\n  font-family: ', ';\n  font-family: var(--styled-select-option-font-family, ', ');\n\n  background-color: #fff;\n  background-color: var(--styled-select-option-background-color, #fff);\n\n  color: #666666;\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n\n  ', '\n  ', '\n\n  &:hover {\n    ', '\n  }\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n'], ['\n  box-sizing: border-box;\n\n  font-family: ', ';\n  font-family: var(--styled-select-option-font-family, ', ');\n\n  background-color: #fff;\n  background-color: var(--styled-select-option-background-color, #fff);\n\n  color: #666666;\n  cursor: pointer;\n  display: block;\n  padding: 8px 10px;\n\n  ', '\n  ', '\n\n  &:hover {\n    ', '\n  }\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
   var isFocused = function isFocused() {
     return '\n  color: #333;\n  color: var(--styled-select-option-focused-color, #333);\n  background-color: #f0f0f5;\n  background-color: var(--styled-select-option-focused-background-color, #f0f0f5);\n';
   };
@@ -37262,11 +37165,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return '\n  color: #333;\n  color: var(--styled-select-option-selected-color, #333);\n  background-color: #ddd;\n  background-color: var(--styled-select-option-selected-background-color, #ddd);\n';
   };
 
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.fontFamily, _defaults2.default.fontFamily, function (props) {
-    return props.isSelected && isSelected();
-  }, function (props) {
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectOption'
+  })(['box-sizing:border-box;font-family:', ';font-family:var(--styled-select-option-font-family,', ');background-color:#fff;background-color:var(--styled-select-option-background-color,#fff);color:#666666;cursor:pointer;display:block;padding:8px 10px;', ' ', ' &:last-child{border-bottom-right-radius:4px;border-bottom-left-radius:4px;}'], _defaults2.default.fontFamily, _defaults2.default.fontFamily, function (props) {
     return props.isFocused && isFocused();
-  }, isFocused());
+  }, function (props) {
+    return props.isSelected && isSelected();
+  });
 });
 //# sourceMappingURL=SelectOption.js.map
 
@@ -37361,17 +37266,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  height: ', ';\n  height: var(--styled-select-input-height, ', ');\n  padding: ', ';\n  padding: var(--styled-select-input-padding, ', ');\n  vertical-align: middle;\n  display: inline-table;\n  margin: 0;\n'], ['\n  height: ', ';\n  height: var(--styled-select-input-height, ', ');\n  padding: ', ';\n  padding: var(--styled-select-input-padding, ', ');\n  vertical-align: middle;\n  display: inline-table;\n  margin: 0;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject, _defaults2.default.input__height, _defaults2.default.input__height, _defaults2.default.input__padding, _defaults2.default.input__padding);
+  exports.default = _styledComponents2.default.div.withConfig({
+    displayName: 'SelectInput'
+  })(['height:', ';height:var(--styled-select-input-height,', ');padding:', ';padding:var(--styled-select-input-padding,', ');vertical-align:middle;display:inline-table;margin:0;'], _defaults2.default.input__height, _defaults2.default.input__height, _defaults2.default.input__padding, _defaults2.default.input__padding);
 });
 //# sourceMappingURL=SelectInput.js.map
 
@@ -37525,7 +37422,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }
 
   exports.default = function (element) {
-    console.log('asdasdas');
+
     return function (_React$PureComponent) {
       _inherits(ShadowDOMHelper, _React$PureComponent);
 
@@ -37545,7 +37442,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         _this.state = {
           stylesheet: false
         };
-
         return _this;
       }
 

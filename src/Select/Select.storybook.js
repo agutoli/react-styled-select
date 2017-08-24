@@ -102,3 +102,15 @@ storiesOf('Select', module)
       </div>
     </div>
   ))
+  .add('multi=true', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <SelectShadowDOM
+          multi
+          value={['one', 'four']}
+          options={options}
+          onChange={action('onChange')}
+        />
+      </div>
+    </div>
+  ))

@@ -8,10 +8,22 @@ const options = [
   { value: 'one', label: 'One' },
   { value: 'two', label: 'Two' },
   { value: 'tree', label: 'Tree' },
+  { value: 'four', label: 'Four' },
+  { value: 'five', label: 'Five' },
+  { value: 'six', label: 'Six' },
+  { value: 'seven', label: 'Seven' },
 ]
 
 ReactDOM.render((
   <div>
+    <div style={{width: '300px'}}>
+      <h2>Multi Select</h2>
+      <SelectShadow
+        multi
+        value={['one', 'two']}
+        options={options}
+      />
+    </div>
     <div style={{width: '300px'}}>
       <h2>With Shadow DOM</h2>
       <SelectShadow

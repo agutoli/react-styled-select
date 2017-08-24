@@ -9,4 +9,10 @@ export default styled.div`
   box-sizing: border-box;
   border-right: 1px solid;
   display: inline-block;
+  padding: 1px 5px;
+
+  &:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
 `

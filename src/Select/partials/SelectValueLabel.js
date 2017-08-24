@@ -8,4 +8,7 @@ export default styled.div`
   color: var(--styled-select-color, ${defaults.valueLabel__color});
   box-sizing: border-box;
   display: inline-block;
+
+
+  ${props => props.multi && 'padding: 1px 6px;'}
 `

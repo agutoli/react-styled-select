@@ -5,6 +5,7 @@ export default styled.div`
   display: flex;
 	align-items: center;
   align-content: space-around;
-  padding: 0 0 0 5px;
+  padding: 3px 0 3px 5px;
   flex: 2 100%;
+  flex-wrap: wrap;
 `

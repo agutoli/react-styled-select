@@ -11,7 +11,7 @@ const Select = {
   value__bottom: '0',
   value__position: 'absolute',
   value__overflow: 'overflow',
-  value__padding: '0 10px',
+  value__padding: '0 5px',
   value__lineHeight: '34px',
   value__overflow: 'hidden',
   value__whiteSpace: 'nowrap',
