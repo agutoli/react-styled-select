@@ -1,6 +1,6 @@
 {
   "name": "react-styled-select",
-  "version": "0.0.14-alpha",
+  "version": "0.0.15-alpha",
   "description": "",
   "main": "lib/index.js",
   "repository": "https://github.com/agutoli/react-styled-select.git",
@@ -72,6 +72,7 @@
     "react-dom": "~0.14.8 || ^15.6.1"
   },
   "dependencies": {
+    "@webcomponents/shadydom": "^1.0.3",
     "babel-runtime": "^6.6.1",
     "prop-types": "^15.5.10",
     "react-click-outside": "^2.3.1",
