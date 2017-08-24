@@ -2,6 +2,7 @@ import React from 'react'
 import ShadowDOM from 'react-shadow'
 
 export default (element) => {
+
   return class ShadowDOMHelper extends React.PureComponent {
     constructor(props) {
       super(props)

@@ -7,4 +7,6 @@ export default styled.div`
   padding: ${defaults.input__padding};
   padding: var(--styled-select-input-padding, ${defaults.input__padding});
   vertical-align: middle;
+  display: inline-table;
+  margin: 0;
 `

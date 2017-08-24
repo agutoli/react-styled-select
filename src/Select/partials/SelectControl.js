@@ -31,7 +31,7 @@ export default styled.div`
   cursor: default;
   border-spacing: 0;
   border-collapse: separate;
-  height: 36px;
+  min-height: 36px;
   outline: none;
   overflow: hidden;
   position: relative;

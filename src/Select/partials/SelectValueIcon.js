@@ -7,8 +7,12 @@ export default styled.div`
   color: ${defaults.valueLabel__color};
   color: var(--styled-select-color, ${defaults.valueLabel__color});
   box-sizing: border-box;
+  border-right: 1px solid;
   display: inline-block;
+  padding: 1px 5px;
 
-
-  ${props => props.multi && 'padding: 1px 6px;'}
+  &:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
 `

@@ -8,4 +8,6 @@ export default styled.div`
   vertical-align: middle;
   width: 25px;
   padding-right: 5px;
+  display: table-cell;
+  
 `

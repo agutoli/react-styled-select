@@ -11,7 +11,7 @@ const Select = {
   value__bottom: '0',
   value__position: 'absolute',
   value__overflow: 'overflow',
-  value__padding: '0 10px',
+  value__padding: '0 5px',
   value__lineHeight: '34px',
   value__overflow: 'hidden',
   value__whiteSpace: 'nowrap',
@@ -41,8 +41,8 @@ const Select = {
   no__results__padding: '8px 10px',
 
   // SelectInput
-  input__height: '34px',
-  input__padding: '0 10px'
+  input__height: '23px',
+  input__padding: '0'
 };
 
 export default Select;
