@@ -32,9 +32,7 @@ export default styled.div`
   ${props => props.isSelected && isSelected()}
   ${props => props.isFocused && isFocused()}
 
-  &:hover {
-    ${isFocused()}
-  }
+
 
   &:last-child {
     border-bottom-right-radius: 4px;

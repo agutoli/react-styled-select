@@ -256,11 +256,16 @@ class WrapperSelect extends React.PureComponent {
         const isFocused = focusedIndex === i;
         return optionRenderer(Object.assign({
           key: i,
+          'data-key': i,
           isSelected,
           id: this.state['aria-owns'],
           className: classes.selectOption,
-          isFocused: focusedIndex === i,
+          isFocused: focusedIndex == i,
           tabIndex: value === opt.value ? '0' : '-1',
+          onMouseOver: (e) => {
+            const dataKey = e.target.getAttribute('data-key');
+            this.setState({ focusedIndex: dataKey });
+          },
           onMouseDown: (e) => this.onSelectValue(opt.value, e)
         }, opt), i);
       });

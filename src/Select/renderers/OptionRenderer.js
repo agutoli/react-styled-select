@@ -11,8 +11,10 @@ export default (option, index) => {
       aria-selected={option.isSelected}
       tabIndex={option.tabIndex}
       isFocused={option.isFocused}
+      data-key={option['data-key']}
       role="option"
       data-select-option={option.value}
+      onMouseOver={option.onMouseOver}
       onMouseDown={option.onMouseDown}>
       {option.label}
     </SelectOption>
