@@ -1,18 +1,19 @@
 import styled from 'styled-components'
-import defaults from '../defaults.js'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-value-icon');
 
 export default styled.div`
-  font-family: ${defaults.fontFamily};
-  font-family: var(--styled-select-value-label-font-family, ${defaults.fontFamily});
-  color: ${defaults.valueLabel__color};
-  color: var(--styled-select-color, ${defaults.valueLabel__color});
   box-sizing: border-box;
   border-right: 1px solid;
   display: inline-block;
-  padding: 1px 5px;
+  ${g('color')}
+  ${g('padding')}
+  ${g('font-family')}
+  ${g('background-color')}
 
   &:hover {
-    background-color: #ccc;
+    ${g('background-color', 'hover')}
     cursor: pointer;
   }
 `

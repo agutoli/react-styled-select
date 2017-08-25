@@ -1,12 +1,14 @@
 import styled from 'styled-components'
-import defaults from '../defaults.js'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-no-results');
 
 export default styled.div`
-  box-sizing: border-box;
-  color: ${defaults.no__results__color};
-  color: var(--styled-select-no-results-color, ${defaults.no__results__color});
-  cursor: default;
   display: block;
-  padding: ${defaults.no__results__padding};
-  padding: var(--styled-select-no-results-padding, ${defaults.no__results__padding});
+  cursor: default;
+  box-sizing: border-box;
+  ${g('color')}
+  ${g('padding')}
+  ${g('font-size')}
+  ${g('font-family')}
 `

@@ -1,14 +1,21 @@
 import styled from 'styled-components'
-import defaults from '../defaults.js'
+import { autoCssGenerator, cssVar } from '../cssHelpers';
+
+const v = cssVar('select-arrow');
+const g = autoCssGenerator('select-arrow');
 
 const isOpened = () => (`
-  transform: translateY(18%) rotate(-134deg);
+  margin-top: ${v('size')/2}px;
+  transform: rotate(-134deg);
 `)
 
 export default styled.div`
+  position: relative;
+  display: inline-block;
   box-sizing: border-box;
-  font-family: ${defaults.fontFamily};
-  font-family: var(--styled-select-arrow-font-family, ${defaults.fontFamily});
+
+  ${g('border-right')}
+  ${g('font-family')}
 
   border-style: none;
 
@@ -17,20 +24,20 @@ export default styled.div`
   border-bottom-style: solid;
   border-right-width: 1px;
   border-bottom-width: 1px;
-  border-right-color: ${defaults.arrow__color};
-  border-bottom-color: ${defaults.arrow__color};
+  border-right-color: ${v('color')};
+  border-bottom-color: ${v('color')};
   /* FALLBACK */
 
-  border-right: 1px var(--styled-select-arrow-color, ${defaults.arrow__color}) solid;
-  border-bottom: 1px var(--styled-select-arrow-color, ${defaults.arrow__color}) solid;
+  border-right: 1px ${v('color')} solid;
+  border-right: 1px var(--styled-select-arrow__color, ${v('color')}) solid;
+  border-bottom: 1px ${v('color')} solid;
+  border-bottom: 1px var(--styled-select-arrow__color, ${v('color')}) solid;
 
   border-bottom-right-radius: 25%;
-  transform: translateY(-25%) rotate(45deg);
+  transform: rotate(45deg);
 
   ${props => props.isOpened && isOpened()}
 
-  display: inline-block;
-  height: 8px;
-  width: 8px;
-  position: relative;
+  height: ${v('size')}px;
+  width: ${v('size')}px;
 `

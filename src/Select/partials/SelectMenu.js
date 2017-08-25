@@ -1,7 +1,10 @@
 import styled from 'styled-components'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-menu');
 
 export default styled.div`
   box-sizing: border-box;
-  max-height: 198px;
   overflow-y: auto;
+  ${g('max-height')}
 `

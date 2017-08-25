@@ -112,5 +112,13 @@ storiesOf('Select', module)
           onChange={action('onChange')}
         />
       </div>
+      <div className="secondary" style={{width: '300px'}}>
+        <SelectShadowDOM
+          multi
+          value={['one', 'four']}
+          options={options}
+          onChange={action('onChange')}
+        />
+      </div>
     </div>
   ))
