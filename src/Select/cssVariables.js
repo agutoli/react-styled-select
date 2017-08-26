@@ -1,6 +1,6 @@
-const fontFamily = '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif';
+const fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
-export default {
+module.exports = {
   'select__color': '#777',
   'select__background-color': '#fff',
   'select__border-radius': '2px',

@@ -19,7 +19,6 @@ storiesOf('Select', module)
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
         <SelectShadowDOM
-          className="secondary"
           name="form-field-name"
           options={options}
           onOpen={action('onOpen')}

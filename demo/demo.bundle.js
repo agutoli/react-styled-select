@@ -23393,7 +23393,7 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(
     'pre',
     { style: { color: 'grey', border: '2px solid #ccc', padding: '5px' } },
-    '\n    :root {\n      // change CSS root scope\n      --styled-select-border-style: solid;\n    }\n\n    .select-theme-1 {\n      --styled-select-background-color: black;\n      --styled-select-border-width: 3px;\n      --styled-select-control-border-color: red;\n    }\n\n    .select-theme-2 {\n      --styled-select-background-color: red;\n      --styled-select-border-width: 1px;\n      --styled-select-control-border-color: black;\n    }'
+    '\n    :root {\n      // change CSS root scope\n      --styled-select__border-style: solid;\n    }\n\n    .select-theme-1 {\n      // old variables version (<= 0.0.17-alpha)\n      --styled-select-background-color: black;\n      --styled-select-border-width: 3px;\n      --styled-select-control-border-color: red;\n\n      // new variables format (>= 2.0.0-alpha)\n      --styled-select__background-color: black;\n      --styled-select__border-width: 3px;\n      --styled-select-control__border-color: red;\n    }\n\n    .select-theme-2 {\n      // old variables varsion (<= 0.0.17-alpha)\n      --styled-select-background-color: red;\n      --styled-select-border-width: 1px;\n      --styled-select-control-border-color: black;\n\n      // new variables format (>= 2.0.0-alpha)\n      --styled-select__background-color: red;\n      --styled-select__border-width: 1px;\n      --styled-select-control__border-color: black;\n    }'
   )
 ), document.getElementById('main'));
 
@@ -36321,28 +36321,25 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports);
+    factory(module);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports);
+    factory(mod);
     global.cssVariables = mod.exports;
   }
-})(undefined, function (exports) {
+})(undefined, function (module) {
   'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  var fontFamily = '"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif';
+  var fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
-  exports.default = {
+  module.exports = {
     'select__color': '#777',
     'select__background-color': '#fff',
     'select__border-radius': '2px',
