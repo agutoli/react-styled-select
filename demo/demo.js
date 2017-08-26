@@ -56,20 +56,32 @@ ReactDOM.render((
     <pre style={{color: 'grey', border: '2px solid #ccc', padding: '5px'}}>
     {`
     :root {
-      // change CSS root scope
-      --styled-select-border-style: solid;
+      /* change CSS root scope */
+      --styled-select__border-style: solid;
     }
 
     .select-theme-1 {
+      /* old variables version (<= 0.0.17-alpha) */
       --styled-select-background-color: black;
       --styled-select-border-width: 3px;
       --styled-select-control-border-color: red;
+
+      /* new variables format (>= 2.0.0-alpha) */
+      --styled-select__background-color: black;
+      --styled-select__border-width: 3px;
+      --styled-select-control__border-color: red;
     }
 
     .select-theme-2 {
+      /* old variables varsion (<= 0.0.17-alpha) */
       --styled-select-background-color: red;
       --styled-select-border-width: 1px;
       --styled-select-control-border-color: black;
+
+      /* new variables format (>= 2.0.0-alpha) */
+      --styled-select__background-color: red;
+      --styled-select__border-width: 1px;
+      --styled-select-control__border-color: black;
     }`}
     </pre>
 

@@ -1,14 +1,14 @@
 import styled from 'styled-components'
-import defaults from '../defaults.js'
+import { autoCssGenerator } from '../cssHelpers';
+
+const globalCss = autoCssGenerator('select');
+const g = autoCssGenerator('select-value-label');
 
 export default styled.div`
-  font-family: ${defaults.fontFamily};
-  font-family: var(--styled-select-value-label-font-family, ${defaults.fontFamily});
-  color: ${defaults.valueLabel__color};
-  color: var(--styled-select-color, ${defaults.valueLabel__color});
   box-sizing: border-box;
   display: inline-block;
+  ${globalCss('color')}
+  ${g('font-family')}
 
-
-  ${props => props.multi && 'padding: 1px 6px;'}
+  ${props => props.multi && g('padding')}
 `

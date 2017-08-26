@@ -1,6 +1,6 @@
 {
   "name": "react-styled-select",
-  "version": "0.0.16-alpha",
+  "version": "2.0.0-alpha",
   "description": "",
   "main": "lib/index.js",
   "repository": "https://github.com/agutoli/react-styled-select.git",
@@ -16,7 +16,8 @@
     "test": "find ./src -name '*.spec.js' | NODE_ENV=test xargs mocha ./test/browser.js --reporter spec",
     "test:watch": "mocha -w test/browser.js $(find ./src -name '*.spec.js')",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "demo:dev": "webpack-dev-server --config demo/webpack.config.js"
   },
   "keywords": [
     "javascript",
@@ -66,7 +67,8 @@
     "react-storybook-addon-backgrounds": "0.0.7",
     "stylelint": "^7.11.1",
     "stylelint-config-standard": "^16.0.0",
-    "webpack": "^3.4.1"
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "^2.7.1"
   },
   "peerDependencies": {
     "react": "~0.14.8 || ^15.6.1",

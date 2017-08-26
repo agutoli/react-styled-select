@@ -5,25 +5,7 @@ input {
 }
 
 .secondary {
-  --styled-select-placeholder-color: #999;
-  --styled-select-color: white;
-  --styled-select-background-color: #555;
-  --styled-select-border-color: black;
-  --styled-select-border-width: 3px;
-  --styled-select-border-radius: 5px;
-
-  --styled-select-menu-outer-margin: 10px 0 0 0;
-  --styled-select-menu-outer-padding: 0;
-  --styled-select-menu-outer-background-color: #555;
-  --styled-select-menu-outer-border-color: black;
-  --styled-select-menu-outer-border-style: solid;
-  --styled-select-menu-outer-border-width: 3px;
-
-  --styled-select-option-background-color: #444;
-
-  --styled-select-option-focused-color: #eee;
-  --styled-select-option-focused-background-color: #333;
-
-  --styled-select-option-selected-color: #eee;
-  --styled-select-option-selected-background-color: #444;
+  --styled-select__background-color: black;
+  --styled-select__border-width: 3px;
+  --styled-select__control-border-color: red;
 }

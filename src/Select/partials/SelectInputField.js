@@ -1,8 +1,12 @@
 import styled from 'styled-components'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-input');
+const globalCss = autoCssGenerator('select');
 
 export default styled.input`
-  color: #333;
-  color: var(--styled-select-color, #333);
+  ${g('line-height')}
+  ${globalCss('color')}
   box-sizing: content-box;
   background: none transparent;
   border: 0 none;
@@ -13,6 +17,5 @@ export default styled.input`
   font-size: inherit;
   margin: 0;
   outline: none;
-  line-height: 23px;
   -webkit-appearance: none;
 `

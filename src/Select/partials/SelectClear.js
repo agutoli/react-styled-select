@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import defaults from '../defaults.js'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-clear');
 
 export default styled.div`
-  font-family: ${defaults.fontFamily};
-  font-family: var(--styled-select-clear-font-family, ${defaults.fontFamily});
-  font-size: ${defaults.clear__fontSize};
-  font-size: var(--styled-select-clear-font-size, ${defaults.clear__fontSize});
+  ${g('color')}
+  ${g('font-size')}
   box-sizing: border-box;
   display: inline-block;
   line-height: 1;

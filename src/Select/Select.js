@@ -370,7 +370,7 @@ class WrapperSelect extends React.PureComponent {
         className={classes.selectClearZone}
         data-select-clear-zone onMouseDown={this.onClearValue}>
         <SelectClear
-          className={classes.selectClear} data-select-clear>x</SelectClear>
+          className={classes.selectClear} data-select-clear>×</SelectClear>
       </SelectClearZone>
     );
   }

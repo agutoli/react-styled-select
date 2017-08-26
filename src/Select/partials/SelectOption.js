@@ -1,28 +1,22 @@
 import styled from 'styled-components'
-import defaults from '../defaults.js'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-option');
 
 const isFocused = () => (`
-  color: #333;
-  color: var(--styled-select-option-focused-color, #333);
-  background-color: #f0f0f5;
-  background-color: var(--styled-select-option-focused-background-color, #f0f0f5);
+  ${g('color', 'focused')}
+  ${g('background-color', 'focused')}
 `)
 
 const isSelected = () => (`
-  color: #333;
-  color: var(--styled-select-option-selected-color, #333);
-  background-color: #ddd;
-  background-color: var(--styled-select-option-selected-background-color, #ddd);
+  ${g('color', 'selected')}
+  ${g('background-color', 'selected')}
 `)
 
 export default styled.div`
   box-sizing: border-box;
-
-  font-family: ${defaults.fontFamily};
-  font-family: var(--styled-select-option-font-family, ${defaults.fontFamily});
-
-  background-color: #fff;
-  background-color: var(--styled-select-option-background-color, #fff);
+  ${g('font-family')}
+  ${g('background-color')}
 
   color: #666666;
   cursor: pointer;

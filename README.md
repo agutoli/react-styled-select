@@ -97,75 +97,95 @@ class MyForm extends React.Component {
 
 ```css
 .dark-theme {
-  --styled-select-placeholder-color: #999;
-  --styled-select-color: white;
-  --styled-select-background-color: #555;
-  --styled-select-border-color: black;
-  --styled-select-border-width: 3px;
-  --styled-select-border-radius: 5px;
+  --styled-select-placeholder__color: #999;
+  --styled-select__color: white;
+  --styled-select__background-color: #555;
+  --styled-select__border-color: black;
+  --styled-select__border-width: 3px;
+  --styled-select__border-radius: 5px;
 
-  --styled-select-menu-outer-margin: 10px 0 0 0;
-  --styled-select-menu-outer-padding: 0;
-  --styled-select-menu-outer-background-color: #555;
-  --styled-select-menu-outer-border-color: black;
-  --styled-select-menu-outer-border-style: solid;
-  --styled-select-menu-outer-border-width: 3px;
+  --styled-select-menu-outer__margin: 10px 0 0 0;
+  --styled-select-menu-outer__padding: 0;
+  --styled-select-menu-outer__background-color: #555;
+  --styled-select-menu-outer__border-color: black;
+  --styled-select-menu-outer__border-style: solid;
+  --styled-select-menu-outer__border-width: 3px;
 
-  --styled-select-option-background-color: #444;
+  --styled-select-option__background-color: #444;
 
-  --styled-select-option-focused-color: #eee;
-  --styled-select-option-focused-background-color: #333;
+  --styled-select-option__color--focused: #eee;
+  --styled-select-option__background-color--focused: #333;
 
-  --styled-select-option-selected-color: #eee;
-  --styled-select-option-selected-background-color: #444;
+  --styled-select-option__color--selected: #eee;
+  --styled-select-option__background-color--selected: #444;
 }
 ```
 
 ## Available CSS variables
 
 <pre>
-
---styled-<b>select-</b>color
---styled-<b>select</b>-background-color
---styled-<b>select</b>-border-radius
---styled-<b>select</b>-border-style
---styled-<b>select</b>-border-width
-
---styled-<b>select-arrow</b>-color
---styled-<b>select-arrow</b>-font-family
-
---styled-<b>select-clear</b>-font-family
---styled-<b>select-clear</b>-font-size
-
---styled-<b>select-control</b>-border-color
---styled-<b>select-control-focused</b>-border-color
-
---styled-<b>select-input</b>-height
---styled-<b>select-input</b>-padding
-
---styled-<b>select-menu-outer</b>-background-color
---styled-<b>select-menu-outer</b>-border-color
---styled-<b>select-menu-outer</b>-border-raius
---styled-<b>select-menu-outer</b>-border-style
---styled-<b>select-menu-outer</b>-border-width
---styled-<b>select-menu-outer</b>-margin
---styled-<b>select-menu-outer</b>-padding
-
---styled-<b>select-no-results</b>-color
---styled-<b>select-no-results</b>-padding
-
---styled-<b>select-option</b>-font-family
---styled-<b>select-option</b>-background-color
---styled-<b>select-option-focused</b>-color
---styled-<b>select-option-focused</b>-background-color
---styled-<b>select-option-selected</b>-color
---styled-<b>select-option-selected</b>-background-color
-
---styled-<b>select-placeholder</b>-color
---styled-<b>select-placeholder</b>-font-family
---styled-<b>select-placeholder</b>-font-size
-
---styled-<b>select-value-label</b>-font-family
+--styled-<b>select</b>__color: #777;
+--styled-<b>select</b>__background-color: #fff;
+--styled-<b>select</b>__border-radius: 2px;
+--styled-<b>select</b>__border-style: solid;
+--styled-<b>select</b>__border-width: 1px;
+--styled-<b>select-arrow</b>__size: 8;
+--styled-<b>select-arrow</b>__color: #9b9ba5;
+--styled-<b>select-clear</b>__color: #999;
+--styled-<b>select-clear</b>__font-size: 14px;
+--styled-<b>select-control</b>__min-height: 36px;
+--styled-<b>select-control</b>__border-color: #dcdce3;
+--styled-<b>select-control</b>__border-color--focused: #40a3f5;
+--styled-<b>select-input</b>__height: 23px;
+--styled-<b>select-input</b>__padding: 0;
+--styled-<b>select-input</b>__line-height: 23px;
+--styled-<b>select-menu</b>__max-height: 198px;
+--styled-<b>select-menu-outer</b>__max-height: 200px;
+--styled-<b>select-menu-outer</b>__background-color: #fff;
+--styled-<b>select-menu-outer</b>__border-color: #f0f0f5;
+--styled-<b>select-menu-outer</b>__border-radius: 2px;
+--styled-<b>select-menu-outer</b>__border-style: solid;
+--styled-<b>select-menu-outer</b>__border-width: 1px;
+--styled-<b>select-menu-outer</b>__box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+--styled-<b>select-menu-outer</b>__margin: 5px 0 0 0;
+--styled-<b>select-menu-outer</b>__padding: 0;
+--styled-<b>select-no-results</b>__color: #999;
+--styled-<b>select-no-results</b>__padding: 8px 10px;
+--styled-<b>select-no-results</b>__font-size: 14px;
+--styled-<b>select-no-results</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-option</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-option</b>__color--focused: #333;
+--styled-<b>select-option</b>__color--selected: #333;
+--styled-<b>select-option</b>__background-color: #fff;
+--styled-<b>select-option</b>__background-color--focused: #f0f0f5;
+--styled-<b>select-option</b>__background-color--selected: #ddd;
+--styled-<b>select-placeholder</b>__padding: 0 10px;
+--styled-<b>select-placeholder</b>__color: #d2d2d9;
+--styled-<b>select-placeholder</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-placeholder</b>__font-size: 12px;
+--styled-<b>select-placeholder</b>__line-height: 34px;
+--styled-<b>select-value</b>__color: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-value</b>__line-height: 34px;
+--styled-<b>select-value</b>__max-width: 100%;
+--styled-<b>select-value</b>__overflow: hidden;
+--styled-<b>select-value</b>__padding: 0 5px;
+--styled-<b>select-value</b>__text-overflow: ellipsis;
+--styled-<b>select-value</b>__white-space: nowrap;
+--styled-<b>select-value-label</b>__padding: 1px 6px;
+--styled-<b>select-value-label</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-value-icon</b>__background-color: transparent;
+--styled-<b>select-value-icon</b>__background-color--hover: rgba(0, 0, 0, 0.1);
+--styled-<b>select-value-icon</b>__font-family: arial;
+--styled-<b>select-value-icon</b>__padding: 1px 5px;
+--styled-<b>select-multi-value</b>__font-size: 0.9em;
+--styled-<b>select-multi-value</b>__line-height: 1.4;
+--styled-<b>select-multi-value</b>__margin: 2px 5px 2px 0;
+--styled-<b>select-multi-value</b>__background-color: #eee;
+--styled-<b>select-multi-value</b>__border: 1px solid #aaa;
+--styled-<b>select-multi-value</b>__border--hover: 1px solid #777;
+--styled-<b>select-multi-value</b>__border-radius: 3px;
+--styled-<b>select-multi-value</b>__box-shadow: rgba(0,0,0,0.2) 0px 0px 3px;
+--styled-<b>select-multi-value-wrapper</b>__padding: 3px 0 3px 5px;
 </pre>
 
 ## Inspiration
