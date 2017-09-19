@@ -9,7 +9,7 @@ react-styled-select
 ============
 ### ATTENTION: Work in Progress (sorry about that!)
 
-This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://raw.githubusercontent.com/JedWatson/react-select). But what the differences between [react-select](https://raw.githubusercontent.com/JedWatson/react-select) and this project?
+This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://github.com/JedWatson/react-select). But what the differences between [react-select](https://github.com/JedWatson/react-select) and this project?
 
 * Lightweight!
 * It don`t force you to load any external css.
@@ -189,7 +189,7 @@ class MyForm extends React.Component {
 </pre>
 
 ## Inspiration
-This project was based on [react-select](https://raw.githubusercontent.com/JedWatson/react-select).
+This project was based on [react-select](https://github.com/JedWatson/react-select).
 
 ## License
 
