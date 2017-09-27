@@ -54,21 +54,21 @@ This project was built with [styled-components](https://github.com/styled-compon
 
 ## Opptions
 
-| Property | Type | Description
-:---|:---|:---
-| `classes` | object | You can specify `className` for each element. Possible values: `selectArrow`, `selectArrowZone`, `selectClear`, `selectClearZone`, `selectControl`, `selectInput`, `selectInputField`, `selectMenu`, `selectMenuOuter`, `selectMultiValueWrapper`, `selectOption`, `selectPlaceholder`, `selectValue`, `selectValueLabel`
-|`clearable` |bool| should it be possible to reset value `default=false`
-|`searchable`|bool| whether to enable searching feature or not `default=true`
-|`placeholder`|string| The short hint is displayed in the input field before the user enters a value
-| `className` | string | Root element className
-| `value` | any | If you want to specify a pre selected value
-| `options` | array | List of values. Ex. <br> `[{"label": "Foo", value: "foo"}]`
-|`onOpen`| function | It calls when open outer menu
-|`onChange`| function | It calls when change selected value
-|`onValueClick`| function | It calls when click over a option value
-|`onInputClear`|function| It calls when input is cleared
-|`valueRenderer`|function| function which returns a custom way to render the value selected function (option) {}
-|`optionRenderer`|function| function which returns a custom way to render the options in the menu (option) {}
+| Property | Type | Default | Description
+:---|:---|:---|:---
+| `classes` | object | `undefined` | You can specify `className` for each element. Possible values: `selectArrow`, `selectArrowZone`, `selectClear`, `selectClearZone`, `selectControl`, `selectInput`, `selectInputField`, `selectMenu`, `selectMenuOuter`, `selectMultiValueWrapper`, `selectOption`, `selectPlaceholder`, `selectValue`, `selectValueLabel`
+|`clearable` | bool | `false` | should it be possible to reset value
+|`searchable`| bool | `true` | whether to enable searching feature or not
+|`placeholder`| string | `Select...` | The short hint is displayed in the input field before the user enters a value
+| `className` | string | `undefined` | Root element className
+| `value` | any | `undefined` | If you want to specify a pre selected value
+| `options` | array | `[]` | List of values. Ex. <br> `[{"label": "Foo", value: "foo"}]`
+|`onOpen`| function | `undefined` | It calls when open outer menu
+|`onChange`| function | `undefined` | It calls when change selected value
+|`onValueClick`| function | `undefined` | It calls when click over a option value
+|`onInputClear`|function| `undefined` | It calls when input is cleared
+|`valueRenderer`|function| `undefined` | function which returns a custom way to render the value selected function (option) {}
+|`optionRenderer`|function| `undefined` | function which returns a custom way to render the options in the menu (option) {}
 
 ## Custom appearance with CSS Variebles
 
