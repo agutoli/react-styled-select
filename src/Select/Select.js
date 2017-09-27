@@ -69,7 +69,8 @@ class WrapperSelect extends React.PureComponent {
     }
 
     this.inputInnerRef = null
-    this.searchSizeRef = null;
+    this.searchSizeRef = null
+    this.shouldFireClickOutsideHack = null
   }
 
   openOptions() {
@@ -93,9 +94,11 @@ class WrapperSelect extends React.PureComponent {
   }
 
   // react-click-outside callback
-  handleClickOutside(event){
-    if (this.state.isOpened) {
+
+  handleClickOutside(event) {
+    if (this.state.isOpened && this.shouldFireClickOutsideHack) {
       this.closeOptions()
+      this.shouldFireClickOutsideHack = false
     }
   }
 
@@ -161,10 +164,18 @@ class WrapperSelect extends React.PureComponent {
     this.props.onValueClick(multi ? Array.from(values) : newValue, event);
   }
 
-  onSelectFocused = () => {
+  onSelectFocused = (event) => {
+    this.shouldFireClickOutsideHack = false
+
+    clearInterval(this.focusedTimeout)
+    this.focusedTimeout = window.setTimeout(() => {
+      this.shouldFireClickOutsideHack = true
+    }, 500)
+
     this.setState({
       isFocused: true
     })
+
     this.openOptions();
     this.setFocus();
   }
