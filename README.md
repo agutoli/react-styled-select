@@ -60,6 +60,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 |`clearable` | bool | `false` | should it be possible to reset value
 |`searchable`| bool | `true` | whether to enable searching feature or not
 |`placeholder`| string | `Select...` | The short hint is displayed in the input field before the user enters a value
+| `loadOptions` | function | `undefined` | function that returns a promise or calls a callback with the options: `function(input, [callback])`
 | `className` | string | `undefined` | Root element className
 | `value` | any | `undefined` | If you want to specify a pre selected value
 | `options` | array | `[]` | List of values. Ex. <br> `[{"label": "Foo", value: "foo"}]`
@@ -69,6 +70,27 @@ This project was built with [styled-components](https://github.com/styled-compon
 |`onInputClear`|function| `undefined` | It calls when input is cleared
 |`valueRenderer`|function| `undefined` | function which returns a custom way to render the value selected function (option) {}
 |`optionRenderer`|function| `undefined` | function which returns a custom way to render the options in the menu (option) {}
+
+## Async options (NEW)
+
+
+    var getOptions = function(input, callback) {
+      setTimeout(function() {
+        callback(null, {
+          options: [
+            { value: 'one', label: 'One' },
+            { value: 'two', label: 'Two' }
+          ],
+          // CAREFUL! Only set this to true when there are no more options,
+          // or more specific queries will not be sent to the server.
+          complete: true
+        });
+      }, 500);
+    };
+
+    <Select.Async
+        loadOptions={getOptions}
+    />
 
 ## Custom appearance with CSS Variebles
 
