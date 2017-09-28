@@ -73,6 +73,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 
 ## Async options (NEW)
 
+Very similar with `react-select` API.
 
     var getOptions = function(input, callback) {
       setTimeout(function() {
@@ -80,10 +81,7 @@ This project was built with [styled-components](https://github.com/styled-compon
           options: [
             { value: 'one', label: 'One' },
             { value: 'two', label: 'Two' }
-          ],
-          // CAREFUL! Only set this to true when there are no more options,
-          // or more specific queries will not be sent to the server.
-          complete: true
+          ]
         });
       }, 500);
     };
