@@ -197,12 +197,12 @@ class WrapperSelect extends React.PureComponent {
     const { focusedIndex, options, isOpened } = this.state;
 
     const typing = () => {
+      const term = this.inputInnerRef.value.toLowerCase().trim()
+
+      onTyping(term)
+
       const filteredOptions = this.getOptions().filter((opt) => {
         const label = opt.label.toLowerCase().trim()
-        const term = this.inputInnerRef.value.toLowerCase().trim()
-
-        onTyping(term)
-
         return label.indexOf(term) !== -1
       });
 

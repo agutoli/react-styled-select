@@ -13,7 +13,7 @@ class SelectAsync extends React.PureComponent {
 
   loadOptions = (term) => {
     const { loadOptions } = this.props
-
+    console.log('asdasdas');
     const callback = (error, data) => {
       const options = data && data.options || [];
       if (callback === this._callback) {

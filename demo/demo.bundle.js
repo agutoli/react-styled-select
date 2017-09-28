@@ -12810,12 +12810,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           isOpened = _state4.isOpened;
 
       var typing = function typing() {
+        var term = _this7.inputInnerRef.value.toLowerCase().trim();
+
+        onTyping(term);
+
         var filteredOptions = _this7.getOptions().filter(function (opt) {
           var label = opt.label.toLowerCase().trim();
-          var term = _this7.inputInnerRef.value.toLowerCase().trim();
-
-          onTyping(term);
-
           return label.indexOf(term) !== -1;
         });
 
@@ -13211,6 +13211,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       _this.loadOptions = function (term) {
         var loadOptions = _this.props.loadOptions;
 
+        console.log('asdasdas');
         var callback = function callback(error, data) {
           var options = data && data.options || [];
           if (callback === _this._callback) {

@@ -140,7 +140,6 @@ storiesOf('Select', module)
       <div style={{width: '300px'}}>
         <SelectShadowDOM.Async
           loadOptions={getOptions}
-          options={options}
           onChange={action('onChange')}
         />
       </div>
