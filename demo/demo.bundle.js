@@ -12456,10 +12456,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
       _initialiseProps.call(_this);
 
-      _this.optionsMap = props.options.reduce(function (agregate, current) {
-        agregate[current.value] = current;
-        return agregate;
-      }, {});
+      _this.indexValues(props);
 
       var values = [];
       if (props.value && _this.optionsMap.hasOwnProperty(props.value)) {
@@ -12490,6 +12487,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
 
     _createClass(WrapperSelect, [{
+      key: 'indexValues',
+      value: function indexValues(props) {
+        this.optionsMap = props.options.reduce(function (agregate, current) {
+          agregate[current.value] = current;
+          return agregate;
+        }, {});
+      }
+    }, {
       key: 'openOptions',
       value: function openOptions() {
         this.setState({
@@ -12704,15 +12709,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'componentWillReceiveProps',
       value: function componentWillReceiveProps(nextProps) {
-        console.log(nextProps.options);
+        var _this6 = this;
+
         this.setState({
           options: nextProps.options
+        }, function () {
+          return _this6.indexValues(nextProps);
         });
       }
     }, {
       key: 'render',
       value: function render() {
-        var _this6 = this;
+        var _this7 = this;
 
         var _props4 = this.props,
             name = _props4.name,
@@ -12726,9 +12734,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         return _react2.default.createElement(_Select2.default, { 'data-select': true, className: className,
           ref: function ref(node) {
-            return _this6.selectNode = node;
+            return _this7.selectNode = node;
           }, innerRef: function innerRef(node) {
-            return _this6.selectInnerRef = node;
+            return _this7.selectInnerRef = node;
           } }, _react2.default.createElement('input', { type: 'hidden', name: name, value: (0, _stringifyValue2.default)(value), disabled: disabled }), _react2.default.createElement(_SelectControl2.default, {
           isOpened: isOpened,
           'aria-haspopup': isOpened,
@@ -12742,85 +12750,85 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   }(_react2.default.PureComponent);
 
   var _initialiseProps = function _initialiseProps() {
-    var _this7 = this;
+    var _this8 = this;
 
     this.onRemoveTag = function (props, e) {
       e.stopPropagation();
-      var multi = _this7.props.multi;
+      var multi = _this8.props.multi;
 
-      _this7.state.values.delete(props.value);
+      _this8.state.values.delete(props.value);
 
-      _this7.setState({
-        values: new Set(Array.from(_this7.state.values))
+      _this8.setState({
+        values: new Set(Array.from(_this8.state.values))
       }, function () {
-        _this7.props.onChange(Array.from(_this7.state.values));
+        _this8.props.onChange(Array.from(_this8.state.values));
       });
     };
 
     this.onClearValue = function (event) {
       event.preventDefault();
       event.stopPropagation();
-      _this7.resetField();
+      _this8.resetField();
     };
 
     this.onSelectValue = function (newValue, event) {
-      var multi = _this7.props.multi;
-      var values = _this7.state.values;
+      var multi = _this8.props.multi;
+      var values = _this8.state.values;
 
       !multi && values.clear(); // when is not multi select
 
       if (!values.has(newValue)) {
         values.add(newValue);
-        _this7.setState({
+        _this8.setState({
           values: values,
           searchTerm: null,
           focusedIndex: 0
         }, function () {
-          _this7.inputInnerRef.value = '';
-          _this7.props.onChange(multi ? Array.from(values) : newValue);
+          _this8.inputInnerRef.value = '';
+          _this8.props.onChange(multi ? Array.from(values) : newValue);
         });
       }
-      _this7.closeOptions();
-      _this7.props.onValueClick(multi ? Array.from(values) : newValue, event);
+      _this8.closeOptions();
+      _this8.props.onValueClick(multi ? Array.from(values) : newValue, event);
     };
 
     this.onSelectFocused = function (event) {
-      _this7.shouldFireClickOutsideHack = false;
+      _this8.shouldFireClickOutsideHack = false;
 
-      clearInterval(_this7.focusedTimeout);
-      _this7.focusedTimeout = window.setTimeout(function () {
-        _this7.shouldFireClickOutsideHack = true;
+      clearInterval(_this8.focusedTimeout);
+      _this8.focusedTimeout = window.setTimeout(function () {
+        _this8.shouldFireClickOutsideHack = true;
       }, 200);
 
-      _this7.setState({
+      _this8.setState({
         isFocused: true
       });
 
-      _this7.openOptions();
-      _this7.setFocus();
+      _this8.openOptions();
+      _this8.setFocus();
     };
 
     this.onSearching = function (event) {
-      var _props5 = _this7.props,
+      var _props5 = _this8.props,
           onInputChange = _props5.onInputChange,
           onTyping = _props5.onTyping;
-      var _state4 = _this7.state,
+      var _state4 = _this8.state,
           focusedIndex = _state4.focusedIndex,
           options = _state4.options,
           isOpened = _state4.isOpened;
 
       var typing = function typing() {
-        var term = _this7.inputInnerRef.value.toLowerCase().trim();
+        var term = _this8.inputInnerRef.value.toLowerCase().trim();
 
         onTyping(term);
 
-        var filteredOptions = _this7.getOptions().filter(function (opt) {
+        var filteredOptions = _this8.getOptions().filter(function (opt) {
           var label = opt.label.toLowerCase().trim();
           return label.indexOf(term) !== -1;
         });
 
-        _this7.setState({
-          searchTerm: _this7.inputInnerRef.value,
+        _this8.setState({
+          searchTerm: _this8.inputInnerRef.value,
           searchWidth: searchWidth,
           options: filteredOptions,
           isOpened: true,
@@ -12828,13 +12836,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         });
 
         var searchWidth = SEARCH_INPUT_MIN_SIZE;
-        if (_this7.searchSizeRef) {
-          var width = _this7.searchSizeRef.getBoundingClientRect().width;
+        if (_this8.searchSizeRef) {
+          var width = _this8.searchSizeRef.getBoundingClientRect().width;
           searchWidth = width > SEARCH_INPUT_MIN_SIZE ? width : SEARCH_INPUT_MIN_SIZE;
         }
 
         setTimeout(function () {
-          _this7.setState({ searchWidth: searchWidth });
+          _this8.setState({ searchWidth: searchWidth });
         });
       };
 
@@ -12842,33 +12850,33 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       switch (event.keyCode) {
         case _constants.KEY_BACKSPACE:
           // backspace
-          if (!_this7.inputInnerRef.value) {
-            _this7.resetField();
+          if (!_this8.inputInnerRef.value) {
+            _this8.resetField();
             break;
           }
           setTimeout(typing, 1);
           break;
         case _constants.KEY_UP:
-          _this7.setState({
+          _this8.setState({
             focusedIndex: focusedIndex <= 0 ? lastIndex : focusedIndex - 1
           });
           break;
         case _constants.KEY_DOWN:
           if (!isOpened) {
-            _this7.openOptions();
+            _this8.openOptions();
             break;
           }
-          _this7.setState({
+          _this8.setState({
             focusedIndex: focusedIndex >= lastIndex ? 0 : focusedIndex + 1
           });
           break;
         case _constants.KEY_ENTER:
           if (!options.length) break;
           var newValue = options[focusedIndex].value;
-          _this7.onSelectValue(newValue, event);
+          _this8.onSelectValue(newValue, event);
           break;
         case _constants.KEY_ESC:
-          _this7.closeOptions();
+          _this8.closeOptions();
           break;
         default:
           setTimeout(typing, 1);
@@ -13211,7 +13219,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       _this.loadOptions = function (term) {
         var loadOptions = _this.props.loadOptions;
 
-        console.log('asdasdas');
         var callback = function callback(error, data) {
           var options = data && data.options || [];
           if (callback === _this._callback) {

@@ -41,10 +41,7 @@ class WrapperSelect extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    this.optionsMap = props.options.reduce((agregate, current) => {
-      agregate[current.value] = current
-      return agregate
-    }, {})
+    this.indexValues(props)
 
     let values = [];
     if (props.value && this.optionsMap.hasOwnProperty(props.value)) {
@@ -71,6 +68,13 @@ class WrapperSelect extends React.PureComponent {
     this.inputInnerRef = null
     this.searchSizeRef = null
     this.shouldFireClickOutsideHack = null
+  }
+
+  indexValues(props) {
+    this.optionsMap = props.options.reduce((agregate, current) => {
+      agregate[current.value] = current
+      return agregate
+    }, {})
   }
 
   openOptions() {
@@ -398,10 +402,9 @@ class WrapperSelect extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.options);
     this.setState({
       options: nextProps.options
-    })
+    }, () => this.indexValues(nextProps))
   }
 
   render () {
