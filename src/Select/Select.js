@@ -170,7 +170,7 @@ class WrapperSelect extends React.PureComponent {
     clearInterval(this.focusedTimeout)
     this.focusedTimeout = window.setTimeout(() => {
       this.shouldFireClickOutsideHack = true
-    }, 500)
+    }, 200)
 
     this.setState({
       isFocused: true
@@ -193,12 +193,16 @@ class WrapperSelect extends React.PureComponent {
   }
 
   onSearching = (event) => {
+    const { onInputChange, onTyping } = this.props
     const { focusedIndex, options, isOpened } = this.state;
 
     const typing = () => {
       const filteredOptions = this.getOptions().filter((opt) => {
         const label = opt.label.toLowerCase().trim()
         const term = this.inputInnerRef.value.toLowerCase().trim()
+
+        onTyping(term)
+
         return label.indexOf(term) !== -1
       });
 
@@ -306,6 +310,7 @@ class WrapperSelect extends React.PureComponent {
             className={classes.selectInputField}
             data-select-input-search
             onKeyDown={this.onSearching}
+            onChange={this.props.onInputChange}
             innerRef={(n) => this.inputInnerRef = n}
             aria-label={placeholder}
             aria-expanded={isOpened}
@@ -392,6 +397,13 @@ class WrapperSelect extends React.PureComponent {
     this.props.generatedClassName(this.selectNode.state.generatedClassName);
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.options);
+    this.setState({
+      options: nextProps.options
+    })
+  }
+
   render () {
     const { name, disabled, className, classes } = this.props;
     const { value, isSelected, isOpened } = this.state;
@@ -440,6 +452,8 @@ WrapperSelect.defaultProps = {
   onClose: () => {},
   onOpen: () => {},
   onChange: () => {},
+  onInputChange: () => {},
+  onTyping: () => {},
   onValueClick: () => {},
   onInputClear: () => {},
   clearable: false,

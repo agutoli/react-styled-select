@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 
-import Select from './Select'
+import Select from '../'
 import SelectShadowDOM from './ShadowDOM'
 
 var options = [
@@ -13,6 +13,20 @@ var options = [
   { value: 'six', label: 'Six' },
   { value: 'seven', label: 'Seven' },
 ]
+
+var getOptions = function(input, callback) {
+  setTimeout(function() {
+    callback(null, {
+      options: [
+        { value: 'one', label: 'One' },
+        { value: 'two', label: 'Two' }
+      ],
+      // CAREFUL! Only set this to true when there are no more options,
+      // or more specific queries will not be sent to the server.
+      complete: true
+    });
+  }, 500);
+};
 
 storiesOf('Select', module)
   .add('default', () => (
@@ -115,6 +129,17 @@ storiesOf('Select', module)
         <SelectShadowDOM
           multi
           value={['one', 'four']}
+          options={options}
+          onChange={action('onChange')}
+        />
+      </div>
+    </div>
+  ))
+  .add('async', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <SelectShadowDOM.Async
+          loadOptions={getOptions}
           options={options}
           onChange={action('onChange')}
         />

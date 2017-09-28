@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"index.js","sourcesContent":[]}
+{"version":3,"sources":["../src/index.js"],"names":["Async","props"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAIA,mBAAOA,KAAP,GAAe;AAAA,WAAS;AAAA;AAAWC,WAAX;AAAkB;AAAlB,KAAT;AAAA,GAAf","file":"index.js","sourcesContent":["import React from 'react'\nimport Select from './Select'\nimport Async from './Select/Async'\n\nSelect.Async = props => <Async {...props}><Select /></Async>\n\nexport default Select;\n"]}

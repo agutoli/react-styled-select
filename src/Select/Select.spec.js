@@ -68,12 +68,16 @@ describe('<Select />', () => {
     expect(onValueClickSpy).to.have.property('callCount', 1);
   })
 
-  it('should close when click outside', () => {
+  it('should close when click outside', (done) => {
     const onValueClickSpy = sinon.spy()
     const wrapper = mount(<Select onValueClick={onValueClickSpy} />);
     wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
-    document.querySelector('html').click()// Click outside
-    expect(wrapper.find('[data-select-menu-outer]').length).to.equal(0);
+
+    setTimeout(() => {
+      document.querySelector('html').click()// Click outside
+      expect(wrapper.find('[data-select-menu-outer]').length).to.equal(0);
+      done()
+    }, 200)
   })
 
   it('should close when click over some option', () => {
