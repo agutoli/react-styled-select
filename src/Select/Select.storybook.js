@@ -97,6 +97,16 @@ storiesOf('Select', module)
   .add('No searchable', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
+        <Select
+          searchable={false}
+          options={options}
+        />
+      </div>
+    </div>
+  ))
+  .add('No searchable ShadowDOM', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
         <Select.ShadowDOM
           searchable={false}
           options={options}

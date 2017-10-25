@@ -12781,6 +12781,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         if (!searchable) {
           return _react2.default.createElement(SelectWrapperComp, {
             'for': this.state['input-field-id'],
+            innerRef: function innerRef(n) {
+              return _this4.inputInnerRef = n;
+            },
             className: classes.selectMultiValueWrapper,
             'data-select-multi-value-wrapper': multi }, content);
         }

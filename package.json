@@ -1,6 +1,6 @@
 {
   "name": "react-styled-select",
-  "version": "2.2.0-beta",
+  "version": "2.2.1-beta",
   "description": "",
   "main": "lib/index.js",
   "repository": "https://github.com/agutoli/react-styled-select.git",
