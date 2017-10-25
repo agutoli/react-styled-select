@@ -95,6 +95,14 @@ describe('<Select />', () => {
     expect(wrapper.find('[data-select-input]').length).to.equal(0);
   })
 
+  it('should select value when click over option and is searchable=false', () => {
+    const onValueClickSpy = sinon.spy()
+    const wrapper = mount(<Select onValueClick={onValueClickSpy} options={options} searchable={false} />);
+    wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
+    wrapper.find('[data-select-option]').at(0).simulate('mouseDown');
+    expect(onValueClickSpy).to.have.property('callCount', 1);
+  })
+
   it('should change field value when click over a option', () => {
     const wrapper = mount(<Select options={options} />);
     wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
