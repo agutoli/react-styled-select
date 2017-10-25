@@ -1,8 +1,13 @@
 import React from 'react'
+
+require('@webcomponents/shadydom');
+
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import enhanceWithClickOutside from 'react-click-outside'
 import uuid from 'uuid';
+import SelectAsync from './Async'
+import shadowDOM from '../helpers/shadowDOM'
 
 import {
   KEY_UP,
@@ -486,4 +491,15 @@ WrapperSelect.defaultProps = {
   generatedClassName: () => {}
 }
 
-export default enhanceWithClickOutside(WrapperSelect)
+const EnhanceWrapperSelect = enhanceWithClickOutside(WrapperSelect)
+const ShadowWrapperSelect = shadowDOM(EnhanceWrapperSelect)
+
+const NormalAsync = props => <SelectAsync {...props}><EnhanceWrapperSelect /></SelectAsync>
+const ShadowAsync = props => <SelectAsync {...props}><ShadowWrapperSelect /></SelectAsync>
+
+ShadowWrapperSelect.Async = ShadowAsync
+
+export const Async  = EnhanceWrapperSelect.Async = NormalAsync
+export const ShadowDOM = EnhanceWrapperSelect.ShadowDOM = ShadowWrapperSelect
+
+export default EnhanceWrapperSelect

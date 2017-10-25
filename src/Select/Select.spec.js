@@ -70,11 +70,13 @@ describe('<Select />', () => {
 
   it('should close when click outside', (done) => {
     const onValueClickSpy = sinon.spy()
-    const wrapper = mount(<Select onValueClick={onValueClickSpy} />);
-    wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
+    const target = document.createElement('div')
+    document.body.appendChild(target)
 
+    const wrapper = mount(<Select onValueClick={onValueClickSpy} />, { attachTo: target });
+    wrapper.find('[data-select-control]').at(0).simulate('click');
     setTimeout(() => {
-      document.querySelector('html').click()// Click outside
+      target.click()// Click outside
       expect(wrapper.find('[data-select-menu-outer]').length).to.equal(0);
       done()
     }, 200)

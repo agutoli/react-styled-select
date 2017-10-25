@@ -1,8 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 
-import Select from '../'
-import SelectShadowDOM from './ShadowDOM'
+import Select from './'
 
 var options = [
   { value: 'one', label: 'One' },
@@ -32,7 +31,7 @@ storiesOf('Select', module)
   .add('default', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
-        <SelectShadowDOM
+        <Select.ShadowDOM
           name="form-field-name"
           options={options}
           onOpen={action('onOpen')}
@@ -46,7 +45,7 @@ storiesOf('Select', module)
   .add('no results', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
-        <SelectShadowDOM
+        <Select.ShadowDOM
           className="secondary"
           name="form-field-name"
           options={[]}
@@ -67,7 +66,7 @@ storiesOf('Select', module)
     return (
       <div style={{display: 'flex', margin: '20px'}}>
         <div style={{width: '300px'}}>
-          <SelectShadowDOM
+          <Select.ShadowDOM
             className="secondary"
             name="form-field-name"
             options={options}
@@ -87,7 +86,7 @@ storiesOf('Select', module)
     return (
       <div style={{display: 'flex', margin: '20px'}}>
         <div style={{width: '300px'}}>
-          <SelectShadowDOM
+          <Select.ShadowDOM
             options={options}
             optionRenderer={customOptionRenderer}
           />
@@ -98,7 +97,7 @@ storiesOf('Select', module)
   .add('No searchable', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
-        <SelectShadowDOM
+        <Select.ShadowDOM
           searchable={false}
           options={options}
         />
@@ -108,7 +107,7 @@ storiesOf('Select', module)
   .add('clearable=true', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
-        <SelectShadowDOM
+        <Select.ShadowDOM
           clearable
           options={options}
         />
@@ -118,7 +117,7 @@ storiesOf('Select', module)
   .add('multi=true', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
-        <SelectShadowDOM
+        <Select.ShadowDOM
           multi
           value={['one', 'four']}
           options={options}
@@ -126,7 +125,7 @@ storiesOf('Select', module)
         />
       </div>
       <div className="secondary" style={{width: '300px'}}>
-        <SelectShadowDOM
+        <Select.ShadowDOM
           multi
           value={['one', 'four']}
           options={options}
@@ -138,7 +137,7 @@ storiesOf('Select', module)
   .add('async', () => (
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
-        <SelectShadowDOM.Async
+        <Select.ShadowDOM.Async
           loadOptions={getOptions}
           onChange={action('onChange')}
         />
