@@ -52,8 +52,10 @@ module.exports = {
   'select-placeholder__font-size': '12px',
   'select-placeholder__line-height': '34px',
 
+
   'select-value__color': fontFamily,
   'select-value__line-height': '34px',
+  'select-value__font-size': '14px',
   'select-value__max-width': '100%',
   'select-value__overflow': 'hidden',
   'select-value__padding': '0 5px',

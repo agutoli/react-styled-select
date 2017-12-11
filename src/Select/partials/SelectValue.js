@@ -11,6 +11,7 @@ export default styled.div`
   ${g('padding')}
   ${g('max-width')}
   ${g('overflow')}
+  ${g('font-size')}
   ${g('text-overflow')}
   ${g('line-height')}
   ${g('white-space')}
