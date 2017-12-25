@@ -72,8 +72,8 @@
     "webpack-dev-server": "^2.7.1"
   },
   "peerDependencies": {
-    "react": "~0.14.8 || ^15.6.1",
-    "react-dom": "~0.14.8 || ^15.6.1"
+    "react": "~0.14.8 || ^15.6.1 || ^16.0.0",
+    "react-dom": "~0.14.8 || ^15.6.1 || ^16.0.0"
   },
   "dependencies": {
     "@webcomponents/shadydom": "^1.0.3",
