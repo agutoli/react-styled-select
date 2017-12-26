@@ -12736,8 +12736,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var values = this.state.values;
 
         return this.props.options.filter(function (opt) {
-          var label = opt.label.toLowerCase().trim();
-          if (values.has(label) && multi) {
+          var label = typeof opt.label === 'string' && opt.label.toLowerCase().trim();
+          if (label && values.has(label) && multi) {
             return false;
           }
           return true;
@@ -13003,6 +13003,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         onTyping(term);
 
         var filteredOptions = _this8.getOptions().filter(function (opt) {
+          if (typeof opt.label !== 'string') {
+            return true;
+          }
+
           var label = opt.label.toLowerCase().trim();
           return label.indexOf(term) !== -1;
         });
