@@ -1,3 +1,5 @@
+require('babel-polyfill')
+
 import React from 'react'
 import Select from './Select'
 import Async from './Select/Async'
