@@ -2,7 +2,7 @@
 const variables = require('../src/Select/cssVariables');
 const variablesList = Object.keys(variables)
 
-variablesList.sort().reverse()
+variablesList.sort()
 
 let aux = null
 variablesList.forEach((varname) => {
