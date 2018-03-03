@@ -3,10 +3,11 @@
 [![Build Status](https://travis-ci.org/agutoli/react-styled-select.svg?branch=master)](https://travis-ci.org/agutoli/react-styled-select)
 [![NPM](https://img.shields.io/npm/v/react-styled-select.svg)](https://www.npmjs.com/package/react-styled-select)
 
-
-
 react-styled-select
 ============
+
+Up to date with react/react-dom `16.2.0`
+
 ### ATTENTION: Work in Progress (sorry about that!)
 
 This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://github.com/JedWatson/react-select). But what the differences between [react-select](https://github.com/JedWatson/react-select) and this project?
