@@ -186,6 +186,7 @@ class MyForm extends React.Component {
 --styled-<b>select-placeholder</b>__line-height: 34px;
 --styled-<b>select-value</b>__color: Tahoma, Helvetica, Arial, sans-serif;
 --styled-<b>select-value</b>__line-height: 34px;
+--styled-<b>select-value</b>__font-size: 14px;
 --styled-<b>select-value</b>__max-width: 100%;
 --styled-<b>select-value</b>__overflow: hidden;
 --styled-<b>select-value</b>__padding: 0 5px;
