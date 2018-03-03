@@ -155,7 +155,7 @@ class MyForm extends React.Component {
 --styled-<b>select-clear</b>__font-size: 14px;
 --styled-<b>select-control</b>__min-height: 36px;
 --styled-<b>select-control</b>__border-color: #dcdce3;
---styled-<b>select-control</b>__border-color--focused: #40a3f5;
+--styled-<b>select-control</b>__border-color--<b>focused</b>: #40a3f5;
 --styled-<b>select-input</b>__height: 23px;
 --styled-<b>select-input</b>__padding: 0;
 --styled-<b>select-input</b>__line-height: 23px;
@@ -174,11 +174,11 @@ class MyForm extends React.Component {
 --styled-<b>select-no-results</b>__font-size: 14px;
 --styled-<b>select-no-results</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
 --styled-<b>select-option</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
---styled-<b>select-option</b>__color--focused: #333;
---styled-<b>select-option</b>__color--selected: #333;
+--styled-<b>select-option</b>__color--<b>focused</b>: #333;
+--styled-<b>select-option</b>__color--<b>selected</b>: #333;
 --styled-<b>select-option</b>__background-color: #fff;
---styled-<b>select-option</b>__background-color--focused: #f0f0f5;
---styled-<b>select-option</b>__background-color--selected: #ddd;
+--styled-<b>select-option</b>__background-color--<b>focused</b>: #f0f0f5;
+--styled-<b>select-option</b>__background-color--<b>selected</b>: #ddd;
 --styled-<b>select-placeholder</b>__padding: 0 10px;
 --styled-<b>select-placeholder</b>__color: #d2d2d9;
 --styled-<b>select-placeholder</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
@@ -195,7 +195,7 @@ class MyForm extends React.Component {
 --styled-<b>select-value-label</b>__padding: 1px 6px;
 --styled-<b>select-value-label</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
 --styled-<b>select-value-icon</b>__background-color: transparent;
---styled-<b>select-value-icon</b>__background-color--hover: rgba(0, 0, 0, 0.1);
+--styled-<b>select-value-icon</b>__background-color--<b>hover</b>: rgba(0, 0, 0, 0.1);
 --styled-<b>select-value-icon</b>__font-family: arial;
 --styled-<b>select-value-icon</b>__padding: 1px 5px;
 --styled-<b>select-multi-value</b>__font-size: 0.9em;
@@ -203,7 +203,7 @@ class MyForm extends React.Component {
 --styled-<b>select-multi-value</b>__margin: 2px 5px 2px 0;
 --styled-<b>select-multi-value</b>__background-color: #eee;
 --styled-<b>select-multi-value</b>__border: 1px solid #aaa;
---styled-<b>select-multi-value</b>__border--hover: 1px solid #777;
+--styled-<b>select-multi-value</b>__border--<b>hover</b>: 1px solid #777;
 --styled-<b>select-multi-value</b>__border-radius: 3px;
 --styled-<b>select-multi-value</b>__box-shadow: rgba(0,0,0,0.2) 0px 0px 3px;
 --styled-<b>select-multi-value-wrapper</b>__padding: 3px 0 3px 5px;
