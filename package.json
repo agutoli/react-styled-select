@@ -12,13 +12,13 @@
     "show-css-variables": "node bin/extract-css-variables.js",
     "coverage": "nyc npm test",
     "lint:css": "stylelint './src/**/*.js'",
-    "build": "./tools/build",
+    "build": "BABEL_ENV=production ./tools/build",
     "test": "find ./src -name '*.spec.js' | NODE_ENV=test xargs mocha ./test/browser.js --reporter spec",
     "test:jest": "jest --browser",
     "test:watch": "mocha -w test/browser.js $(find ./src -name '*.spec.js')",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "demo:dev": "webpack-dev-server --config demo/webpack.config.js"
+    "demo:dev": "webpack-dev-server --content-base ./demo --config demo/webpack.config.js"
   },
   "keywords": [
     "javascript",
@@ -49,6 +49,7 @@
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.1",
     "babel-loader": "^7.1.1",
+    "babel-minify": "^0.3.0",
     "babel-plugin-inline-react-svg": "0.4.0",
     "babel-plugin-styled-components": "^1.1.7",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",

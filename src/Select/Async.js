@@ -48,13 +48,6 @@ class SelectAsync extends React.PureComponent {
       options: this.state.options,
       onTyping: this.loadOptions
     }))
-    // (
-    //
-    //   <Select
-    //     {...this.props}
-    //     options={this.state.options}
-    //     onTyping={this.loadOptions} />
-    // )
   }
 }
 

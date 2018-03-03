@@ -127,9 +127,9 @@
     webpack-dev-middleware "^1.6.0"
     webpack-hot-middleware "^2.13.2"
 
-"@webcomponents/shadydom@1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@webcomponents/shadydom/-/shadydom-1.0.7.tgz#73195f0839df7016ed8fec460bd94077f0a1eca6"
+"@webcomponents/shadydom@1.0.12":
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/@webcomponents/shadydom/-/shadydom-1.0.12.tgz#c52bfded1b03fb336b165224482bb0a049bcfbbb"
 
 "@webcomponents/webcomponentsjs@1.1.0":
   version "1.1.0"
@@ -1198,6 +1198,12 @@ babel-plugin-transform-strict-mode@^6.24.1:
   dependencies:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
+
+babel-plugin-uglify@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-uglify/-/babel-plugin-uglify-1.0.2.tgz#d7bcdab132afbadb0bf3479a5666eb8de082610f"
+  dependencies:
+    uglify-js "^2.4.24"
 
 babel-polyfill@^6.26.0:
   version "6.26.0"
@@ -6581,9 +6587,9 @@ react-modal@^1.2.0, react-modal@^1.2.1:
     prop-types "^15.5.7"
     react-dom-factories "^1.0.0"
 
-react-shadow@^2.0.2:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-shadow/-/react-shadow-2.1.0.tgz#b7e9116713ae6d378ce8455be62721cafb101d45"
+react-shadow@16.2.0:
+  version "16.2.0"
+  resolved "https://registry.yarnpkg.com/react-shadow/-/react-shadow-16.2.0.tgz#5655121ee7443e60b407ef3b1eb23a67233c787e"
 
 react-simple-di@^1.2.0:
   version "1.2.0"
@@ -7913,7 +7919,7 @@ ua-parser-js@^0.7.9:
   version "0.7.17"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.17.tgz#e9ec5f9498b9ec910e7ae3ac626a805c4d09ecac"
 
-uglify-js@^2.6, uglify-js@^2.8.29:
+uglify-js@^2.4.24, uglify-js@^2.6, uglify-js@^2.8.29:
   version "2.8.29"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.29.tgz#29c5733148057bb4e1f75df35b7a9cb72e6a59dd"
   dependencies:

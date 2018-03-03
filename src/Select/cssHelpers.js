@@ -1,7 +1,7 @@
 import variables from './cssVariables';
 
-export const autoCssGenerator = (prefix) => {
-  return (property, pseudoClass) => {
+export const autoCssGenerator = function AutoCssGenerator(prefix) {
+  return function (property, pseudoClass) {
     const suffix = pseudoClass ? `--${pseudoClass}` : '';
     const varname = `${prefix}__${property}${suffix}`;
     return `
@@ -11,15 +11,15 @@ export const autoCssGenerator = (prefix) => {
   };
 }
 
-export const cssVar = (prefix) => {
-  return (property, pseudoClass) => {
+export const cssVar = function CSSVar(prefix) {
+  return function (property, pseudoClass) {
     const suffix = pseudoClass ? `--${pseudoClass}` : '';
     const varname = `${prefix}__${property}${suffix}`;
     return variables[varname];
   };
 }
 
-export const globalCssVar = (property, pseudoClass) => {
+export const globalCssVar = function GlobalCSSVar(property, pseudoClass) {
   const suffix = pseudoClass ? `--${pseudoClass}` : '';
   return variables[`select__${property}${suffix}`];
 }

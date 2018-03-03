@@ -5,6 +5,8 @@ import shadowDOM from '../helpers/shadowDOM'
 
 const ShadowWrapper = shadowDOM(Select)
 
-ShadowWrapper.Async = props => <Async {...props}><ShadowWrapper /></Async>
+ShadowWrapper.Async = function AsyncShadowDOM(props) {
+  return <Async {...props}><ShadowWrapper /></Async>
+}
 
 export default ShadowWrapper
