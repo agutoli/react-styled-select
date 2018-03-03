@@ -1,9 +1,6 @@
 {
-    "presets": ["env", "stage-0", "react"],
-    "plugins": [],
-    "env": {
-      "production": {
-        "presets": ["minify"]
-      }
-    }
+    "presets": ["es2015", "stage-0", "react"],
+    "plugins": [
+      "add-module-exports"
+    ]
 }

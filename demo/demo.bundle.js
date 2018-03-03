@@ -2128,10 +2128,61 @@ var styled = _styled(StyledComponent, constructWithOptions);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(56)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(56)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('./cssVariables'));else{var b={exports:{}};a(b.exports,d.cssVariables),d.cssHelpers=b.exports}})(void 0,function(g,a){'use strict';Object.defineProperty(g,'__esModule',{value:!0}),g.globalCssVar=g.cssVar=g.autoCssGenerator=void 0;var h=function(b){return b&&b.__esModule?b:{default:b}}(a),b=g.autoCssGenerator=function(f){return function(a,b){var c=b?'--'+b:'',d=f+'__'+a+c;return'\n      '+a+': '+b.default[d]+';\n      '+a+': var(--styled-'+d+', '+b.default[d]+');\n    '}},c=g.cssVar=function(e){return function(a,b){var c=b?'--'+b:'';return b.default[e+'__'+a+c]}},d=g.globalCssVar=function(c,a){var b=a?'--'+a:'';return h.default['select__'+c+b]}});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('./cssVariables'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.cssVariables);
+    global.cssHelpers = mod.exports;
+  }
+})(undefined, function (exports, _cssVariables) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.globalCssVar = exports.cssVar = exports.autoCssGenerator = undefined;
+
+  var _cssVariables2 = _interopRequireDefault(_cssVariables);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var autoCssGenerator = exports.autoCssGenerator = function AutoCssGenerator(prefix) {
+    return function (property, pseudoClass) {
+      var suffix = pseudoClass ? '--' + pseudoClass : '';
+      var varname = prefix + '__' + property + suffix;
+      return '\n      ' + property + ': ' + _cssVariables2.default[varname] + ';\n      ' + property + ': var(--styled-' + varname + ', ' + _cssVariables2.default[varname] + ');\n    ';
+    };
+  };
+
+  var cssVar = exports.cssVar = function CSSVar(prefix) {
+    return function (property, pseudoClass) {
+      var suffix = pseudoClass ? '--' + pseudoClass : '';
+      var varname = prefix + '__' + property + suffix;
+      return _cssVariables2.default[varname];
+    };
+  };
+
+  var globalCssVar = exports.globalCssVar = function GlobalCSSVar(property, pseudoClass) {
+    var suffix = pseudoClass ? '--' + pseudoClass : '';
+    return _cssVariables2.default['select__' + property + suffix];
+  };
+});
+//# sourceMappingURL=cssHelpers.js.map
 
 /***/ }),
 /* 2 */
@@ -2802,10 +2853,165 @@ if (process.env.NODE_ENV !== 'production') {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&'function'==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?'symbol':typeof a};(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(12)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(12)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('prop-types'));else{var b={exports:{}};a(b.exports,d.react,d.propTypes),d.Async=b.exports}})(void 0,function(l,a,b){'use strict';function c(b){return b&&b.__esModule?b:{default:b}}function d(c,a){if(!(c instanceof a))throw new TypeError('Cannot call a class as a function')}function e(c,d){if(!c)throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called');return d&&('object'==('undefined'==typeof d?'undefined':_typeof(d))||'function'==typeof d)?d:c}function f(c,d){if('function'!=typeof d&&null!==d)throw new TypeError('Super expression must either be null or a function, not '+('undefined'==typeof d?'undefined':_typeof(d)));c.prototype=Object.create(d&&d.prototype,{constructor:{value:c,enumerable:!1,writable:!0,configurable:!0}}),d&&(Object.setPrototypeOf?Object.setPrototypeOf(c,d):c.__proto__=d)}Object.defineProperty(l,'__esModule',{value:!0});var g=c(a),h=c(b),i=function(){function e(e,f){for(var b,c=0;c<f.length;c++)b=f[c],b.enumerable=b.enumerable||!1,b.configurable=!0,'value'in b&&(b.writable=!0),Object.defineProperty(e,b.key,b)}return function(a,b,c){return b&&e(a.prototype,b),c&&e(a,c),a}}(),j=function(c){function h(b){d(this,h);var f=e(this,(h.__proto__||Object.getPrototypeOf(h)).call(this,b));return f.loadOptions=function(c){var a=f.props.loadOptions,g=function(c,a){var b=a&&a.options||[];g===f._callback&&(f._callback=null,f.setState({isLoading:!1,options:b}))};f._callback=g;var b=a(c,g);b&&b.then(function(b){return g(null,b)},function(b){return g(b)}),f._callback&&!f.state.isLoading&&f.setState({isLoading:!0})},f.state={isLoading:!1,options:b.options},f}return f(h,c),i(h,[{key:'render',value:function value(){return g.default.cloneElement(this.props.children,Object.assign({},this.props,{options:this.state.options,onTyping:this.loadOptions}))}}]),h}(g.default.PureComponent);j.propTypes={autoload:h.default.bool.isRequired,ignoreAccents:h.default.bool,ignoreCase:h.default.bool,loadOptions:h.default.func.isRequired},j.defaultProps={loadOptions:function loadOptions(){}},l.default=j});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('prop-types'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.propTypes);
+    global.Async = mod.exports;
+  }
+})(undefined, function (exports, _react, _propTypes) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  }
+
+  var SelectAsync = function (_React$PureComponent) {
+    _inherits(SelectAsync, _React$PureComponent);
+
+    function SelectAsync(props) {
+      _classCallCheck(this, SelectAsync);
+
+      var _this = _possibleConstructorReturn(this, (SelectAsync.__proto__ || Object.getPrototypeOf(SelectAsync)).call(this, props));
+
+      _this.loadOptions = function (term) {
+        var loadOptions = _this.props.loadOptions;
+
+        var callback = function callback(error, data) {
+          var options = data && data.options || [];
+          if (callback === _this._callback) {
+            _this._callback = null;
+            _this.setState({
+              isLoading: false,
+              options: options
+            });
+          }
+        };
+
+        _this._callback = callback;
+
+        var promise = loadOptions(term, callback);
+
+        if (promise) {
+          promise.then(function (data) {
+            return callback(null, data);
+          }, function (error) {
+            return callback(error);
+          });
+        }
+
+        if (_this._callback && !_this.state.isLoading) {
+          _this.setState({
+            isLoading: true
+          });
+        }
+      };
+
+      _this.state = {
+        isLoading: false,
+        options: props.options
+      };
+      return _this;
+    }
+
+    _createClass(SelectAsync, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.cloneElement(this.props.children, Object.assign({}, this.props, {
+          options: this.state.options,
+          onTyping: this.loadOptions
+        }));
+      }
+    }]);
+
+    return SelectAsync;
+  }(_react2.default.PureComponent);
+
+  SelectAsync.propTypes = {
+    autoload: _propTypes2.default.bool.isRequired,
+    ignoreAccents: _propTypes2.default.bool,
+    ignoreCase: _propTypes2.default.bool,
+    loadOptions: _propTypes2.default.func.isRequired
+  };
+
+  SelectAsync.defaultProps = {
+    loadOptions: function loadOptions() {}
+  };
+
+  exports.default = SelectAsync;
+});
+//# sourceMappingURL=Async.js.map
 
 /***/ }),
 /* 14 */
@@ -3118,10 +3324,667 @@ module.exports = focusNode;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&'function'==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?'symbol':typeof a};(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(12),__webpack_require__(0),__webpack_require__(45),__webpack_require__(47),__webpack_require__(13),__webpack_require__(23),__webpack_require__(53),__webpack_require__(54),__webpack_require__(55),__webpack_require__(57),__webpack_require__(58),__webpack_require__(60),__webpack_require__(76),__webpack_require__(61),__webpack_require__(25),__webpack_require__(62),__webpack_require__(63),__webpack_require__(64),__webpack_require__(65),__webpack_require__(66),__webpack_require__(67),__webpack_require__(68),__webpack_require__(69),__webpack_require__(70),__webpack_require__(71),__webpack_require__(73),__webpack_require__(75)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(12), __webpack_require__(0), __webpack_require__(45), __webpack_require__(47), __webpack_require__(13), __webpack_require__(23), __webpack_require__(53), __webpack_require__(54), __webpack_require__(55), __webpack_require__(57), __webpack_require__(58), __webpack_require__(60), __webpack_require__(76), __webpack_require__(61), __webpack_require__(25), __webpack_require__(62), __webpack_require__(63), __webpack_require__(64), __webpack_require__(65), __webpack_require__(66), __webpack_require__(67), __webpack_require__(68), __webpack_require__(69), __webpack_require__(70), __webpack_require__(71), __webpack_require__(73), __webpack_require__(75)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('prop-types'),require('styled-components'),require('react-click-outside'),require('uuid'),require('./Async'),require('../helpers/shadowDOM'),require('./constants'),require('./partials/Select'),require('./partials/SelectMenu'),require('./partials/SelectValue'),require('./partials/SelectMultiValue'),require('./partials/SelectClear'),require('./partials/SelectArrow'),require('./partials/SelectInput'),require('./partials/SelectInputField'),require('./partials/SelectInputFieldSize'),require('./partials/SelectControl'),require('./partials/SelectNoResults'),require('./partials/SelectClearZone'),require('./partials/SelectArrowZone'),require('./partials/SelectMenuOuter'),require('./partials/SelectPlaceholder'),require('./partials/SelectValueWrapper'),require('./partials/SelectMultiValueWrapper'),require('./renderers/ValueRenderer'),require('./renderers/OptionRenderer'),require('./functions/stringifyValue'));else{var b={exports:{}};a(b.exports,d.react,d.propTypes,d.styledComponents,d.reactClickOutside,d.uuid,d.Async,d.shadowDOM,d.constants,d.Select,d.SelectMenu,d.SelectValue,d.SelectMultiValue,d.SelectClear,d.SelectArrow,d.SelectInput,d.SelectInputField,d.SelectInputFieldSize,d.SelectControl,d.SelectNoResults,d.SelectClearZone,d.SelectArrowZone,d.SelectMenuOuter,d.SelectPlaceholder,d.SelectValueWrapper,d.SelectMultiValueWrapper,d.ValueRenderer,d.OptionRenderer,d.stringifyValue),d.Select=b.exports}})(void 0,function(oa,a,b,c,d,e,f,g,pa,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A){'use strict';function B(b){return b&&b.__esModule?b:{default:b}}function C(c,a){if(!(c instanceof a))throw new TypeError('Cannot call a class as a function')}function D(c,d){if(!c)throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called');return d&&('object'==('undefined'==typeof d?'undefined':_typeof(d))||'function'==typeof d)?d:c}function E(c,d){if('function'!=typeof d&&null!==d)throw new TypeError('Super expression must either be null or a function, not '+('undefined'==typeof d?'undefined':_typeof(d)));c.prototype=Object.create(d&&d.prototype,{constructor:{value:c,enumerable:!1,writable:!0,configurable:!0}}),d&&(Object.setPrototypeOf?Object.setPrototypeOf(c,d):c.__proto__=d)}function F(c,a){return c[a.value]=a,c}Object.defineProperty(oa,'__esModule',{value:!0}),oa.ShadowDOM=oa.Async=void 0;var G=B(a),H=B(b),I=B(c),J=B(d),K=B(e),L=B(f),M=B(g),N=B(h),O=B(i),P=B(j),Q=B(k),R=B(l),S=B(m),T=B(n),U=B(o),V=B(p),W=B(q),X=B(r),Y=B(s),Z=B(t),$=B(u),_=B(v),aa=B(w),ba=B(x),ca=B(y),da=B(z),ea=B(A),fa=function(){function e(e,f){for(var b,c=0;c<f.length;c++)b=f[c],b.enumerable=b.enumerable||!1,b.configurable=!0,'value'in b&&(b.writable=!0),Object.defineProperty(e,b.key,b)}return function(a,b,c){return b&&e(a.prototype,b),c&&e(a,c),a}}(),ga=1,ha=function(c){function e(b){C(this,e);var a=D(this,(e.__proto__||Object.getPrototypeOf(e)).call(this,b));a.indexValues(b);var c=[];return b.value&&a.optionsMap.hasOwnProperty(b.value)&&c.push(b.value),Array.isArray(b.value)&&(c=c.concat(b.value)),a.state={values:new Set(c),isOpened:!1,isFocused:!1,isSelected:!1,searchTerm:null,searchWidth:1,focusedIndex:0,options:b.options,"aria-owns":a.props['aria-owns']||K.default.v4(),"input-field-id":K.default.v4()},a.inputInnerRef=null,a.searchSizeRef=null,a.shouldFireClickOutsideHack=null,a.onSearchingBinded=a.onSearching.bind(a),a.onRemoveTagBinded=a.onRemoveTag.bind(a),a.onClearValueBinded=a.onClearValue.bind(a),a.onSelectValueBinded=a.onSelectValue.bind(a),a.onSelectFocusedBinded=a.onSelectFocused.bind(a),a}return E(e,c),fa(e,[{key:'indexValues',value:function value(b){this.optionsMap=b.options.reduce(F,{})}},{key:'openOptions',value:function value(){this.setState({options:this.getOptions(),focusedIndex:0,isOpened:!0}),this.props.onOpen()}},{key:'closeOptions',value:function value(){this.setState({isOpened:!1}),this.props.onClose()}},{key:'setFocus',value:function value(){var b=this;setTimeout(function(){b.inputInnerRef&&b.inputInnerRef.focus()},10)}},{key:'handleClickOutside',value:function value(){this.state.isOpened&&this.shouldFireClickOutsideHack&&(this.closeOptions(),this.shouldFireClickOutsideHack=!1)}},{key:'onRemoveTag',value:function value(d,a){var b=this;a.stopPropagation(),this.props.multi,this.state.values.delete(d.value),this.setState({values:new Set(Array.from(this.state.values))},function(){b.props.onChange(Array.from(b.state.values))})}},{key:'resetField',value:function value(){var d=this,a=this.props.multi,b=[];a&&(b=Array.from(this.state.values),b.pop(),this.props.onChange(b)),this.setState({values:new Set(b),searchTerm:null,focusedIndex:0,options:this.props.options},function(){d.closeOptions(),d.inputInnerRef.value='',d.props.onInputClear()})}},{key:'onClearValue',value:function value(b){b.preventDefault(),b.stopPropagation(),this.resetField()}},{key:'onSelectValue',value:function value(f,a){var b=this,c=this.props.multi,d=this.state.values;c||d.clear(),d.has(f)||(d.add(f),this.setState({values:d,searchTerm:null,focusedIndex:0},function(){b.inputInnerRef.value='',b.props.onChange(c?Array.from(d):f)})),this.closeOptions(),this.props.onValueClick(c?Array.from(d):f,a)}},{key:'onSelectFocused',value:function value(){var b=this;this.shouldFireClickOutsideHack=!1,clearInterval(this.focusedTimeout),this.focusedTimeout=setTimeout(function(){b.shouldFireClickOutsideHack=!0},200),this.setState({isFocused:!0}),this.openOptions(),this.setFocus()}},{key:'getOptions',value:function value(){var e=this.props.multi,a=this.state.values;return this.props.options.filter(function(b){var c=b.label.toLowerCase().trim();return a.has(c)&&e?!1:!0})}},{key:'onSearching',value:function value(i){var n=this,a=this.props,b=a.onInputChange,o=a.onTyping,c=this.state,d=c.focusedIndex,e=c.options,f=c.isOpened,g=function(){var e=n.inputInnerRef.value.toLowerCase().trim();o(e);var a=n.getOptions().filter(function(a){var b=a.label.toLowerCase().trim();return-1!==b.indexOf(e)});n.setState({searchTerm:n.inputInnerRef.value,searchWidth:b,options:a,isOpened:!0,focusedIndex:0});var b=ga;if(n.searchSizeRef){var g=n.searchSizeRef.getBoundingClientRect().width;b=g>ga?g:ga}setTimeout(function(){n.setState({searchWidth:b})})},h=e.length-1;switch(i.keyCode){case pa.KEY_BACKSPACE:if(!this.inputInnerRef.value){this.resetField();break}setTimeout(g,1);break;case pa.KEY_UP:this.setState({focusedIndex:0>=d?h:d-1});break;case pa.KEY_DOWN:if(!f){this.openOptions();break}this.setState({focusedIndex:d>=h?0:d+1});break;case pa.KEY_ENTER:if(!e.length)break;var k=e[d].value;this.onSelectValueBinded(k,i);break;case pa.KEY_ESC:this.closeOptions();break;default:setTimeout(g,1);}}},{key:'renderSelectMultiValueWrapper',value:function value(){var q=this,a=this.props,r=a.multi,b=a.placeholder,s=a.searchable,e=a.classes,f=a.valueRenderer,g=this.state,h=g.values,i=g.isOpened,t=g.isSelected,k=g.searchTerm,l=g.searchWidth,m=r?Q.default:P.default,n=r?ba.default:aa.default,o='';return h.size&&(o=Array.from(h).map(function(a,g){return G.default.createElement(m,{value:a,onRemoveTag:q.onRemoveTagBinded,key:g,className:e.selectValue,"data-select-value":!0,"data-multi-value":r},f({multi:r,value:a,label:q.optionsMap[a].label},e.selectValueLabel))})),h.size||k||(o=G.default.createElement(_.default,{className:e.selectPlaceholder,"data-select-placeholder":!0},b)),s?G.default.createElement(n,{for:this.state['input-field-id'],className:e.selectMultiValueWrapper,"data-select-multi-value-wrapper":r},o,G.default.createElement(T.default,{"data-select-input":!0,className:e.selectInput},G.default.createElement(U.default,{style:{width:l+'px'},id:this.state['input-field-id'],className:e.selectInputField,"data-select-input-search":!0,onKeyDown:this.onSearchingBinded,onChange:this.props.onInputChange,innerRef:function innerRef(a){return q.inputInnerRef=a},"aria-label":b,"aria-expanded":i,"aria-owns":this.state['aria-owns'],role:'combobox',type:'text'})),G.default.createElement(V.default,{"data-select-input-size":!0,innerRef:function innerRef(a){return q.searchSizeRef=a}},k)):G.default.createElement(n,{for:this.state['input-field-id'],innerRef:function innerRef(a){return q.inputInnerRef=a},className:e.selectMultiValueWrapper,"data-select-multi-value-wrapper":r},o)}},{key:'renderSelectMenuOuter',value:function value(){var l=this,a=this.props,m=a.classes,b=a.noResultsText,c=a.optionRenderer,d=this.state,e=d.values,f=d.isOpened,g=d.focusedIndex,j=d.options;if(!f)return G.default.createElement('div',{"aria-hidden":'true',id:['aria-owns'],role:'listbox'},G.default.createElement('div',{role:'option',tabIndex:'-1'}));var i=G.default.createElement(X.default,null,b);return 0<j.length&&(i=j.map(function(a,b){var h=e.has(a.value);return c(Object.assign({key:b,"data-key":b,isSelected:h,id:l.state['aria-owns'],className:m.selectOption,isFocused:g==b,tabIndex:e.has(a.value)?'0':'-1',onMouseOver:function onMouseOver(a){var b=a.target.getAttribute('data-key');l.setState({focusedIndex:b})},onMouseOut:function onMouseOut(){l.setState({focusedIndex:null})},onMouseDown:function onMouseDown(b){return l.onSelectValueBinded(a.value,b)}},a),b)})),G.default.createElement($.default,{className:m.selectMenuOuter,"data-select-menu-outer":!0},G.default.createElement(O.default,{role:'listbox',className:m.selectMenu,"data-select-menu":!0},i))}},{key:'renderSelectClearZone',value:function value(){var d=this.props,a=d.clearable,b=d.classes;return a?G.default.createElement(Y.default,{className:b.selectClearZone,"data-select-clear-zone":!0,onMouseDown:this.onClearValueBinded},G.default.createElement(R.default,{className:b.selectClear,"data-select-clear":!0},'\xD7')):void 0}},{key:'componentDidMount',value:function value(){this.props.generatedClassName(this.selectNode.state.generatedClassName)}},{key:'componentDidUpdate',value:function value(){this.props.generatedClassName(this.selectNode.state.generatedClassName)}},{key:'componentWillReceiveProps',value:function value(c){var a=this;this.setState({options:c.options},function(){return a.indexValues(c)})}},{key:'render',value:function value(){var k=this,a=this.props,b=a.name,l=a.disabled,m=a.className,n=a.classes,f=this.state,g=f.value,h=f.isSelected,i=f.isOpened;return G.default.createElement(N.default,{"data-select":!0,className:m,ref:function ref(a){return k.selectNode=a},innerRef:function innerRef(a){return k.selectInnerRef=a}},G.default.createElement('input',{type:'hidden',name:b,value:(0,ea.default)(g),disabled:l}),G.default.createElement(W.default,{isOpened:i,"aria-haspopup":i,className:n.selectControl,"data-select-control":!0,onMouseDown:this.onSelectFocusedBinded},this.renderSelectMultiValueWrapper(),this.renderSelectClearZone(),G.default.createElement(Z.default,{className:n.selectArrowZone,"data-select-arrow-zone":!0},G.default.createElement(S.default,{isOpened:i,className:n.selectArrow,"data-select-arrow":!0}))),this.renderSelectMenuOuter())}}]),e}(G.default.PureComponent);ha.propTypes={value:H.default.any,options:H.default.array,onClose:H.default.func,onOpen:H.default.func,onChange:H.default.func,onValueClick:H.default.func,onInputClear:H.default.func,clearable:H.default.bool,placeholder:H.default.string,className:H.default.string,classes:H.default.object,noResultsText:H.default.oneOfType([H.default.string,H.default.element]),generatedClassName:H.default.func},ha.defaultProps={onClose:function onClose(){},onOpen:function onOpen(){},onChange:function onChange(){},onInputChange:function onInputChange(){},onTyping:function onTyping(){},onValueClick:function onValueClick(){},onInputClear:function onInputClear(){},clearable:!1,searchable:!0,multi:!1,options:[],placeholder:'Select...',noResultsText:'No results found',classes:{selectArrow:'',selectArrowZone:'',selectClear:'',selectClearZone:'',selectControl:'',selectInput:'',selectInputField:'',selectMenu:'',selectMenuOuter:'',selectMultiValueWrapper:'',selectOption:'',selectPlaceholder:'',selectValue:'',selectValueLabel:''},valueRenderer:ca.default,optionRenderer:da.default,generatedClassName:function generatedClassName(){}};var ia=(0,J.default)(ha),ja=(0,M.default)(ia);ja.Async=function(b){return G.default.createElement(L.default,b,G.default.createElement(ja,null))};var ka=oa.Async=ia.Async=function(b){return G.default.createElement(L.default,b,G.default.createElement(ia,null))},la=oa.ShadowDOM=ia.ShadowDOM=ja;oa.default=ia});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('prop-types'), require('styled-components'), require('react-click-outside'), require('uuid'), require('./Async'), require('../helpers/shadowDOM'), require('./constants'), require('./partials/Select'), require('./partials/SelectMenu'), require('./partials/SelectValue'), require('./partials/SelectMultiValue'), require('./partials/SelectClear'), require('./partials/SelectArrow'), require('./partials/SelectInput'), require('./partials/SelectInputField'), require('./partials/SelectInputFieldSize'), require('./partials/SelectControl'), require('./partials/SelectNoResults'), require('./partials/SelectClearZone'), require('./partials/SelectArrowZone'), require('./partials/SelectMenuOuter'), require('./partials/SelectPlaceholder'), require('./partials/SelectValueWrapper'), require('./partials/SelectMultiValueWrapper'), require('./renderers/ValueRenderer'), require('./renderers/OptionRenderer'), require('./functions/stringifyValue'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.propTypes, global.styledComponents, global.reactClickOutside, global.uuid, global.Async, global.shadowDOM, global.constants, global.Select, global.SelectMenu, global.SelectValue, global.SelectMultiValue, global.SelectClear, global.SelectArrow, global.SelectInput, global.SelectInputField, global.SelectInputFieldSize, global.SelectControl, global.SelectNoResults, global.SelectClearZone, global.SelectArrowZone, global.SelectMenuOuter, global.SelectPlaceholder, global.SelectValueWrapper, global.SelectMultiValueWrapper, global.ValueRenderer, global.OptionRenderer, global.stringifyValue);
+    global.Select = mod.exports;
+  }
+})(undefined, function (exports, _react, _propTypes, _styledComponents, _reactClickOutside, _uuid, _Async, _shadowDOM, _constants, _Select, _SelectMenu, _SelectValue, _SelectMultiValue, _SelectClear, _SelectArrow, _SelectInput, _SelectInputField, _SelectInputFieldSize, _SelectControl, _SelectNoResults, _SelectClearZone, _SelectArrowZone, _SelectMenuOuter, _SelectPlaceholder, _SelectValueWrapper, _SelectMultiValueWrapper, _ValueRenderer, _OptionRenderer, _stringifyValue) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.ShadowDOM = exports.Async = undefined;
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  var _reactClickOutside2 = _interopRequireDefault(_reactClickOutside);
+
+  var _uuid2 = _interopRequireDefault(_uuid);
+
+  var _Async2 = _interopRequireDefault(_Async);
+
+  var _shadowDOM2 = _interopRequireDefault(_shadowDOM);
+
+  var _Select2 = _interopRequireDefault(_Select);
+
+  var _SelectMenu2 = _interopRequireDefault(_SelectMenu);
+
+  var _SelectValue2 = _interopRequireDefault(_SelectValue);
+
+  var _SelectMultiValue2 = _interopRequireDefault(_SelectMultiValue);
+
+  var _SelectClear2 = _interopRequireDefault(_SelectClear);
+
+  var _SelectArrow2 = _interopRequireDefault(_SelectArrow);
+
+  var _SelectInput2 = _interopRequireDefault(_SelectInput);
+
+  var _SelectInputField2 = _interopRequireDefault(_SelectInputField);
+
+  var _SelectInputFieldSize2 = _interopRequireDefault(_SelectInputFieldSize);
+
+  var _SelectControl2 = _interopRequireDefault(_SelectControl);
+
+  var _SelectNoResults2 = _interopRequireDefault(_SelectNoResults);
+
+  var _SelectClearZone2 = _interopRequireDefault(_SelectClearZone);
+
+  var _SelectArrowZone2 = _interopRequireDefault(_SelectArrowZone);
+
+  var _SelectMenuOuter2 = _interopRequireDefault(_SelectMenuOuter);
+
+  var _SelectPlaceholder2 = _interopRequireDefault(_SelectPlaceholder);
+
+  var _SelectValueWrapper2 = _interopRequireDefault(_SelectValueWrapper);
+
+  var _SelectMultiValueWrapper2 = _interopRequireDefault(_SelectMultiValueWrapper);
+
+  var _ValueRenderer2 = _interopRequireDefault(_ValueRenderer);
+
+  var _OptionRenderer2 = _interopRequireDefault(_OptionRenderer);
+
+  var _stringifyValue2 = _interopRequireDefault(_stringifyValue);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  }
+
+  var SEARCH_INPUT_MIN_SIZE = 1;
+
+  function optionsMapReducer(agregate, current) {
+    agregate[current.value] = current;
+    return agregate;
+  }
+
+  var WrapperSelect = function (_React$PureComponent) {
+    _inherits(WrapperSelect, _React$PureComponent);
+
+    function WrapperSelect(props) {
+      _classCallCheck(this, WrapperSelect);
+
+      var _this2 = _possibleConstructorReturn(this, (WrapperSelect.__proto__ || Object.getPrototypeOf(WrapperSelect)).call(this, props));
+
+      _this2.indexValues(props);
+
+      var values = [];
+      if (props.value && _this2.optionsMap.hasOwnProperty(props.value)) {
+        values.push(props.value);
+      }
+
+      if (Array.isArray(props.value)) {
+        values = values.concat(props.value);
+      }
+
+      _this2.state = {
+        values: new Set(values),
+        isOpened: false,
+        isFocused: false,
+        isSelected: false,
+        searchTerm: null,
+        searchWidth: 1,
+        focusedIndex: 0,
+        options: props.options,
+        'aria-owns': _this2.props['aria-owns'] || _uuid2.default.v4(),
+        'input-field-id': _uuid2.default.v4()
+      };
+
+      _this2.inputInnerRef = null;
+      _this2.searchSizeRef = null;
+      _this2.shouldFireClickOutsideHack = null;
+
+      _this2.onSearchingBinded = _this2.onSearching.bind(_this2);
+      _this2.onRemoveTagBinded = _this2.onRemoveTag.bind(_this2);
+      _this2.onClearValueBinded = _this2.onClearValue.bind(_this2);
+      _this2.onSelectValueBinded = _this2.onSelectValue.bind(_this2);
+      _this2.onSelectFocusedBinded = _this2.onSelectFocused.bind(_this2);
+      return _this2;
+    }
+
+    _createClass(WrapperSelect, [{
+      key: 'indexValues',
+      value: function indexValues(props) {
+        this.optionsMap = props.options.reduce(optionsMapReducer, {});
+      }
+    }, {
+      key: 'openOptions',
+      value: function openOptions() {
+        this.setState({
+          options: this.getOptions(),
+          focusedIndex: 0,
+          isOpened: true
+        });
+        this.props.onOpen();
+      }
+    }, {
+      key: 'closeOptions',
+      value: function closeOptions() {
+        this.setState({ isOpened: false });
+        this.props.onClose();
+      }
+    }, {
+      key: 'setFocus',
+      value: function setFocus() {
+        var _this = this;
+        setTimeout(function () {
+          _this.inputInnerRef && _this.inputInnerRef.focus();
+        }, 10);
+      }
+    }, {
+      key: 'handleClickOutside',
+      value: function handleClickOutside(event) {
+        if (this.state.isOpened && this.shouldFireClickOutsideHack) {
+          this.closeOptions();
+          this.shouldFireClickOutsideHack = false;
+        }
+      }
+    }, {
+      key: 'onRemoveTag',
+      value: function onRemoveTag(props, event) {
+        var _this3 = this;
+
+        event.stopPropagation();
+        var multi = this.props.multi;
+
+        this.state.values.delete(props.value);
+
+        this.setState({
+          values: new Set(Array.from(this.state.values))
+        }, function () {
+          _this3.props.onChange(Array.from(_this3.state.values));
+        });
+      }
+    }, {
+      key: 'resetField',
+      value: function resetField() {
+        var _this4 = this;
+
+        var multi = this.props.multi;
+
+        var values = [];
+        if (multi) {
+          values = Array.from(this.state.values);
+          values.pop();
+          this.props.onChange(values);
+        }
+
+        this.setState({
+          values: new Set(values),
+          searchTerm: null,
+          focusedIndex: 0,
+          options: this.props.options
+        }, function () {
+          _this4.closeOptions();
+          _this4.inputInnerRef.value = '';
+          _this4.props.onInputClear();
+        });
+      }
+    }, {
+      key: 'onClearValue',
+      value: function onClearValue(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.resetField();
+      }
+    }, {
+      key: 'onSelectValue',
+      value: function onSelectValue(newValue, event) {
+        var _this5 = this;
+
+        var multi = this.props.multi;
+        var values = this.state.values;
+
+        !multi && values.clear(); // when is not multi select
+
+        if (!values.has(newValue)) {
+          values.add(newValue);
+          this.setState({
+            values: values,
+            searchTerm: null,
+            focusedIndex: 0
+          }, function () {
+            _this5.inputInnerRef.value = '';
+            _this5.props.onChange(multi ? Array.from(values) : newValue);
+          });
+        }
+        this.closeOptions();
+        this.props.onValueClick(multi ? Array.from(values) : newValue, event);
+      }
+    }, {
+      key: 'onSelectFocused',
+      value: function onSelectFocused(event) {
+        var _this6 = this;
+
+        this.shouldFireClickOutsideHack = false;
+
+        clearInterval(this.focusedTimeout);
+        this.focusedTimeout = setTimeout(function () {
+          _this6.shouldFireClickOutsideHack = true;
+        }, 200);
+
+        this.setState({
+          isFocused: true
+        });
+
+        this.openOptions();
+        this.setFocus();
+      }
+    }, {
+      key: 'getOptions',
+      value: function getOptions() {
+        var multi = this.props.multi;
+        var values = this.state.values;
+
+        return this.props.options.filter(function (opt) {
+          var label = opt.label.toLowerCase().trim();
+          if (values.has(label) && multi) {
+            return false;
+          }
+          return true;
+        });
+      }
+    }, {
+      key: 'onSearching',
+      value: function onSearching(event) {
+        var _this7 = this;
+
+        var _props = this.props,
+            onInputChange = _props.onInputChange,
+            onTyping = _props.onTyping;
+        var _state = this.state,
+            focusedIndex = _state.focusedIndex,
+            options = _state.options,
+            isOpened = _state.isOpened;
+
+        var typing = function typing() {
+          var term = _this7.inputInnerRef.value.toLowerCase().trim();
+
+          onTyping(term);
+
+          var filteredOptions = _this7.getOptions().filter(function (opt) {
+            var label = opt.label.toLowerCase().trim();
+            return label.indexOf(term) !== -1;
+          });
+
+          _this7.setState({
+            searchTerm: _this7.inputInnerRef.value,
+            searchWidth: searchWidth,
+            options: filteredOptions,
+            isOpened: true,
+            focusedIndex: 0
+          });
+
+          var searchWidth = SEARCH_INPUT_MIN_SIZE;
+          if (_this7.searchSizeRef) {
+            var width = _this7.searchSizeRef.getBoundingClientRect().width;
+            searchWidth = width > SEARCH_INPUT_MIN_SIZE ? width : SEARCH_INPUT_MIN_SIZE;
+          }
+
+          setTimeout(function () {
+            _this7.setState({ searchWidth: searchWidth });
+          });
+        };
+
+        var lastIndex = options.length - 1;
+        switch (event.keyCode) {
+          case _constants.KEY_BACKSPACE:
+            // backspace
+            if (!this.inputInnerRef.value) {
+              this.resetField();
+              break;
+            }
+            setTimeout(typing, 1);
+            break;
+          case _constants.KEY_UP:
+            this.setState({
+              focusedIndex: focusedIndex <= 0 ? lastIndex : focusedIndex - 1
+            });
+            break;
+          case _constants.KEY_DOWN:
+            if (!isOpened) {
+              this.openOptions();
+              break;
+            }
+            this.setState({
+              focusedIndex: focusedIndex >= lastIndex ? 0 : focusedIndex + 1
+            });
+            break;
+          case _constants.KEY_ENTER:
+            if (!options.length) break;
+            var newValue = options[focusedIndex].value;
+            this.onSelectValueBinded(newValue, event);
+            break;
+          case _constants.KEY_ESC:
+            this.closeOptions();
+            break;
+          default:
+            setTimeout(typing, 1);
+        }
+      }
+    }, {
+      key: 'renderSelectMultiValueWrapper',
+      value: function renderSelectMultiValueWrapper() {
+        var _this8 = this;
+
+        var _props2 = this.props,
+            multi = _props2.multi,
+            placeholder = _props2.placeholder,
+            searchable = _props2.searchable,
+            classes = _props2.classes,
+            valueRenderer = _props2.valueRenderer;
+        var _state2 = this.state,
+            values = _state2.values,
+            isOpened = _state2.isOpened,
+            isSelected = _state2.isSelected,
+            searchTerm = _state2.searchTerm,
+            searchWidth = _state2.searchWidth;
+
+        var SelectValueComp = multi ? _SelectMultiValue2.default : _SelectValue2.default;
+        var SelectWrapperComp = multi ? _SelectMultiValueWrapper2.default : _SelectValueWrapper2.default;
+
+        var content = '';
+
+        if (values.size) {
+          content = Array.from(values).map(function (value, key) {
+            return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this8.onRemoveTagBinded, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: _this8.optionsMap[value].label }, classes.selectValueLabel));
+          });
+        }
+
+        if (!values.size && !searchTerm) {
+          content = _react2.default.createElement(_SelectPlaceholder2.default, {
+            className: classes.selectPlaceholder,
+            'data-select-placeholder': true }, placeholder);
+        }
+
+        if (!searchable) {
+          return _react2.default.createElement(SelectWrapperComp, {
+            'for': this.state['input-field-id'],
+            innerRef: function innerRef(n) {
+              return _this8.inputInnerRef = n;
+            },
+            className: classes.selectMultiValueWrapper,
+            'data-select-multi-value-wrapper': multi }, content);
+        }
+
+        return _react2.default.createElement(SelectWrapperComp, {
+          'for': this.state['input-field-id'],
+          className: classes.selectMultiValueWrapper,
+          'data-select-multi-value-wrapper': multi }, content, _react2.default.createElement(_SelectInput2.default, { 'data-select-input': true, className: classes.selectInput }, _react2.default.createElement(_SelectInputField2.default, {
+          style: { width: searchWidth + 'px' },
+          id: this.state['input-field-id'],
+          className: classes.selectInputField,
+          'data-select-input-search': true,
+          onKeyDown: this.onSearchingBinded,
+          onChange: this.props.onInputChange,
+          innerRef: function innerRef(n) {
+            return _this8.inputInnerRef = n;
+          },
+          'aria-label': placeholder,
+          'aria-expanded': isOpened,
+          'aria-owns': this.state['aria-owns'],
+          role: 'combobox', type: 'text' })), _react2.default.createElement(_SelectInputFieldSize2.default, {
+          'data-select-input-size': true,
+          innerRef: function innerRef(n) {
+            return _this8.searchSizeRef = n;
+          } }, searchTerm));
+      }
+    }, {
+      key: 'renderSelectMenuOuter',
+      value: function renderSelectMenuOuter() {
+        var _this9 = this;
+
+        var _props3 = this.props,
+            classes = _props3.classes,
+            noResultsText = _props3.noResultsText,
+            optionRenderer = _props3.optionRenderer;
+        var _state3 = this.state,
+            values = _state3.values,
+            isOpened = _state3.isOpened,
+            focusedIndex = _state3.focusedIndex,
+            options = _state3.options;
+
+        if (!isOpened) {
+          return _react2.default.createElement('div', { 'aria-hidden': 'true', id: ['aria-owns'], role: 'listbox' }, _react2.default.createElement('div', { role: 'option', tabIndex: '-1' }));
+        }
+
+        var selectOptions = _react2.default.createElement(_SelectNoResults2.default, null, noResultsText);
+
+        if (options.length > 0) {
+          selectOptions = options.map(function (opt, i) {
+            var isSelected = values.has(opt.value);
+            var isFocused = focusedIndex === i;
+            return optionRenderer(Object.assign({
+              key: i,
+              'data-key': i,
+              isSelected: isSelected,
+              id: _this9.state['aria-owns'],
+              className: classes.selectOption,
+              isFocused: focusedIndex == i,
+              tabIndex: values.has(opt.value) ? '0' : '-1',
+              onMouseOver: function onMouseOver(e) {
+                var dataKey = e.target.getAttribute('data-key');
+                _this9.setState({ focusedIndex: dataKey });
+              },
+              onMouseOut: function onMouseOut(e) {
+                _this9.setState({ focusedIndex: null });
+              },
+              onMouseDown: function onMouseDown(e) {
+                return _this9.onSelectValueBinded(opt.value, e);
+              }
+            }, opt), i);
+          });
+        }
+        return _react2.default.createElement(_SelectMenuOuter2.default, {
+          className: classes.selectMenuOuter,
+          'data-select-menu-outer': true }, _react2.default.createElement(_SelectMenu2.default, {
+          role: 'listbox',
+          className: classes.selectMenu, 'data-select-menu': true }, selectOptions));
+      }
+    }, {
+      key: 'renderSelectClearZone',
+      value: function renderSelectClearZone() {
+        var _props4 = this.props,
+            clearable = _props4.clearable,
+            classes = _props4.classes;
+
+        if (!clearable) return;
+
+        return _react2.default.createElement(_SelectClearZone2.default, {
+          className: classes.selectClearZone,
+          'data-select-clear-zone': true, onMouseDown: this.onClearValueBinded }, _react2.default.createElement(_SelectClear2.default, {
+          className: classes.selectClear, 'data-select-clear': true }, '\xD7'));
+      }
+    }, {
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this.props.generatedClassName(this.selectNode.state.generatedClassName);
+      }
+    }, {
+      key: 'componentDidUpdate',
+      value: function componentDidUpdate() {
+        this.props.generatedClassName(this.selectNode.state.generatedClassName);
+      }
+    }, {
+      key: 'componentWillReceiveProps',
+      value: function componentWillReceiveProps(nextProps) {
+        var _this10 = this;
+
+        this.setState({
+          options: nextProps.options
+        }, function () {
+          return _this10.indexValues(nextProps);
+        });
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _this11 = this;
+
+        var _props5 = this.props,
+            name = _props5.name,
+            disabled = _props5.disabled,
+            className = _props5.className,
+            classes = _props5.classes;
+        var _state4 = this.state,
+            value = _state4.value,
+            isSelected = _state4.isSelected,
+            isOpened = _state4.isOpened;
+
+        return _react2.default.createElement(_Select2.default, { 'data-select': true, className: className,
+          ref: function ref(node) {
+            return _this11.selectNode = node;
+          }, innerRef: function innerRef(node) {
+            return _this11.selectInnerRef = node;
+          } }, _react2.default.createElement('input', { type: 'hidden', name: name, value: (0, _stringifyValue2.default)(value), disabled: disabled }), _react2.default.createElement(_SelectControl2.default, {
+          isOpened: isOpened,
+          'aria-haspopup': isOpened,
+          className: classes.selectControl,
+          'data-select-control': true, onMouseDown: this.onSelectFocusedBinded }, this.renderSelectMultiValueWrapper(), this.renderSelectClearZone(), _react2.default.createElement(_SelectArrowZone2.default, {
+          className: classes.selectArrowZone, 'data-select-arrow-zone': true }, _react2.default.createElement(_SelectArrow2.default, { isOpened: isOpened, className: classes.selectArrow, 'data-select-arrow': true }))), this.renderSelectMenuOuter());
+      }
+    }]);
+
+    return WrapperSelect;
+  }(_react2.default.PureComponent);
+
+  WrapperSelect.propTypes = {
+    value: _propTypes2.default.any,
+    options: _propTypes2.default.array,
+    onClose: _propTypes2.default.func,
+    onOpen: _propTypes2.default.func,
+    onChange: _propTypes2.default.func,
+    onValueClick: _propTypes2.default.func,
+    onInputClear: _propTypes2.default.func,
+    clearable: _propTypes2.default.bool,
+    placeholder: _propTypes2.default.string,
+    className: _propTypes2.default.string,
+    classes: _propTypes2.default.object,
+    noResultsText: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element]),
+    generatedClassName: _propTypes2.default.func
+  };
+
+  WrapperSelect.defaultProps = {
+    onClose: function onClose() {},
+    onOpen: function onOpen() {},
+    onChange: function onChange() {},
+    onInputChange: function onInputChange() {},
+    onTyping: function onTyping() {},
+    onValueClick: function onValueClick() {},
+    onInputClear: function onInputClear() {},
+    clearable: false,
+    searchable: true,
+    multi: false,
+    options: [],
+    placeholder: 'Select...',
+    noResultsText: 'No results found',
+    classes: {
+      selectArrow: '',
+      selectArrowZone: '',
+      selectClear: '',
+      selectClearZone: '',
+      selectControl: '',
+      selectInput: '',
+      selectInputField: '',
+      selectMenu: '',
+      selectMenuOuter: '',
+      selectMultiValueWrapper: '',
+      selectOption: '',
+      selectPlaceholder: '',
+      selectValue: '',
+      selectValueLabel: ''
+    },
+    valueRenderer: _ValueRenderer2.default,
+    optionRenderer: _OptionRenderer2.default,
+    generatedClassName: function generatedClassName() {}
+  };
+
+  var EnhanceWrapperSelect = (0, _reactClickOutside2.default)(WrapperSelect);
+  var ShadowWrapperSelect = (0, _shadowDOM2.default)(EnhanceWrapperSelect);
+
+  var NormalAsync = function NormalAsync(props) {
+    return _react2.default.createElement(_Async2.default, props, _react2.default.createElement(EnhanceWrapperSelect, null));
+  };
+  var ShadowAsync = function ShadowAsync(props) {
+    return _react2.default.createElement(_Async2.default, props, _react2.default.createElement(ShadowWrapperSelect, null));
+  };
+
+  ShadowWrapperSelect.Async = ShadowAsync;
+
+  var Async = exports.Async = EnhanceWrapperSelect.Async = NormalAsync;
+  var ShadowDOM = exports.ShadowDOM = EnhanceWrapperSelect.ShadowDOM = ShadowWrapperSelect;
+
+  exports.default = EnhanceWrapperSelect;
+});
+//# sourceMappingURL=Select.js.map
 
 /***/ }),
 /* 21 */
@@ -3195,10 +4058,147 @@ module.exports = bytesToUuid;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&'function'==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?'symbol':typeof a};(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(50),__webpack_require__(51)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(50), __webpack_require__(51)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('react-shadow'),require('../polyfill'));else{var b={exports:{}};a(b.exports,d.react,d.reactShadow,d.polyfill),d.shadowDOM=b.exports}})(void 0,function(l,a,b){'use strict';function c(b){return b&&b.__esModule?b:{default:b}}function d(c,a){if(!(c instanceof a))throw new TypeError('Cannot call a class as a function')}function e(c,d){if(!c)throw new ReferenceError('this hasn\'t been initialised - super() hasn\'t been called');return d&&('object'==('undefined'==typeof d?'undefined':_typeof(d))||'function'==typeof d)?d:c}function f(c,d){if('function'!=typeof d&&null!==d)throw new TypeError('Super expression must either be null or a function, not '+('undefined'==typeof d?'undefined':_typeof(d)));c.prototype=Object.create(d&&d.prototype,{constructor:{value:c,enumerable:!1,writable:!0,configurable:!0}}),d&&(Object.setPrototypeOf?Object.setPrototypeOf(c,d):c.__proto__=d)}Object.defineProperty(l,'__esModule',{value:!0});var g=c(a),h=c(b),i=Object.assign||function(e){for(var a,b=1;b<arguments.length;b++)for(var c in a=arguments[b],a)Object.prototype.hasOwnProperty.call(a,c)&&(e[c]=a[c]);return e},j=function(){function e(e,f){for(var b,c=0;c<f.length;c++)b=f[c],b.enumerable=b.enumerable||!1,b.configurable=!0,'value'in b&&(b.writable=!0),Object.defineProperty(e,b.key,b)}return function(a,b,c){return b&&e(a.prototype,b),c&&e(a,c),a}}();l.default=function(k){return function(a){function l(c){d(this,l);var a=e(this,(l.__proto__||Object.getPrototypeOf(l)).call(this,c));return a.applyStylesheet=function(b){var d=document.querySelector('[data-styled-components*='+b+']');if(d){try{a.styleTag.innerHTML=''}catch(b){}a.styleTag.appendChild(d.cloneNode(!0))}},a.state={stylesheet:!1},a}return f(l,a),j(l,[{key:'render',value:function(){var d=this,a=this.state.stylesheet;return g.default.createElement(h.default,null,g.default.createElement('span',null,g.default.createElement('span',{ref:function(b){return d.styleTag=b}}),g.default.createElement(k,i({},this.props,{generatedClassName:this.applyStylesheet}))))}}]),l}(g.default.PureComponent)}});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('react-shadow'), require('../polyfill'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.reactShadow, global.polyfill);
+    global.shadowDOM = mod.exports;
+  }
+})(undefined, function (exports, _react, _reactShadow) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _reactShadow2 = _interopRequireDefault(_reactShadow);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
+
+  function _possibleConstructorReturn(self, call) {
+    if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+
+    return call && ((typeof call === 'undefined' ? 'undefined' : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+  }
+
+  function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === 'undefined' ? 'undefined' : _typeof(superClass)));
+    }
+
+    subClass.prototype = Object.create(superClass && superClass.prototype, {
+      constructor: {
+        value: subClass,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+  }
+
+  exports.default = function (element) {
+
+    return function (_React$PureComponent) {
+      _inherits(ShadowDOMHelper, _React$PureComponent);
+
+      function ShadowDOMHelper(props) {
+        _classCallCheck(this, ShadowDOMHelper);
+
+        var _this = _possibleConstructorReturn(this, (ShadowDOMHelper.__proto__ || Object.getPrototypeOf(ShadowDOMHelper)).call(this, props));
+
+        _this.applyStylesheet = function (classNameID) {
+          var style = document.querySelector('[data-styled-components*=' + classNameID + ']');
+          if (!style) return;
+          try {
+            _this.styleTag.innerHTML = '';
+          } catch (e) {}
+          _this.styleTag.appendChild(style.cloneNode(true));
+        };
+
+        _this.state = {
+          stylesheet: false
+        };
+        return _this;
+      }
+
+      _createClass(ShadowDOMHelper, [{
+        key: 'render',
+        value: function render() {
+          var _this2 = this;
+
+          var stylesheet = this.state.stylesheet;
+
+          return _react2.default.createElement(_reactShadow2.default, null, _react2.default.createElement('span', null, _react2.default.createElement('span', { ref: function ref(n) {
+              return _this2.styleTag = n;
+            } }), _react2.default.createElement(element, _extends({}, this.props, { generatedClassName: this.applyStylesheet }))));
+        }
+      }]);
+
+      return ShadowDOMHelper;
+    }(_react2.default.PureComponent);
+  };
+});
+//# sourceMappingURL=shadowDOM.js.map
 
 /***/ }),
 /* 24 */
@@ -3232,17 +4232,162 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectInputField=b.exports}})(void 0,function(h,a,b){'use strict';Object.defineProperty(h,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: content-box;\n  background: none transparent;\n  border: 0 none;\n  box-shadow: none;\n  cursor: default;\n  display: inline-block;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  outline: none;\n  -webkit-appearance: none;\n\n  ','\n  ','\n'],['\n  box-sizing: content-box;\n  background: none transparent;\n  border: 0 none;\n  box-shadow: none;\n  cursor: default;\n  display: inline-block;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  outline: none;\n  -webkit-appearance: none;\n\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select-input'),f=(0,b.autoCssGenerator)('select');h.default=c.default.input(d,e('line-height'),f('color'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectInputField = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: content-box;\n  background: none transparent;\n  border: 0 none;\n  box-shadow: none;\n  cursor: default;\n  display: inline-block;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  outline: none;\n  -webkit-appearance: none;\n\n  ', '\n  ', '\n'], ['\n  box-sizing: content-box;\n  background: none transparent;\n  border: 0 none;\n  box-shadow: none;\n  cursor: default;\n  display: inline-block;\n  font-family: inherit;\n  font-size: inherit;\n  margin: 0;\n  outline: none;\n  -webkit-appearance: none;\n\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-input');
+  var globalCss = (0, _cssHelpers.autoCssGenerator)('select');
+
+  exports.default = _styledComponents2.default.input(_templateObject, g('line-height'), globalCss('color'));
+});
+//# sourceMappingURL=SelectInputField.js.map
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _react=__webpack_require__(2),_react2=_interopRequireDefault(_react),_reactDom=__webpack_require__(11),_reactDom2=_interopRequireDefault(_reactDom),_lib=__webpack_require__(37),_lib2=_interopRequireDefault(_lib),_ShadowDOM=__webpack_require__(77),_ShadowDOM2=_interopRequireDefault(_ShadowDOM);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}var options=[{value:'one',label:'One'},{value:'two',label:'Two'},{value:'tree',label:'Tree'},{value:'four',label:'Four'},{value:'five',label:'Five'},{value:'six',label:'Six'},{value:'seven',label:'Seven'}];_reactDom2.default.render(_react2.default.createElement('div',null,_react2.default.createElement('div',{style:{width:'300px'}},_react2.default.createElement('h2',null,'Multi Select'),_react2.default.createElement(_ShadowDOM2.default,{multi:!0,value:['one','two'],options:options})),_react2.default.createElement('div',{style:{width:'300px'}},_react2.default.createElement('h2',null,'With Shadow DOM'),_react2.default.createElement(_ShadowDOM2.default,{name:'theme',options:options})),_react2.default.createElement('div',{style:{width:'300px'}},_react2.default.createElement('h2',null,'default'),_react2.default.createElement(_lib2.default,{name:'form-field-name',options:options})),_react2.default.createElement('div',{style:{width:'300px'},className:'select-theme-1'},_react2.default.createElement('h2',null,'theme 1'),_react2.default.createElement(_lib2.default,{name:'form-field-name',options:options})),_react2.default.createElement('div',{style:{width:'300px'},className:'select-theme-2'},_react2.default.createElement('h2',null,'theme 2'),_react2.default.createElement(_lib2.default,{name:'theme',options:options})),_react2.default.createElement('h2',null,'CSS example'),_react2.default.createElement('pre',{style:{color:'grey',border:'2px solid #ccc',padding:'5px'}},'\n    :root {\n      /* change CSS root scope */\n      --styled-select__border-style: solid;\n    }\n\n    .select-theme-1 {\n      /* old variables version (<= 0.0.17-alpha) */\n      --styled-select-background-color: black;\n      --styled-select-border-width: 3px;\n      --styled-select-control-border-color: red;\n\n      /* new variables format (>= 2.0.0-alpha) */\n      --styled-select__background-color: black;\n      --styled-select__border-width: 3px;\n      --styled-select-control__border-color: red;\n    }\n\n    .select-theme-2 {\n      /* old variables varsion (<= 0.0.17-alpha) */\n      --styled-select-background-color: red;\n      --styled-select-border-width: 1px;\n      --styled-select-control-border-color: black;\n\n      /* new variables format (>= 2.0.0-alpha) */\n      --styled-select__background-color: red;\n      --styled-select__border-width: 1px;\n      --styled-select-control__border-color: black;\n    }')),document.getElementById('main'));
+
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(11);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _lib = __webpack_require__(37);
+
+var _lib2 = _interopRequireDefault(_lib);
+
+var _ShadowDOM = __webpack_require__(77);
+
+var _ShadowDOM2 = _interopRequireDefault(_ShadowDOM);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var options = [{ value: 'one', label: 'One' }, { value: 'two', label: 'Two' }, { value: 'tree', label: 'Tree' }, { value: 'four', label: 'Four' }, { value: 'five', label: 'Five' }, { value: 'six', label: 'Six' }, { value: 'seven', label: 'Seven' }];
+
+_reactDom2.default.render(_react2.default.createElement(
+  'div',
+  null,
+  _react2.default.createElement(
+    'div',
+    { style: { width: '300px' } },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'Multi Select'
+    ),
+    _react2.default.createElement(_ShadowDOM2.default, {
+      multi: true,
+      value: ['one', 'two'],
+      options: options
+    })
+  ),
+  _react2.default.createElement(
+    'div',
+    { style: { width: '300px' } },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'With Shadow DOM'
+    ),
+    _react2.default.createElement(_ShadowDOM2.default, {
+      name: 'theme',
+      options: options
+    })
+  ),
+  _react2.default.createElement(
+    'div',
+    { style: { width: '300px' } },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'default'
+    ),
+    _react2.default.createElement(_lib2.default, {
+      name: 'form-field-name',
+      options: options
+    })
+  ),
+  _react2.default.createElement(
+    'div',
+    { style: { width: '300px' }, className: 'select-theme-1' },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'theme 1'
+    ),
+    _react2.default.createElement(_lib2.default, {
+      name: 'form-field-name',
+      options: options
+    })
+  ),
+  _react2.default.createElement(
+    'div',
+    { style: { width: '300px' }, className: 'select-theme-2' },
+    _react2.default.createElement(
+      'h2',
+      null,
+      'theme 2'
+    ),
+    _react2.default.createElement(_lib2.default, {
+      name: 'theme',
+      options: options
+    })
+  ),
+  _react2.default.createElement(
+    'h2',
+    null,
+    'CSS example'
+  ),
+  _react2.default.createElement(
+    'pre',
+    { style: { color: 'grey', border: '2px solid #ccc', padding: '5px' } },
+    '\n    :root {\n      /* change CSS root scope */\n      --styled-select__border-style: solid;\n    }\n\n    .select-theme-1 {\n      /* old variables version (<= 0.0.17-alpha) */\n      --styled-select-background-color: black;\n      --styled-select-border-width: 3px;\n      --styled-select-control-border-color: red;\n\n      /* new variables format (>= 2.0.0-alpha) */\n      --styled-select__background-color: black;\n      --styled-select__border-width: 3px;\n      --styled-select-control__border-color: red;\n    }\n\n    .select-theme-2 {\n      /* old variables varsion (<= 0.0.17-alpha) */\n      --styled-select-background-color: red;\n      --styled-select-border-width: 1px;\n      --styled-select-control-border-color: black;\n\n      /* new variables format (>= 2.0.0-alpha) */\n      --styled-select__background-color: red;\n      --styled-select__border-width: 1px;\n      --styled-select-control__border-color: black;\n    }'
+  )
+), document.getElementById('main'));
 
 /***/ }),
 /* 27 */
@@ -20492,10 +21637,49 @@ module.exports = camelize;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(20),__webpack_require__(13)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(20), __webpack_require__(13)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('./Select'),require('./Select/Async'));else{var b={exports:{}};a(b.exports,d.react,d.Select,d.Async),d.index=b.exports}})(void 0,function(i,a,b,c){'use strict';function d(b){return b&&b.__esModule?b:{default:b}}Object.defineProperty(i,'__esModule',{value:!0});var e=d(a),f=d(b),g=d(c);f.default.Async=function(b){return e.default.createElement(g.default,b,e.default.createElement(f.default,null))},i.default=f.default});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('./Select'), require('./Select/Async'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.Select, global.Async);
+    global.index = mod.exports;
+  }
+})(undefined, function (exports, _react, _Select, _Async) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _Select2 = _interopRequireDefault(_Select);
+
+  var _Async2 = _interopRequireDefault(_Async);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  _Select2.default.Async = function AsyncSelect(props) {
+    return _react2.default.createElement(_Async2.default, props, _react2.default.createElement(_Select2.default, null));
+  };
+
+  exports.default = _Select2.default;
+});
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 /* 38 */
@@ -34986,10 +36170,41 @@ module.exports = __webpack_require__(9);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(c,a){ true?!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(52)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+/* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(52)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)):"undefined"==typeof exports?(a(c.shadydom),c.polyfill={exports:{}}.exports):a(require("@webcomponents/shadydom"))})(void 0,function(){"use strict";"undefined"!=typeof global&&(global.document||(global.document={documentElement:{}}),global.MutationObserver=window.MutationObserver||function(){return{observe:function observe(){}}})});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(require('@webcomponents/shadydom'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(global.shadydom);
+    global.polyfill = mod.exports;
+  }
+})(undefined, function () {
+  "use strict";
+
+  if (typeof global != "undefined") {
+    var MockMutationObserver = function MockMutationObserver() {
+      return {
+        observe: function observe() {}
+      };
+    };
+    if (!global.document) {
+      global.document = {
+        documentElement: {}
+      };
+    }
+    global.MutationObserver = window.MutationObserver || MockMutationObserver;
+  }
+});
+//# sourceMappingURL=polyfill.js.map
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24)))
 
 /***/ }),
@@ -35072,250 +36287,1413 @@ Rb);window.HTMLSlotElement&&Z(window.HTMLSlotElement.prototype,Pb);Z(Ub.prototyp
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if("undefined"!=typeof exports)a(exports);else{var b={exports:{}};a(b.exports),d.constants=b.exports}})(void 0,function(g){"use strict";Object.defineProperty(g,"__esModule",{value:!0});var a=g.KEY_UP=38,b=g.KEY_DOWN=40,c=g.KEY_ENTER=13,d=g.KEY_BACKSPACE=8,e=g.KEY_ESC=27});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.constants = mod.exports;
+  }
+})(undefined, function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var KEY_UP = exports.KEY_UP = 38;
+  var KEY_DOWN = exports.KEY_DOWN = 40;
+  var KEY_ENTER = exports.KEY_ENTER = 13;
+  var KEY_BACKSPACE = exports.KEY_BACKSPACE = 8;
+  var KEY_ESC = exports.KEY_ESC = 27;
+});
+//# sourceMappingURL=constants.js.map
 
 /***/ }),
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'));else{var b={exports:{}};a(b.exports,d.styledComponents),d.Select=b.exports}})(void 0,function(e,a){'use strict';Object.defineProperty(e,'__esModule',{value:!0});var b=function(b){return b&&b.__esModule?b:{default:b}}(a),c=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  position: relative;\n'],['\n  box-sizing: border-box;\n  position: relative;\n']);e.default=b.default.div(c)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents);
+    global.Select = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  position: relative;\n'], ['\n  box-sizing: border-box;\n  position: relative;\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  exports.default = _styledComponents2.default.div(_templateObject);
+});
+//# sourceMappingURL=Select.js.map
 
 /***/ }),
 /* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectMenu=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ','\n'],['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ','\n']),e=(0,b.autoCssGenerator)('select-menu');g.default=c.default.div(d,e('max-height'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectMenu = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-menu');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('max-height'));
+});
+//# sourceMappingURL=SelectMenu.js.map
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [module], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(module);else{var b={exports:{}};a(b),d.cssVariables=b.exports}})(void 0,function(c){'use strict';var a='Tahoma, Helvetica, Arial, sans-serif';c.exports={select__color:'#777',"select__background-color":'#fff',"select__border-radius":'2px',"select__border-style":'solid',"select__border-width":'1px',"select-arrow__size":8,"select-arrow__color":'#9b9ba5',"select-arrow-zone__width":'25px',"select-clear__color":'#999',"select-clear__font-size":'14px',"select-clear-zone__width":'17px',"select-control__min-height":'36px',"select-control__border-color":'#dcdce3',"select-control__border-color--focused":'#40a3f5',"select-input__height":'23px',"select-input__padding":'0',"select-input__line-height":'23px',"select-menu__max-height":'198px',"select-menu-outer__max-height":'200px',"select-menu-outer__background-color":'#fff',"select-menu-outer__border-color":'#f0f0f5',"select-menu-outer__border-radius":'2px',"select-menu-outer__border-style":'solid',"select-menu-outer__border-width":'1px',"select-menu-outer__box-shadow":'0 2px 4px rgba(0, 0, 0, 0.05)',"select-menu-outer__margin":'5px 0 0 0',"select-menu-outer__padding":'0',"select-no-results__color":'#999',"select-no-results__padding":'8px 10px',"select-no-results__font-size":'14px',"select-no-results__font-family":a,"select-option__color":'#777',"select-option__padding":'8px 10px',"select-option__font-family":a,"select-option__color--focused":'#333',"select-option__color--selected":'#333',"select-option__background-color":'#fff',"select-option__background-color--focused":'#f0f0f5',"select-option__background-color--selected":'#ddd',"select-placeholder__padding":'0 10px',"select-placeholder__color":'#d2d2d9',"select-placeholder__font-family":a,"select-placeholder__font-size":'12px',"select-placeholder__line-height":'34px',"select-value__color":a,"select-value__line-height":'34px',"select-value__font-size":'14px',"select-value__max-width":'100%',"select-value__overflow":'hidden',"select-value__padding":'0 5px',"select-value__text-overflow":'ellipsis',"select-value__white-space":'nowrap',"select-value-label__padding":'1px 6px',"select-value-label__font-family":a,"select-value-icon__background-color":'transparent',"select-value-icon__background-color--hover":'rgba(0, 0, 0, 0.1)',"select-value-icon__font-family":'arial',"select-value-icon__padding":'1px 5px',"select-multi-value__font-size":'0.9em',"select-multi-value__line-height":'1.4',"select-multi-value__margin":'2px 5px 2px 0',"select-multi-value__background-color":'#eee',"select-multi-value__border":'1px solid #aaa',"select-multi-value__border--hover":'1px solid #777',"select-multi-value__border-radius":'3px',"select-multi-value__box-shadow":'rgba(0,0,0,0.2) 0px 0px 3px',"select-multi-value-wrapper__padding":'3px 0 3px 5px'}});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.cssVariables = mod.exports;
+  }
+})(undefined, function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  var fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
+
+  exports.default = {
+    'select__color': '#777',
+    'select__background-color': '#fff',
+    'select__border-radius': '2px',
+    'select__border-style': 'solid',
+    'select__border-width': '1px',
+
+    'select-arrow__size': 8,
+    'select-arrow__color': '#9b9ba5',
+
+    'select-arrow-zone__width': '25px',
+
+    'select-clear__color': '#999',
+    'select-clear__font-size': '14px',
+
+    'select-clear-zone__width': '17px',
+
+    'select-control__min-height': '36px',
+    'select-control__border-color': '#dcdce3',
+    'select-control__border-color--focused': '#40a3f5',
+
+    'select-input__height': '23px',
+    'select-input__padding': '0',
+    'select-input__line-height': '23px',
+
+    'select-menu__max-height': '198px',
+
+    'select-menu-outer__max-height': '200px',
+    'select-menu-outer__background-color': '#fff',
+    'select-menu-outer__border-color': '#f0f0f5',
+    'select-menu-outer__border-radius': '2px',
+    'select-menu-outer__border-style': 'solid',
+    'select-menu-outer__border-width': '1px',
+    'select-menu-outer__box-shadow': '0 2px 4px rgba(0, 0, 0, 0.05)',
+
+    'select-menu-outer__margin': '5px 0 0 0',
+    'select-menu-outer__padding': '0',
+
+    'select-no-results__color': '#999',
+    'select-no-results__padding': '8px 10px',
+    'select-no-results__font-size': '14px',
+    'select-no-results__font-family': fontFamily,
+
+    'select-option__color': '#777',
+    'select-option__padding': '8px 10px',
+    'select-option__font-family': fontFamily,
+    'select-option__color--focused': '#333',
+    'select-option__color--selected': '#333',
+    'select-option__background-color': '#fff',
+    'select-option__background-color--focused': '#f0f0f5',
+    'select-option__background-color--selected': '#ddd',
+
+    'select-placeholder__padding': '0 10px',
+    'select-placeholder__color': '#d2d2d9',
+    'select-placeholder__font-family': fontFamily,
+    'select-placeholder__font-size': '12px',
+    'select-placeholder__line-height': '34px',
+
+    'select-value__color': fontFamily,
+    'select-value__line-height': '34px',
+    'select-value__font-size': '14px',
+    'select-value__max-width': '100%',
+    'select-value__overflow': 'hidden',
+    'select-value__padding': '0 5px',
+    'select-value__text-overflow': 'ellipsis',
+    'select-value__white-space': 'nowrap',
+
+    'select-value-label__padding': '1px 6px',
+    'select-value-label__font-family': fontFamily,
+
+    'select-value-icon__background-color': 'transparent',
+    'select-value-icon__background-color--hover': 'rgba(0, 0, 0, 0.1)',
+    'select-value-icon__font-family': 'arial',
+    'select-value-icon__padding': '1px 5px',
+
+    'select-multi-value__font-size': '0.9em',
+    'select-multi-value__line-height': '1.4',
+    'select-multi-value__margin': '2px 5px 2px 0',
+    'select-multi-value__background-color': '#eee',
+    'select-multi-value__border': '1px solid #aaa',
+    'select-multi-value__border--hover': '1px solid #777',
+    'select-multi-value__border-radius': '3px',
+    'select-multi-value__box-shadow': 'rgba(0,0,0,0.2) 0px 0px 3px',
+
+    'select-multi-value-wrapper__padding': '3px 0 3px 5px'
+  };
+});
+//# sourceMappingURL=cssVariables.js.map
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectValue=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  display: inline-block;\n  vertical-align: top;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n'],['\n  display: inline-block;\n  vertical-align: top;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select'),f=(0,b.autoCssGenerator)('select-value');g.default=c.default.div(d,f('color'),f('padding'),f('max-width'),f('overflow'),f('font-size'),f('text-overflow'),f('line-height'),f('white-space'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectValue = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  display: inline-block;\n  vertical-align: top;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  display: inline-block;\n  vertical-align: top;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var globalCss = (0, _cssHelpers.autoCssGenerator)('select');
+  var g = (0, _cssHelpers.autoCssGenerator)('select-value');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('color'), g('padding'), g('max-width'), g('overflow'), g('font-size'), g('text-overflow'), g('line-height'), g('white-space'));
+});
+//# sourceMappingURL=SelectValue.js.map
 
 /***/ }),
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(0),__webpack_require__(59),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(0), __webpack_require__(59), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('styled-components'),require('./SelectValueIcon'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.react,d.styledComponents,d.SelectValueIcon,d.cssHelpers),d.SelectMultiValue=b.exports}})(void 0,function(m,a,b,c,d){'use strict';function e(b){return b&&b.__esModule?b:{default:b}}Object.defineProperty(m,'__esModule',{value:!0});var f=e(a),h=e(b),i=e(c),j=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  overflow: hidden;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n\n  &:hover {\n    ','\n  }\n'],['\n  overflow: hidden;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n\n  &:hover {\n    ','\n  }\n']),k=(0,d.autoCssGenerator)('select-multi-value'),l=h.default.div(j,k('border'),k('font-size'),k('margin'),k('box-shadow'),k('line-height'),k('border-radius'),k('background-color'),k('border','hover'));m.default=function(c){return f.default.createElement(l,c,f.default.createElement(i.default,{onMouseDown:function(a){return c.onRemoveTag(c,a)}},'\xD7'),c.children)}});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('styled-components'), require('./SelectValueIcon'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.styledComponents, global.SelectValueIcon, global.cssHelpers);
+    global.SelectMultiValue = mod.exports;
+  }
+})(undefined, function (exports, _react, _styledComponents, _SelectValueIcon, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  var _SelectValueIcon2 = _interopRequireDefault(_SelectValueIcon);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  overflow: hidden;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:hover {\n    ', '\n  }\n'], ['\n  overflow: hidden;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:hover {\n    ', '\n  }\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-multi-value');
+
+  var SelectMultiValue = _styledComponents2.default.div(_templateObject, g('border'), g('font-size'), g('margin'), g('box-shadow'), g('line-height'), g('border-radius'), g('background-color'), g('border', 'hover'));
+
+  exports.default = function (props) {
+    return _react2.default.createElement(SelectMultiValue, props, _react2.default.createElement(_SelectValueIcon2.default, { onMouseDown: function onMouseDown(e) {
+        return props.onRemoveTag(props, e);
+      } }, '\xD7'), props.children);
+  };
+});
+//# sourceMappingURL=SelectMultiValue.js.map
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectValueIcon=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  border-right: 1px solid;\n  display: inline-block;\n\n  ','\n  ','\n  ','\n  ','\n\n  &:hover {\n    ','\n    cursor: pointer;\n  }\n'],['\n  box-sizing: border-box;\n  border-right: 1px solid;\n  display: inline-block;\n\n  ','\n  ','\n  ','\n  ','\n\n  &:hover {\n    ','\n    cursor: pointer;\n  }\n']),e=(0,b.autoCssGenerator)('select-value-icon');g.default=c.default.div(d,e('color'),e('padding'),e('font-family'),e('background-color'),e('background-color','hover'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectValueIcon = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  border-right: 1px solid;\n  display: inline-block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:hover {\n    ', '\n    cursor: pointer;\n  }\n'], ['\n  box-sizing: border-box;\n  border-right: 1px solid;\n  display: inline-block;\n\n  ', '\n  ', '\n  ', '\n  ', '\n\n  &:hover {\n    ', '\n    cursor: pointer;\n  }\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-value-icon');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('color'), g('padding'), g('font-family'), g('background-color'), g('background-color', 'hover'));
+});
+//# sourceMappingURL=SelectValueIcon.js.map
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectClear=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  display: inline-block;\n  line-height: 1;\n\n  ','\n  ','\n'],['\n  box-sizing: border-box;\n  display: inline-block;\n  line-height: 1;\n\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select-clear');g.default=c.default.div(d,e('color'),e('font-size'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectClear = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: inline-block;\n  line-height: 1;\n\n  ', '\n  ', '\n'], ['\n  box-sizing: border-box;\n  display: inline-block;\n  line-height: 1;\n\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-clear');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('color'), g('font-size'));
+});
+//# sourceMappingURL=SelectClear.js.map
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectInput=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  vertical-align: middle;\n  display: inline-table;\n  margin: 0;\n\n  ','\n  ','\n'],['\n  vertical-align: middle;\n  display: inline-table;\n  margin: 0;\n\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select-input');g.default=c.default.div(d,e('height'),e('padding'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectInput = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  vertical-align: middle;\n  display: inline-table;\n  margin: 0;\n\n  ', '\n  ', '\n'], ['\n  vertical-align: middle;\n  display: inline-table;\n  margin: 0;\n\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-input');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('height'), g('padding'));
+});
+//# sourceMappingURL=SelectInput.js.map
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(25)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(25)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('./SelectInputField'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.SelectInputField),d.SelectInputFieldSize=b.exports}})(void 0,function(h,a,b){'use strict';function c(b){return b&&b.__esModule?b:{default:b}}Object.defineProperty(h,'__esModule',{value:!0});var d=c(a),e=c(b),f=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  visibility: hidden;\n  height: 0px;\n  white-space: pre;\n'],['\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  visibility: hidden;\n  height: 0px;\n  white-space: pre;\n']);h.default=e.default.withComponent('div').extend(f)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('./SelectInputField'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.SelectInputField);
+    global.SelectInputFieldSize = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _SelectInputField) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  var _SelectInputField2 = _interopRequireDefault(_SelectInputField);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  visibility: hidden;\n  height: 0px;\n  white-space: pre;\n'], ['\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  visibility: hidden;\n  height: 0px;\n  white-space: pre;\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  exports.default = _SelectInputField2.default.withComponent('div').extend(_templateObject);
+});
+//# sourceMappingURL=SelectInputFieldSize.js.map
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectControl=b.exports}})(void 0,function(i,a,b){'use strict';Object.defineProperty(i,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n\n  ','\n '],['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n\n  ','\n ']),e=(0,b.autoCssGenerator)('select'),f=(0,b.autoCssGenerator)('select-control'),h=function(){return'\n  '+f('border-color','focused')+'\n'};i.default=c.default.div(d,f('border-color'),f('min-height'),e('border-radius'),e('border-style'),e('border-width'),e('background-color'),function(b){return b.isOpened&&h()})});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectControl = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n '], ['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n ']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var globalCss = (0, _cssHelpers.autoCssGenerator)('select');
+  var g = (0, _cssHelpers.autoCssGenerator)('select-control');
+
+  var isOpened = function isOpened() {
+    return '\n  ' + g('border-color', 'focused') + '\n';
+  };
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('border-color'), g('min-height'), globalCss('border-radius'), globalCss('border-style'), globalCss('border-width'), globalCss('background-color'), function (props) {
+    return props.isOpened && isOpened();
+  });
+});
+//# sourceMappingURL=SelectControl.js.map
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectNoResults=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  display: block;\n  cursor: default;\n  box-sizing: border-box;\n\n  ','\n  ','\n  ','\n  ','\n'],['\n  display: block;\n  cursor: default;\n  box-sizing: border-box;\n\n  ','\n  ','\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select-no-results');g.default=c.default.div(d,e('color'),e('padding'),e('font-size'),e('font-family'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectNoResults = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  display: block;\n  cursor: default;\n  box-sizing: border-box;\n\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  display: block;\n  cursor: default;\n  box-sizing: border-box;\n\n  ', '\n  ', '\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-no-results');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('color'), g('padding'), g('font-size'), g('font-family'));
+});
+//# sourceMappingURL=SelectNoResults.js.map
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectClearZone=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  display: table-cell;\n\n  ','\n'],['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  display: table-cell;\n\n  ','\n']),e=(0,b.autoCssGenerator)('select-clear-zone');g.default=c.default.div(d,e('width'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectClearZone = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  display: table-cell;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  display: table-cell;\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-clear-zone');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('width'));
+});
+//# sourceMappingURL=SelectClearZone.js.map
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectArrowZone=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  padding-right: 5px;\n  display: flex;\n  justify-content: center;\n\n  ','\n'],['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  padding-right: 5px;\n  display: flex;\n  justify-content: center;\n\n  ','\n']),e=(0,b.autoCssGenerator)('select-arrow-zone');g.default=c.default.div(d,e('width'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectArrowZone = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  padding-right: 5px;\n  display: flex;\n  justify-content: center;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  cursor: pointer;\n  position: relative;\n  text-align: center;\n  vertical-align: middle;\n  padding-right: 5px;\n  display: flex;\n  justify-content: center;\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-arrow-zone');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('width'));
+});
+//# sourceMappingURL=SelectArrowZone.js.map
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectMenuOuter=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n'],['\n  box-sizing: border-box;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select-menu-outer');g.default=c.default.div(d,e('margin'),e('padding'),e('max-height'),e('box-shadow'),e('border-color'),e('border-width'),e('border-style'),e('border-radius'),e('background-color'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectMenuOuter = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  box-sizing: border-box;\n  position: absolute;\n  top: 100%;\n  width: 100%;\n  z-index: 1;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-menu-outer');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('margin'), g('padding'), g('max-height'), g('box-shadow'), g('border-color'), g('border-width'), g('border-style'), g('border-radius'), g('background-color'));
+});
+//# sourceMappingURL=SelectMenuOuter.js.map
 
 /***/ }),
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectPlaceholder=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  text-overflow: ellipsis;\n  position: absolute;\n  display: inline-block;\n  white-space: nowrap;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  max-width: 100%;\n  overflow: hidden;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n'],['\n  text-overflow: ellipsis;\n  position: absolute;\n  display: inline-block;\n  white-space: nowrap;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  max-width: 100%;\n  overflow: hidden;\n\n  ','\n  ','\n  ','\n  ','\n  ','\n']),e=(0,b.autoCssGenerator)('select-placeholder');g.default=c.default.div(d,e('color'),e('padding'),e('font-size'),e('font-family'),e('line-height'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectPlaceholder = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  text-overflow: ellipsis;\n  position: absolute;\n  display: inline-block;\n  white-space: nowrap;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  max-width: 100%;\n  overflow: hidden;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n'], ['\n  text-overflow: ellipsis;\n  position: absolute;\n  display: inline-block;\n  white-space: nowrap;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  max-width: 100%;\n  overflow: hidden;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-placeholder');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('color'), g('padding'), g('font-size'), g('font-family'), g('line-height'));
+});
+//# sourceMappingURL=SelectPlaceholder.js.map
 
 /***/ }),
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'));else{var b={exports:{}};a(b.exports,d.styledComponents),d.SelectValueWrapper=b.exports}})(void 0,function(e,a){'use strict';Object.defineProperty(e,'__esModule',{value:!0});var b=function(b){return b&&b.__esModule?b:{default:b}}(a),c=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  display: flex;\n  align-items: center;\n  align-content: space-around;\n  padding: 0 0 0 5px;\n  flex: 2 100%;\n'],['\n  box-sizing: border-box;\n  display: flex;\n  align-items: center;\n  align-content: space-around;\n  padding: 0 0 0 5px;\n  flex: 2 100%;\n']);e.default=b.default.div(c)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents);
+    global.SelectValueWrapper = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: flex;\n  align-items: center;\n  align-content: space-around;\n  padding: 0 0 0 5px;\n  flex: 2 100%;\n'], ['\n  box-sizing: border-box;\n  display: flex;\n  align-items: center;\n  align-content: space-around;\n  padding: 0 0 0 5px;\n  flex: 2 100%;\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  exports.default = _styledComponents2.default.div(_templateObject);
+});
+//# sourceMappingURL=SelectValueWrapper.js.map
 
 /***/ }),
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectMultiValueWrapper=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  display: flex;\n\talign-items: center;\n  align-content: space-around;\n  flex: 2 100%;\n  flex-wrap: wrap;\n\n  ','\n'],['\n  box-sizing: border-box;\n  display: flex;\n\talign-items: center;\n  align-content: space-around;\n  flex: 2 100%;\n  flex-wrap: wrap;\n\n  ','\n']),e=(0,b.autoCssGenerator)('select-multi-value-wrapper');g.default=c.default.div(d,e('padding'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectMultiValueWrapper = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: flex;\n\talign-items: center;\n  align-content: space-around;\n  flex: 2 100%;\n  flex-wrap: wrap;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  display: flex;\n\talign-items: center;\n  align-content: space-around;\n  flex: 2 100%;\n  flex-wrap: wrap;\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-multi-value-wrapper');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('padding'));
+});
+//# sourceMappingURL=SelectMultiValueWrapper.js.map
 
 /***/ }),
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(72)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(72)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('../partials/SelectValueLabel'));else{var b={exports:{}};a(b.exports,d.react,d.SelectValueLabel),d.ValueRenderer=b.exports}})(void 0,function(g,a,b){'use strict';function c(b){return b&&b.__esModule?b:{default:b}}Object.defineProperty(g,'__esModule',{value:!0}),g.default=function(c,a){return d.default.createElement(e.default,{key:c.key,multi:c.multi,className:a,"data-select-value-label":!0},c.label)};var d=c(a),e=c(b)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('../partials/SelectValueLabel'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.SelectValueLabel);
+    global.ValueRenderer = mod.exports;
+  }
+})(undefined, function (exports, _react, _SelectValueLabel) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = ValueRenderer;
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _SelectValueLabel2 = _interopRequireDefault(_SelectValueLabel);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  function ValueRenderer(option, className) {
+    return _react2.default.createElement(_SelectValueLabel2.default, {
+      key: option.key,
+      multi: option.multi,
+      className: className,
+      'data-select-value-label': true }, option.label);
+  }
+});
+//# sourceMappingURL=ValueRenderer.js.map
 
 /***/ }),
 /* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectValueLabel=b.exports}})(void 0,function(g,a,b){'use strict';Object.defineProperty(g,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  display: inline-block;\n  ','\n  ','\n\n  ','\n'],['\n  box-sizing: border-box;\n  display: inline-block;\n  ','\n  ','\n\n  ','\n']),e=(0,b.autoCssGenerator)('select'),f=(0,b.autoCssGenerator)('select-value-label');g.default=c.default.div(d,e('color'),f('font-family'),function(b){return b.multi&&f('padding')})});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectValueLabel = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  display: inline-block;\n  ', '\n  ', '\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  display: inline-block;\n  ', '\n  ', '\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var globalCss = (0, _cssHelpers.autoCssGenerator)('select');
+  var g = (0, _cssHelpers.autoCssGenerator)('select-value-label');
+
+  exports.default = _styledComponents2.default.div(_templateObject, globalCss('color'), g('font-family'), function (props) {
+    return props.multi && g('padding');
+  });
+});
+//# sourceMappingURL=SelectValueLabel.js.map
 
 /***/ }),
 /* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(74)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(74)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('../partials/SelectOption'));else{var b={exports:{}};a(b.exports,d.react,d.SelectOption),d.OptionRenderer=b.exports}})(void 0,function(g,a,b){'use strict';function c(b){return b&&b.__esModule?b:{default:b}}Object.defineProperty(g,'__esModule',{value:!0}),g.default=function(c,a){return d.default.createElement(e.default,{id:c.id,className:c.className,key:a,isSelected:c.isSelected,"aria-selected":c.isSelected,tabIndex:c.tabIndex,isFocused:c.isFocused,"data-key":c['data-key'],role:'option',"data-select-option":c.value,onMouseOut:c.onMouseOut,onMouseOver:c.onMouseOver,onMouseDown:c.onMouseDown},c.label)};var d=c(a),e=c(b)});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('../partials/SelectOption'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.SelectOption);
+    global.OptionRenderer = mod.exports;
+  }
+})(undefined, function (exports, _react, _SelectOption) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = OptionRenderer;
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _SelectOption2 = _interopRequireDefault(_SelectOption);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  function OptionRenderer(option, index) {
+    return _react2.default.createElement(_SelectOption2.default, {
+      id: option.id,
+      className: option.className,
+      key: index,
+      isSelected: option.isSelected,
+      'aria-selected': option.isSelected,
+      tabIndex: option.tabIndex,
+      isFocused: option.isFocused,
+      'data-key': option['data-key'],
+      role: 'option',
+      'data-select-option': option.value,
+      onMouseOut: option.onMouseOut,
+      onMouseOver: option.onMouseOver,
+      onMouseDown: option.onMouseDown }, option.label);
+  }
+});
+//# sourceMappingURL=OptionRenderer.js.map
 
 /***/ }),
 /* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectOption=b.exports}})(void 0,function(i,a,b){'use strict';Object.defineProperty(i,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  box-sizing: border-box;\n  ','\n  ','\n  ','\n  ','\n\n  cursor: pointer;\n  display: block;\n\n  ','\n  ','\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n'],['\n  box-sizing: border-box;\n  ','\n  ','\n  ','\n  ','\n\n  cursor: pointer;\n  display: block;\n\n  ','\n  ','\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n']),e=(0,b.autoCssGenerator)('select-option'),f=function(){return'\n  '+e('color','focused')+'\n  '+e('background-color','focused')+'\n'},g=function(){return'\n  '+e('color','selected')+'\n  '+e('background-color','selected')+'\n'};i.default=c.default.div(d,e('color'),e('padding'),e('font-family'),e('background-color'),function(b){return b.isFocused&&f()},function(b){return b.isSelected&&g()})});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectOption = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  ', '\n  ', '\n  ', '\n  ', '\n\n  cursor: pointer;\n  display: block;\n\n  ', '\n  ', '\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n'], ['\n  box-sizing: border-box;\n  ', '\n  ', '\n  ', '\n  ', '\n\n  cursor: pointer;\n  display: block;\n\n  ', '\n  ', '\n\n  &:last-child {\n    border-bottom-right-radius: 4px;\n    border-bottom-left-radius: 4px;\n  }\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-option');
+
+  var isFocused = function isFocused() {
+    return '\n  ' + g('color', 'focused') + '\n  ' + g('background-color', 'focused') + '\n';
+  };
+
+  var isSelected = function isSelected() {
+    return '\n  ' + g('color', 'selected') + '\n  ' + g('background-color', 'selected') + '\n';
+  };
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('color'), g('padding'), g('font-family'), g('background-color'), function (props) {
+    return props.isFocused && isFocused();
+  }, function (props) {
+    return props.isSelected && isSelected();
+  });
+});
+//# sourceMappingURL=SelectOption.js.map
 
 /***/ }),
 /* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof='function'==typeof Symbol&&'symbol'==typeof Symbol.iterator?function(a){return typeof a}:function(a){return a&&'function'==typeof Symbol&&a.constructor===Symbol&&a!==Symbol.prototype?'symbol':typeof a};(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+(function (global, factory) {
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports);else{var b={exports:{}};a(b.exports),d.stringifyValue=b.exports}})(void 0,function(c){'use strict';Object.defineProperty(c,'__esModule',{value:!0}),c.default=function(b){var e='undefined'==typeof b?'undefined':d(b);return'string'===e?b:'object'===e?JSON.stringify(b):'number'===e||'boolean'===e?b+'':''};var d='function'==typeof Symbol&&'symbol'==_typeof(Symbol.iterator)?function(b){return'undefined'==typeof b?'undefined':_typeof(b)}:function(b){return b&&'function'==typeof Symbol&&b.constructor===Symbol&&b!==Symbol.prototype?'symbol':'undefined'==typeof b?'undefined':_typeof(b)}});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else if (typeof exports !== "undefined") {
+		factory(exports);
+	} else {
+		var mod = {
+			exports: {}
+		};
+		factory(mod.exports);
+		global.stringifyValue = mod.exports;
+	}
+})(undefined, function (exports) {
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = StringifyValue;
+
+	var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+		return typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+	} : function (obj) {
+		return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof2(obj);
+	};
+
+	function StringifyValue(value) {
+		var valueType = typeof value === 'undefined' ? 'undefined' : _typeof(value);
+		if (valueType === 'string') {
+			return value;
+		} else if (valueType === 'object') {
+			return JSON.stringify(value);
+		} else if (valueType === 'number' || valueType === 'boolean') {
+			return String(value);
+		} else {
+			return '';
+		}
+	}
+});
+//# sourceMappingURL=stringifyValue.js.map
 
 /***/ }),
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(0),__webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('styled-components'),require('../cssHelpers'));else{var b={exports:{}};a(b.exports,d.styledComponents,d.cssHelpers),d.SelectArrow=b.exports}})(void 0,function(i,a,b){'use strict';Object.defineProperty(i,'__esModule',{value:!0});var c=function(b){return b&&b.__esModule?b:{default:b}}(a),d=function(c,a){return Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(a)}}))}(['\n  position: relative;\n  display: inline-block;\n  box-sizing: border-box;\n\n  ','\n  ','\n\n  border-style: none;\n\n  /* FALLBACK */\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-right-color: ',';\n  border-bottom-color: ',';\n  /* FALLBACK */\n\n  border-right: 1px ',' solid;\n  border-right: 1px var(--styled-select-arrow__color, ',') solid;\n  border-bottom: 1px ',' solid;\n  border-bottom: 1px var(--styled-select-arrow__color, ',') solid;\n\n  border-bottom-right-radius: 25%;\n  transform: rotate(45deg);\n\n  ','\n\n  height: ','px;\n  width: ','px;\n'],['\n  position: relative;\n  display: inline-block;\n  box-sizing: border-box;\n\n  ','\n  ','\n\n  border-style: none;\n\n  /* FALLBACK */\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-right-color: ',';\n  border-bottom-color: ',';\n  /* FALLBACK */\n\n  border-right: 1px ',' solid;\n  border-right: 1px var(--styled-select-arrow__color, ',') solid;\n  border-bottom: 1px ',' solid;\n  border-bottom: 1px var(--styled-select-arrow__color, ',') solid;\n\n  border-bottom-right-radius: 25%;\n  transform: rotate(45deg);\n\n  ','\n\n  height: ','px;\n  width: ','px;\n']),e=(0,b.cssVar)('select-arrow'),f=(0,b.autoCssGenerator)('select-arrow'),h=function(){return'\n  margin-top: '+e('size')/2+'px;\n  transform: rotate(-134deg);\n'};i.default=c.default.div(d,f('border-right'),f('font-family'),e('color'),e('color'),e('color'),e('color'),e('color'),e('color'),function(b){return b.isOpened&&h()},e('size'),e('size'))});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectArrow = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  position: relative;\n  display: inline-block;\n  box-sizing: border-box;\n\n  ', '\n  ', '\n\n  border-style: none;\n\n  /* FALLBACK */\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-right-color: ', ';\n  border-bottom-color: ', ';\n  /* FALLBACK */\n\n  border-right: 1px ', ' solid;\n  border-right: 1px var(--styled-select-arrow__color, ', ') solid;\n  border-bottom: 1px ', ' solid;\n  border-bottom: 1px var(--styled-select-arrow__color, ', ') solid;\n\n  border-bottom-right-radius: 25%;\n  transform: rotate(45deg);\n\n  ', '\n\n  height: ', 'px;\n  width: ', 'px;\n'], ['\n  position: relative;\n  display: inline-block;\n  box-sizing: border-box;\n\n  ', '\n  ', '\n\n  border-style: none;\n\n  /* FALLBACK */\n  border-right-style: solid;\n  border-bottom-style: solid;\n  border-right-width: 1px;\n  border-bottom-width: 1px;\n  border-right-color: ', ';\n  border-bottom-color: ', ';\n  /* FALLBACK */\n\n  border-right: 1px ', ' solid;\n  border-right: 1px var(--styled-select-arrow__color, ', ') solid;\n  border-bottom: 1px ', ' solid;\n  border-bottom: 1px var(--styled-select-arrow__color, ', ') solid;\n\n  border-bottom-right-radius: 25%;\n  transform: rotate(45deg);\n\n  ', '\n\n  height: ', 'px;\n  width: ', 'px;\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var v = (0, _cssHelpers.cssVar)('select-arrow');
+  var g = (0, _cssHelpers.autoCssGenerator)('select-arrow');
+
+  var isOpened = function isOpened() {
+    return '\n  margin-top: ' + v('size') / 2 + 'px;\n  transform: rotate(-134deg);\n';
+  };
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('border-right'), g('font-family'), v('color'), v('color'), v('color'), v('color'), v('color'), v('color'), function (props) {
+    return props.isOpened && isOpened();
+  }, v('size'), v('size'));
+});
+//# sourceMappingURL=SelectArrow.js.map
 
 /***/ }),
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(d,a){if(true)!(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports,__webpack_require__(2),__webpack_require__(13),__webpack_require__(20),__webpack_require__(23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (a),
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(13), __webpack_require__(20), __webpack_require__(23)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else if('undefined'!=typeof exports)a(exports,require('react'),require('./Async'),require('../Select'),require('../helpers/shadowDOM'));else{var b={exports:{}};a(b.exports,d.react,d.Async,d.Select,d.shadowDOM),d.ShadowDOM=b.exports}})(void 0,function(l,a,b,c,d){'use strict';function e(b){return b&&b.__esModule?b:{default:b}}Object.defineProperty(l,'__esModule',{value:!0});var f=e(a),g=e(b),h=e(c),i=e(d),j=(0,i.default)(h.default);j.Async=function(b){return f.default.createElement(g.default,b,f.default.createElement(j,null))},l.default=j});
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('react'), require('./Async'), require('../Select'), require('../helpers/shadowDOM'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.react, global.Async, global.Select, global.shadowDOM);
+    global.ShadowDOM = mod.exports;
+  }
+})(undefined, function (exports, _react, _Async, _Select, _shadowDOM) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _Async2 = _interopRequireDefault(_Async);
+
+  var _Select2 = _interopRequireDefault(_Select);
+
+  var _shadowDOM2 = _interopRequireDefault(_shadowDOM);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var ShadowWrapper = (0, _shadowDOM2.default)(_Select2.default);
+
+  ShadowWrapper.Async = function AsyncShadowDOM(props) {
+    return _react2.default.createElement(_Async2.default, props, _react2.default.createElement(ShadowWrapper, null));
+  };
+
+  exports.default = ShadowWrapper;
+});
+//# sourceMappingURL=ShadowDOM.js.map
 
 /***/ })
 /******/ ]);
