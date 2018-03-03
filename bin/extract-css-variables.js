@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 const variables = require('../src/Select/cssVariables');
+const variablesList = Object.keys(variables)
+
+variablesList.sort().reverse()
+
 let aux = null
-Object.keys(variables).forEach((varname) => {
+variablesList.forEach((varname) => {
   const splitted = varname.split('__')
   let firstletter = splitted[1].substr(0,1)
   let suffix = `<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/${splitted[1]}">${splitted[1]}</a>`
