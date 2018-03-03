@@ -1,5 +1,13 @@
 import React from 'react';
+import styled from 'styled-components'
 import ReactDOM from 'react-dom';
+import extractVariables from './extractVariables'
+
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/css';
+import 'brace/theme/github';
 
 import Select from '../lib'
 import SelectShadow from '../lib/Select/ShadowDOM'
@@ -14,76 +22,130 @@ const options = [
   { value: 'seven', label: 'Seven' },
 ]
 
-ReactDOM.render((
-  <div>
-    <div style={{width: '300px'}}>
-      <h2>Multi Select</h2>
-      <SelectShadow
-        multi
-        value={['one', 'two']}
-        options={options}
-      />
-    </div>
-    <div style={{width: '300px'}}>
-      <h2>With Shadow DOM</h2>
-      <SelectShadow
-        name="theme"
-        options={options}
-      />
-    </div>
-    <div style={{width: '300px'}}>
-      <h2>default</h2>
-      <Select
-        name="form-field-name"
-        options={options}
-      />
-    </div>
-    <div style={{width: '300px'}} className="select-theme-1">
-      <h2>theme 1</h2>
-      <Select
-        name="form-field-name"
-        options={options}
-      />
-    </div>
-    <div style={{width: '300px'}} className="select-theme-2">
-      <h2>theme 2</h2>
-      <Select
-        name="theme"
-        options={options}
-      />
-    </div>
-    <h2>CSS example</h2>
-    <pre style={{color: 'grey', border: '2px solid #ccc', padding: '5px'}}>
-    {`
-    :root {
-      /* change CSS root scope */
-      --styled-select__border-style: solid;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+
+const Col = styled.div`
+  border: 1px solid #ccc;
+  padding: 10px;
+`
+
+const OptionContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20px;
+`
+
+const InputField = styled.input`
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ccc;
+`
+
+function onChange(newValue) {
+  const css = newValue
+  const head = document.head || document.getElementsByTagName('head')[0]
+  const style = document.createElement('style');
+
+  style.type = 'text/css';
+  if (style.styleSheet){
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);
+}
+
+class App extends React.PureComponent {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      shadow: false,
+      clearable: true,
+      searchable: true,
+      multi: true,
+      noResultsText: "No results found",
+      placeholder: "Select..."
     }
+  }
 
-    .select-theme-1 {
-      /* old variables version (<= 0.0.17-alpha) */
-      --styled-select-background-color: black;
-      --styled-select-border-width: 3px;
-      --styled-select-control-border-color: red;
+  render() {
+    return (
+      <div>
+      <h1>Demo Editor</h1>
+      <h2>Default Theme</h2>
+      <Container>
+        <Col className="app-col-left" style={{width: '650px'}}>
+          <AceEditor
+            width="650px"
+            ref={(node) => node && node.editor.session.setUseWorker(false)}
+            mode="css"
+            theme="github"
+            onChange={onChange}
+            name="UNIQUE_ID_OF_DIV"
+            value={`:root {\n${extractVariables()}}`}
+            defaultValue={`:root {\n${extractVariables()}}`}
+            editorProps={{$blockScrolling: true}}
+            />
+        </Col>
+        <Col className="app-col-right"  style={{width: '400px'}}>
+          <div style={{padding: '50px 0px', backgroundColor: '#e6f2de'}}>
+            <SelectShadow
+              style={{margin: '20px'}}
+              name="theme"
+              value={['one', 'two']}
+              {...this.state}
+              options={options}
+            />
+          </div>
+          <OptionContainer>
+            <label>Multi: </label>
+            <input
+              type="checkbox"
+              checked={this.state.multi}
+              onChange={(n) => this.setState({ multi: n.target.checked   })} />
+          </OptionContainer>
+          <OptionContainer>
+            <label>Searchable: </label>
+            <input
+              type="checkbox"
+              checked={this.state.searchable}
+              onChange={(n) => this.setState({ searchable: n.target.checked   })} />
+          </OptionContainer>
+          <OptionContainer>
+            <label>Clearable: </label>
+            <input
+              type="checkbox"
+              checked={this.state.clearable}
+              onChange={(n) => this.setState({ clearable: n.target.checked   })} />
+          </OptionContainer>
+          <OptionContainer>
+            <label>Placeholder: </label>
+            <InputField
+              type="text"
+              defaultValue={this.state.placeholder}
+              onChange={(n) => this.setState({ placeholder: n.target.value   })} />
+          </OptionContainer>
+          <OptionContainer>
+            <label>NoResultsText: </label>
+            <InputField
+              type="text"
+              defaultValue={this.state.noResultsText}
+              onChange={(n) => this.setState({ noResultsText: n.target.value   })} />
+          </OptionContainer>
+        </Col>
+      </Container>
+      </div>
+    )
+  }
+}
 
-      /* new variables format (>= 2.0.0-alpha) */
-      --styled-select__background-color: black;
-      --styled-select__border-width: 3px;
-      --styled-select-control__border-color: red;
-    }
-
-    .select-theme-2 {
-      /* old variables varsion (<= 0.0.17-alpha) */
-      --styled-select-background-color: red;
-      --styled-select-border-width: 1px;
-      --styled-select-control-border-color: black;
-
-      /* new variables format (>= 2.0.0-alpha) */
-      --styled-select__background-color: red;
-      --styled-select__border-width: 1px;
-      --styled-select-control__border-color: black;
-    }`}
-    </pre>
-
-  </div>
-), document.getElementById('main'));
+ReactDOM.render((<App />), document.getElementById('main'))

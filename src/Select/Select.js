@@ -291,6 +291,12 @@ class WrapperSelect extends React.PureComponent {
           {valueRenderer({ multi, value, label: this.optionsMap[value].label }, classes.selectValueLabel)}
         </SelectValueComp>
       ))
+
+      if (!multi && content.length > 1) {
+        setTimeout(() => {
+          this.resetField()
+        }, 10)
+      }
     }
 
     if (!values.size && !searchTerm) {
@@ -301,7 +307,7 @@ class WrapperSelect extends React.PureComponent {
       )
     }
 
-    if (!searchable) {
+    if (!searchable && multi) {
       return (
         <SelectWrapperComp
           for={this.state['input-field-id']}
@@ -420,10 +426,10 @@ class WrapperSelect extends React.PureComponent {
   }
 
   render () {
-    const { name, disabled, className, classes } = this.props;
+    const { name, disabled, className, classes, style } = this.props;
     const { value, isSelected, isOpened } = this.state;
     return (
-      <Select data-select className={className}
+      <Select style={style} data-select className={className}
         ref={(node) => this.selectNode = node} innerRef={(node) => this.selectInnerRef = node}>
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
         <SelectControl
