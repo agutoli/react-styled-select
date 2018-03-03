@@ -144,7 +144,7 @@ class MyForm extends React.Component {
 ## Available CSS variables
 
 <pre>
---styled-<b>select</b>__color: #777;
+--styled-<b>select</b>__`color`: #777;
 --styled-<b>select</b>__background-color: #fff;
 --styled-<b>select</b>__border-radius: 2px;
 --styled-<b>select</b>__border-style: solid;
