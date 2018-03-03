@@ -1,7 +1,4 @@
 import React from 'react'
-
-require('@webcomponents/shadydom');
-
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import enhanceWithClickOutside from 'react-click-outside'

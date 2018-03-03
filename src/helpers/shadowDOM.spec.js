@@ -1,8 +1,9 @@
-import React from 'react';
-import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
+import React from 'react'
+import sinon from 'sinon'
+import { expect } from 'chai'
+import { shallow, mount } from 'enzyme'
 
-import shadowDOM from './shadowDOM';
+import shadowDOM from './shadowDOM'
 
 import styled from 'styled-components'
 

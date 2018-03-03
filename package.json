@@ -14,6 +14,7 @@
     "lint:css": "stylelint './src/**/*.js'",
     "build": "./tools/build",
     "test": "find ./src -name '*.spec.js' | NODE_ENV=test xargs mocha ./test/browser.js --reporter spec",
+    "test:jest": "jest --browser",
     "test:watch": "mocha -w test/browser.js $(find ./src -name '*.spec.js')",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -45,11 +46,13 @@
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
     "babel-cli": "^6.22.2",
-    "babel-core": "^6.25.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-inline-react-svg": "0.4.0",
     "babel-plugin-styled-components": "^1.1.7",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -58,6 +61,7 @@
     "css-loader": "^0.28.4",
     "enzyme": "^2.7.1",
     "eslint": "^3.19.0",
+    "jest": "^22.3.0",
     "jsdom": "9.12.0",
     "jsdom-global": "3.0.2",
     "mocha": "^3.4.2",
@@ -66,6 +70,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.6.1",
     "react-storybook-addon-backgrounds": "0.0.7",
+    "regenerator-runtime": "^0.11.1",
     "stylelint": "^7.11.1",
     "stylelint-config-standard": "^16.0.0",
     "webpack": "^3.4.1",
@@ -76,15 +81,15 @@
     "react-dom": "~0.14.8 || ^15.6.1"
   },
   "dependencies": {
-    "@webcomponents/shadydom": "^1.0.3",
+    "@webcomponents/shadydom": "1.0.12",
+    "@webcomponents/webcomponentsjs": "1.1.0",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.6.1",
     "prop-types": "^15.5.10",
     "react-click-outside": "^2.3.1",
-    "react-shadow": "^2.0.2",
+    "react-shadow": "16.2.0",
     "sinon": "^2.3.5",
     "styled-components": "2.1.1",
-    "uuid": "^3.1.0",
-    "webcomponents.js": "^0.7.24"
+    "uuid": "^3.1.0"
   }
 }

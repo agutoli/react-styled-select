@@ -35,4 +35,4 @@ global.MutationObserver = function(){
   }
 }
 
-documentRef = document;
+global.documentRef = document;

@@ -1,9 +1,4 @@
 import React from 'react'
-
-if (process.env.NODE_ENV !== 'test') {
-  require('@webcomponents/shadydom');
-}
-
 import Async from './Async'
 import Select from '../Select'
 import shadowDOM from '../helpers/shadowDOM'
