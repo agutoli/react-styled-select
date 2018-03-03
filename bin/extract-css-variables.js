@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const variables = require('../src/Select/cssVariables');
-
+let aux = null
 Object.keys(variables).forEach((varname) => {
   const splitted = varname.split('__')
   let firstletter = splitted[1].substr(0,1)
@@ -10,5 +10,12 @@ Object.keys(variables).forEach((varname) => {
     suffix = `<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/${splited[0]}">${splited[0]}</a>--<b>${splited[1]}</b>`
   }
 
+  if (aux != null && aux != splitted[0]) {
+      console.log('')
+  }
+
   console.log(`--styled-<b>${splitted[0]}</b>__${suffix}: ${variables[varname]};`);
+
+
+  aux = splitted[0]
 });
