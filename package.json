@@ -7,6 +7,9 @@
   "directories": {
     "dist": "dist"
   },
+  "engines" : {
+    "node" : ">=8.9.4" 
+  },
   "scripts": {
     "build:demo": "./tools/build-demo",
     "show-css-variables": "node bin/extract-css-variables.js",
