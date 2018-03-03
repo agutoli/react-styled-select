@@ -1,6 +1,6 @@
 const fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
-module.exports = {
+export default {
   'select__color': '#777',
   'select__background-color': '#fff',
   'select__border-radius': '2px',
