@@ -63,10 +63,12 @@
     "babel-register": "^6.22.0",
     "chai": "^3.5.0",
     "css-loader": "0.28.10",
-    "enzyme": "3.3.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^3.19.0",
     "jest": "^22.3.0",
-    "jsdom": "11.6.2",
+    "jest-enzyme": "^4.2.0",
+    "jsdom": "^11.6.2",
     "jsdom-global": "3.0.2",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
@@ -93,5 +95,13 @@
     "react-shadow": "16.2.0",
     "styled-components": "2.1.1",
     "uuid": "^3.1.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test/browser.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ]
   }
 }

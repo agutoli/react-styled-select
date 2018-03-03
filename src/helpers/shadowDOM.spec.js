@@ -1,7 +1,8 @@
 import React from 'react'
 import sinon from 'sinon'
 import { expect } from 'chai'
-import { shallow, mount } from 'enzyme'
+
+import { shallow, mount } from 'enzyme';
 
 import shadowDOM from './shadowDOM'
 
