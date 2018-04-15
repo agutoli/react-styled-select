@@ -1,7 +1,7 @@
 import React from 'react'
 import SelectOption from '../partials/SelectOption'
 
-export default (option, index) => {
+export default function OptionRenderer(option, index) {
   return (
     <SelectOption
       id={option.id}

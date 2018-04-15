@@ -1,7 +1,4 @@
 import React from 'react'
-
-require('@webcomponents/shadydom');
-
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import enhanceWithClickOutside from 'react-click-outside'
@@ -42,6 +39,11 @@ import OptionRenderer from './renderers/OptionRenderer'
 
 import stringifyValue from './functions/stringifyValue'
 
+function optionsMapReducer(agregate, current) {
+  agregate[current.value] = current
+  return agregate
+}
+
 class WrapperSelect extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -50,11 +52,11 @@ class WrapperSelect extends React.PureComponent {
 
     let values = [];
     if (props.value && this.optionsMap.hasOwnProperty(props.value)) {
-      values.push(props.value);
+      values.push(props.value)
     }
 
     if (Array.isArray(props.value)) {
-      values = values.concat(props.value);
+      values = values.concat(props.value)
     }
 
     this.state = {
@@ -73,13 +75,16 @@ class WrapperSelect extends React.PureComponent {
     this.inputInnerRef = null
     this.searchSizeRef = null
     this.shouldFireClickOutsideHack = null
+
+    this.onSearchingBinded = this.onSearching.bind(this)
+    this.onRemoveTagBinded = this.onRemoveTag.bind(this)
+    this.onClearValueBinded = this.onClearValue.bind(this)
+    this.onSelectValueBinded = this.onSelectValue.bind(this)
+    this.onSelectFocusedBinded = this.onSelectFocused.bind(this)
   }
 
   indexValues(props) {
-    this.optionsMap = props.options.reduce((agregate, current) => {
-      agregate[current.value] = current
-      return agregate
-    }, {})
+    this.optionsMap = props.options.reduce(optionsMapReducer, {})
   }
 
   openOptions() {
@@ -87,19 +92,20 @@ class WrapperSelect extends React.PureComponent {
       options: this.getOptions(),
       focusedIndex: 0,
       isOpened: true
-    });
-    this.props.onOpen();
+    })
+    this.props.onOpen()
   }
 
   closeOptions() {
-    this.setState({ isOpened: false });
-    this.props.onClose();
+    this.setState({ isOpened: false })
+    this.props.onClose()
   }
 
   setFocus() {
-    setTimeout(() => {
-      this.inputInnerRef && this.inputInnerRef.focus();
-    }, 10);
+    let _this = this
+    setTimeout(function() {
+      _this.inputInnerRef && _this.inputInnerRef.focus()
+    }, 10)
   }
 
   // react-click-outside callback
@@ -111,17 +117,17 @@ class WrapperSelect extends React.PureComponent {
     }
   }
 
-  onRemoveTag = (props, e) => {
-    e.stopPropagation();
+  onRemoveTag(props, event) {
+    event.stopPropagation()
     const { multi } = this.props;
 
-    this.state.values.delete(props.value);
+    this.state.values.delete(props.value)
 
     this.setState({
       values: new Set(Array.from(this.state.values))
     }, () => {
-      this.props.onChange(Array.from(this.state.values));
-    });
+      this.props.onChange(Array.from(this.state.values))
+    })
   }
 
   resetField() {
@@ -129,9 +135,9 @@ class WrapperSelect extends React.PureComponent {
 
     let values = [];
     if (multi) {
-      values = Array.from(this.state.values);
-      values.pop();
-      this.props.onChange(values);
+      values = Array.from(this.state.values)
+      values.pop()
+      this.props.onChange(values)
     }
 
     this.setState({
@@ -146,38 +152,38 @@ class WrapperSelect extends React.PureComponent {
     })
   }
 
-  onClearValue = (event) => {
+  onClearValue(event) {
     event.preventDefault()
     event.stopPropagation()
-    this.resetField();
+    this.resetField()
   }
 
-  onSelectValue = (newValue, event) => {
+  onSelectValue(newValue, event) {
     const { multi } = this.props;
     const { values } = this.state;
 
-    !multi && values.clear(); // when is not multi select
+    !multi && values.clear() // when is not multi select
 
     if (!values.has(newValue)) {
-      values.add(newValue);
+      values.add(newValue)
       this.setState({
         values,
         searchTerm: null,
         focusedIndex: 0
       }, () => {
         this.inputInnerRef.value = ''
-        this.props.onChange(multi ? Array.from(values) : newValue);
+        this.props.onChange(multi ? Array.from(values) : newValue)
       })
     }
     this.closeOptions()
-    this.props.onValueClick(multi ? Array.from(values) : newValue, event);
+    this.props.onValueClick(multi ? Array.from(values) : newValue, event)
   }
 
-  onSelectFocused = (event) => {
+  onSelectFocused(event) {
     this.shouldFireClickOutsideHack = false
 
     clearInterval(this.focusedTimeout)
-    this.focusedTimeout = window.setTimeout(() => {
+    this.focusedTimeout = setTimeout(() => {
       this.shouldFireClickOutsideHack = true
     }, 200)
 
@@ -185,8 +191,8 @@ class WrapperSelect extends React.PureComponent {
       isFocused: true
     })
 
-    this.openOptions();
-    this.setFocus();
+    this.openOptions()
+    this.setFocus()
   }
 
   getOptions() {
@@ -198,10 +204,10 @@ class WrapperSelect extends React.PureComponent {
         return false;
       }
       return true;
-    });
+    })
   }
 
-  onSearching = (event) => {
+  onSearching(event) {
     const { onInputChange, onTyping } = this.props
     const { focusedIndex, options, isOpened } = this.state;
 
@@ -217,7 +223,7 @@ class WrapperSelect extends React.PureComponent {
 
         const label = opt.label.toLowerCase().trim()
         return label.indexOf(term) !== -1
-      });
+      })
 
       this.setState({
         searchTerm: this.inputInnerRef.value,
@@ -235,17 +241,17 @@ class WrapperSelect extends React.PureComponent {
 
       setTimeout(() => {
         this.setState({ searchWidth })
-      });
+      })
     }
 
     const lastIndex = (options.length - 1)
     switch (event.keyCode) {
       case KEY_BACKSPACE: // backspace
         if (!this.inputInnerRef.value) {
-          this.resetField();
+          this.resetField()
           break;
         }
-        setTimeout(typing, 1);
+        setTimeout(typing, 1)
         break;
       case KEY_UP:
         this.setState({
@@ -254,7 +260,7 @@ class WrapperSelect extends React.PureComponent {
         break;
       case KEY_DOWN:
         if (!isOpened) {
-          this.openOptions();
+          this.openOptions()
           break;
         }
         this.setState({
@@ -264,13 +270,13 @@ class WrapperSelect extends React.PureComponent {
       case KEY_ENTER:
         if (!options.length) break;
         const newValue = options[focusedIndex].value
-        this.onSelectValue(newValue, event);
+        this.onSelectValueBinded(newValue, event)
         break;
       case KEY_ESC:
-        this.closeOptions();
+        this.closeOptions()
         break;
       default:
-        setTimeout(typing, 1);
+        setTimeout(typing, 1)
     }
   }
 
@@ -285,10 +291,16 @@ class WrapperSelect extends React.PureComponent {
 
     if (values.size) {
       content = Array.from(values).map((value, key) => (
-        <SelectValueComp value={value} onRemoveTag={this.onRemoveTag} key={key} className={classes.selectValue} data-select-value data-multi-value={multi}>
+        <SelectValueComp value={value} onRemoveTag={this.onRemoveTagBinded} key={key} className={classes.selectValue} data-select-value data-multi-value={multi}>
           {valueRenderer({ multi, value, label: this.optionsMap[value].label }, classes.selectValueLabel)}
         </SelectValueComp>
-      ));
+      ))
+
+      if (!multi && content.length > 1) {
+        setTimeout(() => {
+          this.resetField()
+        }, 10)
+      }
     }
 
     if (!values.size && !searchTerm) {
@@ -299,7 +311,7 @@ class WrapperSelect extends React.PureComponent {
       )
     }
 
-    if (!searchable) {
+    if (!searchable && multi) {
       return (
         <SelectWrapperComp
           for={this.state['input-field-id']}
@@ -308,7 +320,7 @@ class WrapperSelect extends React.PureComponent {
           data-select-multi-value-wrapper={multi}>
           {content}
         </SelectWrapperComp>
-      );
+      )
     }
 
     return (
@@ -323,7 +335,7 @@ class WrapperSelect extends React.PureComponent {
             id={this.state['input-field-id']}
             className={classes.selectInputField}
             data-select-input-search
-            onKeyDown={this.onSearching}
+            onKeyDown={this.onSearchingBinded}
             onChange={this.props.onInputChange}
             innerRef={(n) => this.inputInnerRef = n}
             aria-label={placeholder}
@@ -335,7 +347,7 @@ class WrapperSelect extends React.PureComponent {
           data-select-input-size
           innerRef={(n) => this.searchSizeRef = n}>{searchTerm}</SelectInputFieldSize>
       </SelectWrapperComp>
-    );
+    )
   }
 
   renderSelectMenuOuter() {
@@ -347,14 +359,14 @@ class WrapperSelect extends React.PureComponent {
         <div aria-hidden="true" id={['aria-owns']} role="listbox">
           <div role="option" tabIndex="-1" />
         </div>
-      );
+      )
     }
 
     let selectOptions = <SelectNoResults>{noResultsText}</SelectNoResults>;
 
     if (options.length > 0) {
       selectOptions = options.map((opt, i) => {
-        const isSelected = values.has(opt.value);
+        const isSelected = values.has(opt.value)
         const isFocused = focusedIndex === i;
         return optionRenderer(Object.assign({
           key: i,
@@ -365,15 +377,15 @@ class WrapperSelect extends React.PureComponent {
           isFocused: focusedIndex == i,
           tabIndex: values.has(opt.value) ? '0' : '-1',
           onMouseOver: (e) => {
-            const dataKey = e.target.getAttribute('data-key');
-            this.setState({ focusedIndex: dataKey });
+            const dataKey = e.target.getAttribute('data-key')
+            this.setState({ focusedIndex: dataKey })
           },
           onMouseOut: (e) => {
-            this.setState({ focusedIndex: null });
+            this.setState({ focusedIndex: null })
           },
-          onMouseDown: (e) => this.onSelectValue(opt.value, e)
-        }, opt), i);
-      });
+          onMouseDown: (e) => this.onSelectValueBinded(opt.value, e)
+        }, opt), i)
+      })
     }
     return (
       <SelectMenuOuter
@@ -396,19 +408,19 @@ class WrapperSelect extends React.PureComponent {
     return (
       <SelectClearZone
         className={classes.selectClearZone}
-        data-select-clear-zone onMouseDown={this.onClearValue}>
+        data-select-clear-zone onMouseDown={this.onClearValueBinded}>
         <SelectClear
           className={classes.selectClear} data-select-clear>×</SelectClear>
       </SelectClearZone>
-    );
+    )
   }
 
   componentDidMount() {
-    this.props.generatedClassName(this.selectNode.state.generatedClassName);
+    this.props.generatedClassName(this.selectNode.state.generatedClassName)
   }
 
   componentDidUpdate() {
-    this.props.generatedClassName(this.selectNode.state.generatedClassName);
+    this.props.generatedClassName(this.selectNode.state.generatedClassName)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -418,17 +430,17 @@ class WrapperSelect extends React.PureComponent {
   }
 
   render () {
-    const { name, disabled, className, classes } = this.props;
+    const { name, disabled, className, classes, style } = this.props;
     const { value, isSelected, isOpened } = this.state;
     return (
-      <Select data-select className={className}
+      <Select style={style} data-select className={className}
         ref={(node) => this.selectNode = node} innerRef={(node) => this.selectInnerRef = node}>
         <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
         <SelectControl
           isOpened={isOpened}
           aria-haspopup={isOpened}
           className={classes.selectControl}
-          data-select-control onMouseDown={this.onSelectFocused}>
+          data-select-control onMouseDown={this.onSelectFocusedBinded}>
           {this.renderSelectMultiValueWrapper()}
           {this.renderSelectClearZone()}
           <SelectArrowZone

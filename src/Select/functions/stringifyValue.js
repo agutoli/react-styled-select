@@ -1,4 +1,4 @@
-export default (value) => {
+export default function StringifyValue (value) {
 	const valueType = typeof value;
 	if (valueType === 'string') {
 		return value;

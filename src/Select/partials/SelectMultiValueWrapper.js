@@ -8,7 +8,8 @@ export default styled.div`
   display: flex;
 	align-items: center;
   align-content: space-around;
-  ${g('padding')}
   flex: 2 100%;
   flex-wrap: wrap;
+
+  ${g('padding')}
 `

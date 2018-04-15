@@ -15,10 +15,27 @@
       --styled-select__border-width: 1px;
       --styled-select-control__border-color: black;
     }
+
+    .fb-comments {
+      border-top: 1px solid #ccc;
+      padding-top: 30px;
+      margin: 50px auto;
+      width: 638px;
+      display: block !important;
+    }
     </style>
   </head>
   <body>
     <div id="main"></div>
     <script src="./demo.bundle.js"></script>
+    <div id="fb-root"></div>
+    <div class="fb-comments" data-href="https://github.com/agutoli/react-styled-select" data-numposts="5"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.12&appId=134007693348476&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
   </body>
 </html>

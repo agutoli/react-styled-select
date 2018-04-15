@@ -1,4 +1,6 @@
 {
     "presets": ["es2015", "stage-0", "react"],
-    "plugins": []
+    "plugins": [
+      "add-module-exports"
+    ]
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import SelectValueLabel from '../partials/SelectValueLabel'
 
-export default (option, className) => {
+export default function ValueRenderer (option, className) {
   return (
     <SelectValueLabel
       key={option.key}

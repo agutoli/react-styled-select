@@ -3,10 +3,11 @@
 [![Build Status](https://travis-ci.org/agutoli/react-styled-select.svg?branch=master)](https://travis-ci.org/agutoli/react-styled-select)
 [![NPM](https://img.shields.io/npm/v/react-styled-select.svg)](https://www.npmjs.com/package/react-styled-select)
 
-
-
 react-styled-select
 ============
+
+Up to date with react/react-dom `16.2.0`
+
 ### ATTENTION: Work in Progress (sorry about that!)
 
 This project was built with [styled-components](https://github.com/styled-components/styled-components) and is a "rethink" of the awesome project [react-select](https://github.com/JedWatson/react-select). But what the differences between [react-select](https://github.com/JedWatson/react-select) and this project?
@@ -144,68 +145,84 @@ class MyForm extends React.Component {
 ## Available CSS variables
 
 <pre>
---styled-<b>select</b>__color: #777;
---styled-<b>select</b>__background-color: #fff;
---styled-<b>select</b>__border-radius: 2px;
---styled-<b>select</b>__border-style: solid;
---styled-<b>select</b>__border-width: 1px;
---styled-<b>select-arrow</b>__size: 8;
---styled-<b>select-arrow</b>__color: #9b9ba5;
---styled-<b>select-clear</b>__color: #999;
---styled-<b>select-clear</b>__font-size: 14px;
---styled-<b>select-control</b>__min-height: 36px;
---styled-<b>select-control</b>__border-color: #dcdce3;
---styled-<b>select-control</b>__border-color--focused: #40a3f5;
---styled-<b>select-input</b>__height: 23px;
---styled-<b>select-input</b>__padding: 0;
---styled-<b>select-input</b>__line-height: 23px;
---styled-<b>select-menu</b>__max-height: 198px;
---styled-<b>select-menu-outer</b>__max-height: 200px;
---styled-<b>select-menu-outer</b>__background-color: #fff;
---styled-<b>select-menu-outer</b>__border-color: #f0f0f5;
---styled-<b>select-menu-outer</b>__border-radius: 2px;
---styled-<b>select-menu-outer</b>__border-style: solid;
---styled-<b>select-menu-outer</b>__border-width: 1px;
---styled-<b>select-menu-outer</b>__box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
---styled-<b>select-menu-outer</b>__margin: 5px 0 0 0;
---styled-<b>select-menu-outer</b>__padding: 0;
---styled-<b>select-no-results</b>__color: #999;
---styled-<b>select-no-results</b>__padding: 8px 10px;
---styled-<b>select-no-results</b>__font-size: 14px;
---styled-<b>select-no-results</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
---styled-<b>select-option</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
---styled-<b>select-option</b>__color--focused: #333;
---styled-<b>select-option</b>__color--selected: #333;
---styled-<b>select-option</b>__background-color: #fff;
---styled-<b>select-option</b>__background-color--focused: #f0f0f5;
---styled-<b>select-option</b>__background-color--selected: #ddd;
---styled-<b>select-placeholder</b>__padding: 0 10px;
---styled-<b>select-placeholder</b>__color: #d2d2d9;
---styled-<b>select-placeholder</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
---styled-<b>select-placeholder</b>__font-size: 12px;
---styled-<b>select-placeholder</b>__line-height: 34px;
---styled-<b>select-value</b>__color: Tahoma, Helvetica, Arial, sans-serif;
---styled-<b>select-value</b>__line-height: 34px;
---styled-<b>select-value</b>__max-width: 100%;
---styled-<b>select-value</b>__overflow: hidden;
---styled-<b>select-value</b>__padding: 0 5px;
---styled-<b>select-value</b>__text-overflow: ellipsis;
---styled-<b>select-value</b>__white-space: nowrap;
---styled-<b>select-value-label</b>__padding: 1px 6px;
---styled-<b>select-value-label</b>__font-family: Tahoma, Helvetica, Arial, sans-serif;
---styled-<b>select-value-icon</b>__background-color: transparent;
---styled-<b>select-value-icon</b>__background-color--hover: rgba(0, 0, 0, 0.1);
---styled-<b>select-value-icon</b>__font-family: arial;
---styled-<b>select-value-icon</b>__padding: 1px 5px;
---styled-<b>select-multi-value</b>__font-size: 0.9em;
---styled-<b>select-multi-value</b>__line-height: 1.4;
---styled-<b>select-multi-value</b>__margin: 2px 5px 2px 0;
---styled-<b>select-multi-value</b>__background-color: #eee;
---styled-<b>select-multi-value</b>__border: 1px solid #aaa;
---styled-<b>select-multi-value</b>__border--hover: 1px solid #777;
---styled-<b>select-multi-value</b>__border-radius: 3px;
---styled-<b>select-multi-value</b>__box-shadow: rgba(0,0,0,0.2) 0px 0px 3px;
---styled-<b>select-multi-value-wrapper</b>__padding: 3px 0 3px 5px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
+
+--styled-<b>select-arrow</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #9b9ba5;
+--styled-<b>select-arrow</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/size">size</a>: 8;
+
+--styled-<b>select-clear</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #999;
+--styled-<b>select-clear</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 14px;
+
+--styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color">border-color</a>: #dcdce3;
+--styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color">border-color</a>--<b>focused</b>: #40a3f5;
+--styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-height">min-height</a>: 36px;
+
+--styled-<b>select-input</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height">height</a>: 23px;
+--styled-<b>select-input</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a>: 23px;
+--styled-<b>select-input</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0;
+
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color">border-color</a>: #f0f0f5;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow">box-shadow</a>: 0 2px 4px rgba(0, 0, 0, 0.05);
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">margin</a>: 5px 0 0 0;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a>: 200px;
+--styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0;
+
+--styled-<b>select-menu</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a>: 198px;
+
+--styled-<b>select-multi-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 3px 0 3px 5px;
+
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #eee;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">border</a>: 1px solid #aaa;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">border</a>--<b>hover</b>: 1px solid #777;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 3px;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow">box-shadow</a>: rgba(0,0,0,0.2) 0px 0px 3px;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 0.9em;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a>: 1.4;
+--styled-<b>select-multi-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">margin</a>: 2px 5px 2px 0;
+
+--styled-<b>select-no-results</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #999;
+--styled-<b>select-no-results</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-no-results</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 14px;
+--styled-<b>select-no-results</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 8px 10px;
+
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>--<b>focused</b>: #f0f0f5;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>--<b>selected</b>: #ddd;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>--<b>focused</b>: #333;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>--<b>selected</b>: #333;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
+
+--styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #d2d2d9;
+--styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 12px;
+--styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a>: 34px;
+--styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0 10px;
+
+--styled-<b>select-value-icon</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: transparent;
+--styled-<b>select-value-icon</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>--<b>hover</b>: rgba(0, 0, 0, 0.1);
+--styled-<b>select-value-icon</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: arial;
+--styled-<b>select-value-icon</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 1px 5px;
+
+--styled-<b>select-value-label</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-value-label</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 1px 6px;
+
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 14px;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a>: 34px;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-width">max-width</a>: 100%;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">overflow</a>: hidden;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0 5px;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow">text-overflow</a>: ellipsis;
+--styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space</a>: nowrap;
+
 </pre>
 
 ## Inspiration
@@ -215,7 +232,7 @@ This project was based on [react-select](https://github.com/JedWatson/react-sele
 
 The MIT License (MIT)
 
-Copyright (c) 2017 Bruno Agutoli
+Copyright (c) 2017-2018 Bruno Agutoli
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

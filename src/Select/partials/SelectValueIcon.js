@@ -7,6 +7,7 @@ export default styled.div`
   box-sizing: border-box;
   border-right: 1px solid;
   display: inline-block;
+
   ${g('color')}
   ${g('padding')}
   ${g('font-family')}

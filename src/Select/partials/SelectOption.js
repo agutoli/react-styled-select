@@ -15,13 +15,13 @@ const isSelected = () => (`
 
 export default styled.div`
   box-sizing: border-box;
+  ${g('color')}
+  ${g('padding')}
   ${g('font-family')}
   ${g('background-color')}
 
-  color: #666666;
   cursor: pointer;
   display: block;
-  padding: 8px 10px;
 
   ${props => props.isFocused && isFocused()}
   ${props => props.isSelected && isSelected()}

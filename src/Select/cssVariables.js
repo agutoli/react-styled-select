@@ -1,6 +1,6 @@
 const fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
-module.exports = {
+export default {
   'select__color': '#777',
   'select__background-color': '#fff',
   'select__border-radius': '2px',
@@ -10,8 +10,12 @@ module.exports = {
   'select-arrow__size': 8,
   'select-arrow__color': '#9b9ba5',
 
+  'select-arrow-zone__width': '25px',
+
   'select-clear__color': '#999',
   'select-clear__font-size': '14px',
+
+  'select-clear-zone__width': '17px',
 
   'select-control__min-height': '36px',
   'select-control__border-color': '#dcdce3',
@@ -39,6 +43,8 @@ module.exports = {
   'select-no-results__font-size': '14px',
   'select-no-results__font-family': fontFamily,
 
+  'select-option__color': '#777',
+  'select-option__padding': '8px 10px',
   'select-option__font-family': fontFamily,
   'select-option__color--focused': '#333',
   'select-option__color--selected': '#333',

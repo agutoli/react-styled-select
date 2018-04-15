@@ -7,6 +7,7 @@ const g = autoCssGenerator('select-value');
 export default styled.div`
   display: inline-block;
   vertical-align: top;
+
   ${g('color')}
   ${g('padding')}
   ${g('max-width')}

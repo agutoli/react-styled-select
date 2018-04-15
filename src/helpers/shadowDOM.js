@@ -1,3 +1,5 @@
+require('../polyfill')
+
 import React from 'react'
 import ShadowDOM from 'react-shadow'
 

@@ -5,8 +5,6 @@ const g = autoCssGenerator('select-input');
 const globalCss = autoCssGenerator('select');
 
 export default styled.input`
-  ${g('line-height')}
-  ${globalCss('color')}
   box-sizing: content-box;
   background: none transparent;
   border: 0 none;
@@ -18,4 +16,7 @@ export default styled.input`
   margin: 0;
   outline: none;
   -webkit-appearance: none;
+
+  ${g('line-height')}
+  ${globalCss('color')}
 `

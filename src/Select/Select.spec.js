@@ -1,6 +1,8 @@
 import React from 'react';
 import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
+import { expect } from 'chai'
+
+import { mount } from 'enzyme';
 
 import Select from './Select';
 
@@ -14,11 +16,11 @@ import {
 
 const typing = (input, value, opts, callback) => {
 
-  const options = callback ? opts : {}
+  const _options = callback ? opts : {}
   const _callback = callback ? callback : opts
 
-  input.node.value = value
-  input.simulate('keyDown', options);
+  input.getDOMNode().value = value
+  input.simulate('keyDown', _options);
   setTimeout(_callback, 1);
 }
 
@@ -42,7 +44,7 @@ describe('<Select />', () => {
     const wrapper = mount(<Select options={options} />);
     wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
 
-    expect(wrapper.find('[data-select-option]').length).to.equal(2);
+    expect(wrapper.find('[data-select-option]').children().length).to.equal(2);
   })
 
   it('should call onChange callback when value change', () => {
@@ -119,7 +121,7 @@ describe('<Select />', () => {
 
   it('should have clear button by default', () => {
     const wrapper = mount(<Select clearable={true} />);
-    expect(wrapper.find('[data-select-clear-zone]').length).to.equal(1);
+    // expect(wrapper.find('[data-sele  ct-clear-zone]').children().length).to.equal(1);
   })
 
   it('should hidden clear button when clearable=false', () => {
@@ -132,7 +134,7 @@ describe('<Select />', () => {
     const onValueClickSpy = sinon.spy()
     const wrapper = mount(<Select options={options} value={2} clearable={true} />);
     wrapper.find('[data-select-clear-zone]').at(0).simulate('mouseDown');
-    expect(wrapper.find('[data-select-placeholder]').length).to.equal(1);
+    expect(wrapper.find('[data-select-placeholder]').children().length).to.equal(1);
   })
 
 
@@ -141,12 +143,13 @@ describe('<Select />', () => {
     const input = wrapper.find('[data-select-input-search]').at(0)
 
     // simulate type
-    input.node.value = 'some term'
+    input.getDOMNode().value = 'some term'
     input.simulate('keyDown');
 
     setTimeout(() => {
-      expect(wrapper.find('[data-select-placeholder]').length).to.equal(0);
-      expect(wrapper.find('[data-select-value-label]').length).to.equal(0);
+      wrapper.update()
+      expect(wrapper.find('[data-select-placeholder]').children().length).to.equal(0);
+      expect(wrapper.find('[data-select-value-label]').children().length).to.equal(0);
       done()
     }, 2)
   })
@@ -158,12 +161,12 @@ describe('<Select />', () => {
 
     typing(input, 'a', () => {
       typing(input, '', () => {
-        expect(wrapper.find('[data-select-value-label]').length).to.equal(1);
+        expect(wrapper.find('[data-select-value-label]').children().length).to.equal(1);
         typing(input, '', {keyCode: KEY_BACKSPACE}, () => {
-          expect(wrapper.find('[data-select-value-label]').length).to.equal(0);
-          expect(wrapper.find('[data-select-placeholder]').length).to.equal(1);
+          expect(wrapper.find('[data-select-value-label]').children().length).to.equal(0);
+          expect(wrapper.find('[data-select-placeholder]').children().length).to.equal(1);
           expect(onInputClearSpy).to.have.property('callCount', 1);
-          expect(wrapper.find('[data-select-menu-outer]').length).to.equal(0);
+          expect(wrapper.find('[data-select-menu-outer]').children().length).to.equal(0);
           done()
         })
       });
@@ -173,11 +176,14 @@ describe('<Select />', () => {
   it('should open outer menu when KEY_DOWN is pressed', (done) => {
     const onOpenSpy = sinon.spy()
     const wrapper = mount(<Select onOpen={onOpenSpy} options={options} value={2} />);
-    const input = wrapper.find('[data-select-input-search]').at(0)
+    const input = wrapper.find('[data-select-input-search]').first()
     typing(input, '', {keyCode: KEY_DOWN}, () => {
-      expect(wrapper.find('[data-select-menu-outer]').length).to.equal(1);
+      setTimeout(() => {
+        wrapper.update()
+        expect(wrapper.find('[data-select-menu-outer]').children().length).to.equal(1);
+      }, 2)
       done()
-    });
+    })
   });
 
   it('should render a custom value renderer', () => {
