@@ -311,7 +311,7 @@ class WrapperSelect extends React.PureComponent {
       )
     }
 
-    if (!searchable && multi) {
+    if (!searchable || multi) {
       return (
         <SelectWrapperComp
           for={this.state['input-field-id']}
