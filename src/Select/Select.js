@@ -199,8 +199,8 @@ class WrapperSelect extends React.PureComponent {
     const { multi } = this.props;
     const { values } = this.state;
     return this.props.options.filter((opt) => {
-      const label = opt.label.toLowerCase().trim()
-      if (values.has(label) && multi) {
+      const label = typeof opt.label === 'string' && opt.label.toLowerCase().trim()
+      if (label && values.has(label) && multi) {
         return false;
       }
       return true;
@@ -217,6 +217,10 @@ class WrapperSelect extends React.PureComponent {
       onTyping(term)
 
       const filteredOptions = this.getOptions().filter((opt) => {
+        if (typeof opt.label !== 'string') {
+          return true;
+        }
+
         const label = opt.label.toLowerCase().trim()
         return label.indexOf(term) !== -1
       })
