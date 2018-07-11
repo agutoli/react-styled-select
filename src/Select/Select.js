@@ -48,19 +48,8 @@ class WrapperSelect extends React.PureComponent {
   constructor(props) {
     super(props)
 
-    this.indexValues(props)
-
-    let values = [];
-    if (props.value && this.optionsMap.hasOwnProperty(props.value)) {
-      values.push(props.value)
-    }
-
-    if (Array.isArray(props.value)) {
-      values = values.concat(props.value)
-    }
-
     this.state = {
-      values: new Set(values),
+      values: this.updateValues(props),
       isOpened: false,
       isFocused: false,
       isSelected: false,
@@ -81,6 +70,20 @@ class WrapperSelect extends React.PureComponent {
     this.onClearValueBinded = this.onClearValue.bind(this)
     this.onSelectValueBinded = this.onSelectValue.bind(this)
     this.onSelectFocusedBinded = this.onSelectFocused.bind(this)
+  }
+
+  updateValues(props) {
+    this.indexValues(props)
+
+    let values = [];
+    if (props.value && this.optionsMap.hasOwnProperty(props.value)) {
+      values.push(props.value)
+    }
+
+    if (Array.isArray(props.value)) {
+      values = values.concat(props.value)
+    }
+    return new Set(values)
   }
 
   indexValues(props) {
@@ -424,9 +427,10 @@ class WrapperSelect extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('nextProps:', nextProps);
     this.setState({
       options: nextProps.options
-    }, () => this.indexValues(nextProps))
+    }, () => this.updateValues(nextProps))
   }
 
   render () {
