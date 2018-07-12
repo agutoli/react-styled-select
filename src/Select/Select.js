@@ -434,12 +434,18 @@ class WrapperSelect extends React.PureComponent {
   }
 
   render () {
-    const { name, disabled, className, classes, style } = this.props;
+    const { name, disabled, className, classes, style, required } = this.props;
     const { value, isSelected, isOpened } = this.state;
+    const values = Array.from(this.state.values)
     return (
       <Select style={style} data-select className={className}
         ref={(node) => this.selectNode = node} innerRef={(node) => this.selectInnerRef = node}>
-        <input type="hidden" name={name} value={stringifyValue(value)} disabled={disabled} />
+        <input
+          type={required ? "text" : "hidden"}
+          name={name}
+          style={{position: "absolute", zIndex: "0", outline: "none", opacity: "0"}}
+          value={stringifyValue(values.length ? values : "" )}
+          disabled={disabled} required={required} />
         <SelectControl
           isOpened={isOpened}
           aria-haspopup={isOpened}

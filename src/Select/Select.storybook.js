@@ -191,3 +191,16 @@ storiesOf('Select', module)
       </div>
     </div>
   ))
+  .add('required=true', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <form action="/some_end_point.php">
+          <Select
+            required={true}
+            options={options}
+          />
+          <input type="submit" style={{background: "#ccc"}}/>
+        </form>
+      </div>
+    </div>
+  ))

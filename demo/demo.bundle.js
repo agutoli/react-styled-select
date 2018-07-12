@@ -25979,18 +25979,25 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             disabled = _props5.disabled,
             className = _props5.className,
             classes = _props5.classes,
-            style = _props5.style;
+            style = _props5.style,
+            required = _props5.required;
         var _state4 = this.state,
             value = _state4.value,
             isSelected = _state4.isSelected,
             isOpened = _state4.isOpened;
 
+        var values = Array.from(this.state.values);
         return _react2.default.createElement(_Select2.default, { style: style, 'data-select': true, className: className,
           ref: function ref(node) {
             return _this10.selectNode = node;
           }, innerRef: function innerRef(node) {
             return _this10.selectInnerRef = node;
-          } }, _react2.default.createElement('input', { type: 'hidden', name: name, value: (0, _stringifyValue2.default)(value), disabled: disabled }), _react2.default.createElement(_SelectControl2.default, {
+          } }, _react2.default.createElement('input', {
+          type: required ? "text" : "hidden",
+          name: name,
+          style: { position: "absolute", zIndex: "0", outline: "none", opacity: "0" },
+          value: (0, _stringifyValue2.default)(values.length ? values : ""),
+          disabled: disabled, required: required }), _react2.default.createElement(_SelectControl2.default, {
           isOpened: isOpened,
           'aria-haspopup': isOpened,
           className: classes.selectControl,
