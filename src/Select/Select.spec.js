@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { expect } from 'chai'
 
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import Select from './Select';
 
@@ -28,6 +28,34 @@ const options = [
   { label: 'One', value: 1 },
   { label: 'Two', value: 2 }
 ]
+
+const options1 = [
+  {value: 1,  label: 'One'},
+  {value: 2,  label: 'Two'},
+];
+
+const options2 = [
+  {value: 3,  label: 'Three'},
+  {value: 4,  label: 'Four'},
+];
+
+const SelectTest = class extends React.Component {
+  state = {value: 0, clicked: false}
+
+  handleChange = value => this.setState({value})
+
+  handleClick = e => this.setState({clicked: !this.state.clicked})
+
+  render() {
+    const options = [{value: 0,  label: 'Select any option and click the button'}].concat(this.state.clicked ? options2 : options1);
+    return (
+      <div>
+        <Select value={this.state.value || "0"} options={options} onChange={this.handleChange}/>
+        <button className="btn-click" onClick={this.handleClick}>click me</button>
+      </div>
+    )
+  }
+}
 
 describe('<Select />', () => {
   it('should have default placeholder text', () => {
@@ -117,6 +145,13 @@ describe('<Select />', () => {
     const wrapper = mount(<Select options={options} value={2} />);
     const selecteValueLabel = wrapper.find('[data-select-value-label]').at(0).text();
     expect(selecteValueLabel).to.equal('Two');
+  })
+
+  it('should change props.value', () => {
+    const wrapper = mount(<SelectTest />)
+    wrapper.find('.btn-click').at(0).simulate('click')
+    wrapper.find('[data-select-control]').at(0).simulate('mouseDown');
+    wrapper.find('[data-select-option]').at(3).simulate('mouseDown');
   })
 
   it('should have clear button by default', () => {

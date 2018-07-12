@@ -427,10 +427,10 @@ class WrapperSelect extends React.PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps:', nextProps);
     this.setState({
-      options: nextProps.options
-    }, () => this.updateValues(nextProps))
+      options: nextProps.options,
+      values: this.updateValues(nextProps)
+    })
   }
 
   render () {

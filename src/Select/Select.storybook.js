@@ -28,6 +28,35 @@ var getOptions = function(input, callback) {
   }, 500);
 };
 
+const options1 = [
+  {value: 1,  label: 'One'},
+  {value: 2,  label: 'Two'},
+];
+
+const options2 = [
+  {value: 3,  label: 'Three'},
+  {value: 4,  label: 'Four'},
+];
+
+const SelectTest = class extends React.Component {
+  state = {value: 0, clicked: false}
+
+  handleChange = value => this.setState({value})
+
+  handleClick = e => this.setState({clicked: !this.state.clicked})
+
+  render() {
+    const options = [{value: 0,  label: 'Select any option and click the button'}].concat(this.state.clicked ? options2 : options1);
+    console.log('this.state.value:', this.state.value);
+    return (
+      <div>
+        <Select value={this.state.value || "0"} options={options} onChange={this.handleChange}/>
+        <button onClick={this.handleClick}>click me</button>
+      </div>
+    )
+  }
+}
+
 storiesOf('Select', module)
   .add('default', () => (
     <div style={{display: 'flex', margin: '20px'}}>
@@ -152,6 +181,13 @@ storiesOf('Select', module)
           loadOptions={getOptions}
           onChange={action('onChange')}
         />
+      </div>
+    </div>
+  ))
+  .add('issues #24 reprodution', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <SelectTest />
       </div>
     </div>
   ))
