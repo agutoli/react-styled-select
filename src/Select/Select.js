@@ -317,7 +317,7 @@ class WrapperSelect extends React.PureComponent {
     if (!searchable || multi) {
       return (
         <SelectWrapperComp
-          for={this.state['input-field-id']}
+          htmlFor={this.state['input-field-id']}
           innerRef={(n) => this.inputInnerRef = n}
           className={classes.selectMultiValueWrapper}
           data-select-multi-value-wrapper={multi}>
@@ -328,7 +328,7 @@ class WrapperSelect extends React.PureComponent {
 
     return (
       <SelectWrapperComp
-        for={this.state['input-field-id']}
+        htmlFor={this.state['input-field-id']}
         className={classes.selectMultiValueWrapper}
         data-select-multi-value-wrapper={multi}>
         {content}
