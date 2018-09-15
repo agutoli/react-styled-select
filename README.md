@@ -239,7 +239,6 @@ Special thanks to:
 * [Rob Walker](https://github.com/robwalkerco)
 * [Viktor Havrylin](https://github.com/Fer0x)
 * [Alex Trost](https://github.com/AlexTrost)
-* [Alex Trost](https://github.com/AlexTrost)
 
 ## License
 
