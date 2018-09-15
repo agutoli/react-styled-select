@@ -145,14 +145,12 @@ class MyForm extends React.Component {
 ## Available CSS variables
 
 <pre>
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
+--styled-<b>select-arrow-zone</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width">width</a>: 25px;
 
 --styled-<b>select-arrow</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #9b9ba5;
 --styled-<b>select-arrow</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/size">size</a>: 8;
+
+--styled-<b>select-clear-zone</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width">width</a>: 17px;
 
 --styled-<b>select-clear</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #999;
 --styled-<b>select-clear</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 14px;
@@ -196,9 +194,11 @@ class MyForm extends React.Component {
 --styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
 --styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>--<b>focused</b>: #f0f0f5;
 --styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>--<b>selected</b>: #ddd;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
 --styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>--<b>focused</b>: #333;
 --styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>--<b>selected</b>: #333;
 --styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
+--styled-<b>select-option</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 8px 10px;
 
 --styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #d2d2d9;
 --styled-<b>select-placeholder</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
@@ -223,10 +223,23 @@ class MyForm extends React.Component {
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow">text-overflow</a>: ellipsis;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space</a>: nowrap;
 
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
 </pre>
 
 ## Inspiration
 This project was based on [react-select](https://github.com/JedWatson/react-select).
+
+## Collaborators
+Special thanks to:
+* [Willis Plummer](https://github.com/willisplummer)
+* [Rob Walker](https://github.com/robwalkerco)
+* [Viktor Havrylin](https://github.com/Fer0x)
+* [Alex Trost](https://github.com/AlexTrost)
+* [Alex Trost](https://github.com/AlexTrost)
 
 ## License
 

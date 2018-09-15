@@ -48450,12 +48450,9 @@ module.exports = exports['default'];
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 var fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
-exports.default = {
+module.exports = {
   'select__color': '#777',
   'select__background-color': '#fff',
   'select__border-radius': '2px',
@@ -48541,7 +48538,6 @@ exports.default = {
 
   'select-multi-value-wrapper__padding': '3px 0 3px 5px'
 };
-module.exports = exports['default'];
 
 /***/ }),
 /* 48 */
@@ -64009,28 +64005,25 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports);
+    factory(module);
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports);
+    factory(mod);
     global.cssVariables = mod.exports;
   }
-})(undefined, function (exports) {
+})(undefined, function (module) {
   'use strict';
 
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
   var fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
-  exports.default = {
+  module.exports = {
     'select__color': '#777',
     'select__background-color': '#fff',
     'select__border-radius': '2px',
