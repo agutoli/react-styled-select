@@ -25855,7 +25855,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         if (!searchable || multi) {
           return _react2.default.createElement(SelectWrapperComp, {
-            'for': this.state['input-field-id'],
+            htmlFor: this.state['input-field-id'],
             innerRef: function innerRef(n) {
               return _this8.inputInnerRef = n;
             },
@@ -25864,7 +25864,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
 
         return _react2.default.createElement(SelectWrapperComp, {
-          'for': this.state['input-field-id'],
+          htmlFor: this.state['input-field-id'],
           className: classes.selectMultiValueWrapper,
           'data-select-multi-value-wrapper': multi }, content, _react2.default.createElement(_SelectInput2.default, { 'data-select-input': true, className: classes.selectInput }, _react2.default.createElement(_SelectInputField2.default, {
           style: { width: searchWidth + 'px' },
@@ -64444,7 +64444,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }));
   }
 
-  exports.default = _SelectInputField2.default.withComponent('div').extend(_templateObject);
+  exports.default = (0, _styledComponents2.default)(_SelectInputField2.default.withComponent('div'))(_templateObject);
 });
 //# sourceMappingURL=SelectInputFieldSize.js.map
 
