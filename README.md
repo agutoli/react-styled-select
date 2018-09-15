@@ -238,6 +238,7 @@ Special thanks to:
 * [Willis Plummer](https://github.com/willisplummer)
 * [Rob Walker](https://github.com/robwalkerco)
 * [Viktor Havrylin](https://github.com/Fer0x)
+* [Fredrik Pettersen](https://github.com/Fumler)
 * [Alex Trost](https://github.com/AlexTrost)
 
 ## License
