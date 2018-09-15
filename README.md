@@ -145,6 +145,12 @@ class MyForm extends React.Component {
 ## Available CSS variables
 
 <pre>
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
+
 --styled-<b>select-arrow-zone</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width">width</a>: 25px;
 
 --styled-<b>select-arrow</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #9b9ba5;
@@ -223,11 +229,6 @@ class MyForm extends React.Component {
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow">text-overflow</a>: ellipsis;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space</a>: nowrap;
 
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
 </pre>
 
 ## Inspiration
