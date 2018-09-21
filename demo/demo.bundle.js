@@ -25696,6 +25696,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         }
         this.closeOptions();
         this.props.onValueClick(multi ? Array.from(values) : newValue, event);
+        this.props.closeMenuOnSelect(multi ? Array.from(values) : newValue, event);
       }
     }, {
       key: 'onSelectFocused',
@@ -26025,6 +26026,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onOpen: _propTypes2.default.func,
     onChange: _propTypes2.default.func,
     onValueClick: _propTypes2.default.func,
+    closeMenuOnSelect: _propTypes2.default.func,
     onInputClear: _propTypes2.default.func,
     clearable: _propTypes2.default.bool,
     placeholder: _propTypes2.default.string,
@@ -26042,6 +26044,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onTyping: function onTyping() {},
     onValueClick: function onValueClick() {},
     onInputClear: function onInputClear() {},
+    closeMenuOnSelect: function closeMenuOnSelect() {},
     clearable: false,
     searchable: true,
     disabled: false,
@@ -48487,6 +48490,7 @@ module.exports = {
   'select-control__min-height': '36px',
   'select-control__border-color': '#dcdce3',
   'select-control__border-color--focused': '#40a3f5',
+  'select-control__cursor--disabled': 'not-allowed',
 
   'select-input__height': '23px',
   'select-input__padding': '0',
@@ -63957,7 +63961,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   var g = (0, _cssHelpers.autoCssGenerator)('select');
 
   var isDisabled = function isDisabled() {
-    return '\n  ' + g('cursor', 'disabled') + '\n  ' + g('opacity', 'disabled') + '\n  ' + g('pointer-events', 'disabled') + '\n';
+    return '\n  ' + g('cursor', 'disabled') + '\n  ' + g('opacity', 'disabled') + '\n  > * {\n    ' + g('pointer-events', 'disabled') + '\n  }\n';
   };
 
   exports.default = _styledComponents2.default.div(_templateObject, g('box-sizing'), g('position'), function (props) {
@@ -64018,6 +64022,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     'select-control__min-height': '36px',
     'select-control__border-color': '#dcdce3',
     'select-control__border-color--focused': '#40a3f5',
+    'select-control__cursor--disabled': 'not-allowed',
 
     'select-input__height': '23px',
     'select-input__padding': '0',
@@ -64506,7 +64511,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n '], ['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n ']);
+  var _templateObject = _taggedTemplateLiteral(['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n '], ['\n  display: flex;\n  position: relative;\n  align-items: center;\n  box-sizing: border-box;\n  cursor: default;\n  border-spacing: 0;\n  border-collapse: separate;\n  outline: none;\n  overflow: hidden;\n  width: 100%;\n\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n  ', '\n\n  ', '\n  ', '\n ']);
 
   function _taggedTemplateLiteral(strings, raw) {
     return Object.freeze(Object.defineProperties(strings, {
@@ -64523,8 +64528,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return '\n  ' + g('border-color', 'focused') + '\n';
   };
 
+  var isDisabled = function isDisabled() {
+    return '\n  ' + g('cursor', 'disabled') + '\n';
+  };
+
   exports.default = _styledComponents2.default.div(_templateObject, g('border-color'), g('min-height'), globalCss('border-radius'), globalCss('border-style'), globalCss('border-width'), globalCss('background-color'), function (props) {
     return props.isOpened && isOpened();
+  }, function (props) {
+    return props.disabled && isDisabled();
   });
 });
 //# sourceMappingURL=SelectControl.js.map

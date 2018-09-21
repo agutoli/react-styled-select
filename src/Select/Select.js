@@ -180,6 +180,7 @@ class WrapperSelect extends React.PureComponent {
     }
     this.closeOptions()
     this.props.onValueClick(multi ? Array.from(values) : newValue, event)
+    this.props.closeMenuOnSelect(multi ? Array.from(values) : newValue, event)
   }
 
   onSelectFocused(event) {
@@ -478,6 +479,7 @@ WrapperSelect.propTypes = {
   onOpen: PropTypes.func,
   onChange: PropTypes.func,
   onValueClick: PropTypes.func,
+  closeMenuOnSelect: PropTypes.func,
   onInputClear: PropTypes.func,
   clearable: PropTypes.bool,
   placeholder: PropTypes.string,
@@ -498,6 +500,7 @@ WrapperSelect.defaultProps = {
   onTyping: () => {},
   onValueClick: () => {},
   onInputClear: () => {},
+  closeMenuOnSelect: () => {},
   clearable: false,
   searchable: true,
   disabled: false,

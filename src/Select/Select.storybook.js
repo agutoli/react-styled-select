@@ -65,6 +65,7 @@ storiesOf('Select', module)
           name="form-field-name"
           options={options}
           onOpen={action('onOpen')}
+          closeMenuOnSelect={action('closeMenuOnSelect')}
           onChange={action('onChange')}
           onInputClear={action('onInputClear')}
           onValueClick={action('onValueClick')}
