@@ -70,6 +70,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 |`onOpen`| function | `undefined` | It calls when open outer menu
 |`onChange`| function | `undefined` | It calls when change selected value
 |`onValueClick`| function | `undefined` | It calls when click over a option value
+|`closeMenuOnSelect`| function | `undefined` | It calls when click over a option value
 |`onInputClear`|function| `undefined` | It calls when input is cleared
 |`valueRenderer`|function| `undefined` | function which returns a custom way to render the value selected function (option) {}
 |`optionRenderer`|function| `undefined` | function which returns a custom way to render the options in the menu (option) {}
