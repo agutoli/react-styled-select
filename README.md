@@ -59,6 +59,8 @@ This project was built with [styled-components](https://github.com/styled-compon
 :---|:---|:---|:---
 | `classes` | object | `undefined` | You can specify `className` for each element. Possible values: `selectArrow`, `selectArrowZone`, `selectClear`, `selectClearZone`, `selectControl`, `selectInput`, `selectInputField`, `selectMenu`, `selectMenuOuter`, `selectMultiValueWrapper`, `selectOption`, `selectPlaceholder`, `selectValue`, `selectValueLabel`
 |`clearable` | bool | `false` | should it be possible to reset value
+|`disabled` | bool | `false` | disables every events over the component
+|`multi` | bool | `false` | multi values support
 |`searchable`| bool | `true` | whether to enable searching feature or not
 |`placeholder`| string | `Select...` | The short hint is displayed in the input field before the user enters a value
 | `loadOptions` | function | `undefined` | function that returns a promise or calls a callback with the options: `function(input, [callback])`
@@ -149,7 +151,12 @@ class MyForm extends React.Component {
 --styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
 --styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
 --styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing">box-sizing</a>: border-box;
 --styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor</a>--<b>disabled</b>: not-allowed;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity">opacity</a>--<b>disabled</b>: 0.5;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events">pointer-events</a>--<b>disabled</b>: none;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">position</a>: relative;
 
 --styled-<b>select-arrow-zone</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width">width</a>: 25px;
 
@@ -163,6 +170,7 @@ class MyForm extends React.Component {
 
 --styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color">border-color</a>: #dcdce3;
 --styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-color">border-color</a>--<b>focused</b>: #40a3f5;
+--styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor</a>--<b>disabled</b>: not-allowed;
 --styled-<b>select-control</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/min-height">min-height</a>: 36px;
 
 --styled-<b>select-input</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height">height</a>: 23px;
@@ -228,6 +236,7 @@ class MyForm extends React.Component {
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0 5px;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow">text-overflow</a>: ellipsis;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space</a>: nowrap;
+
 
 </pre>
 

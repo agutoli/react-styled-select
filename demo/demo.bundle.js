@@ -2132,7 +2132,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(69)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(68)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -25404,7 +25404,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(7), __webpack_require__(0), __webpack_require__(58), __webpack_require__(60), __webpack_require__(15), __webpack_require__(26), __webpack_require__(66), __webpack_require__(67), __webpack_require__(68), __webpack_require__(70), __webpack_require__(71), __webpack_require__(73), __webpack_require__(89), __webpack_require__(74), __webpack_require__(27), __webpack_require__(75), __webpack_require__(76), __webpack_require__(77), __webpack_require__(78), __webpack_require__(79), __webpack_require__(80), __webpack_require__(81), __webpack_require__(82), __webpack_require__(83), __webpack_require__(84), __webpack_require__(86), __webpack_require__(88)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(2), __webpack_require__(7), __webpack_require__(0), __webpack_require__(58), __webpack_require__(60), __webpack_require__(15), __webpack_require__(26), __webpack_require__(66), __webpack_require__(67), __webpack_require__(69), __webpack_require__(70), __webpack_require__(71), __webpack_require__(73), __webpack_require__(89), __webpack_require__(74), __webpack_require__(27), __webpack_require__(75), __webpack_require__(76), __webpack_require__(77), __webpack_require__(78), __webpack_require__(79), __webpack_require__(80), __webpack_require__(81), __webpack_require__(82), __webpack_require__(83), __webpack_require__(84), __webpack_require__(86), __webpack_require__(88)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -25822,7 +25822,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             placeholder = _props2.placeholder,
             searchable = _props2.searchable,
             classes = _props2.classes,
-            valueRenderer = _props2.valueRenderer;
+            valueRenderer = _props2.valueRenderer,
+            disabled = _props2.disabled;
         var _state2 = this.state,
             values = _state2.values,
             isOpened = _state2.isOpened,
@@ -25834,9 +25835,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var SelectWrapperComp = multi ? _SelectMultiValueWrapper2.default : _SelectValueWrapper2.default;
 
         var content = '';
+        var _values = values;
+        if (_values.size) {
 
-        if (values.size) {
-          content = Array.from(values).map(function (value, key) {
+          if (!multi && _values.size > 1) {
+            _values = new Set([]);
+          }
+
+          content = Array.from(_values).map(function (value, key) {
             return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this8.onRemoveTagBinded, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: _this8.optionsMap[value].label }, classes.selectValueLabel));
           });
 
@@ -25847,7 +25853,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
         }
 
-        if (!values.size && !searchTerm) {
+        if (!_values.size && !searchTerm) {
           content = _react2.default.createElement(_SelectPlaceholder2.default, {
             className: classes.selectPlaceholder,
             'data-select-placeholder': true }, placeholder);
@@ -25868,6 +25874,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           className: classes.selectMultiValueWrapper,
           'data-select-multi-value-wrapper': multi }, content, _react2.default.createElement(_SelectInput2.default, { 'data-select-input': true, className: classes.selectInput }, _react2.default.createElement(_SelectInputField2.default, {
           style: { width: searchWidth + 'px' },
+          disabled: disabled,
           id: this.state['input-field-id'],
           className: classes.selectInputField,
           'data-select-input-search': true,
@@ -25893,7 +25900,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var _props3 = this.props,
             classes = _props3.classes,
             noResultsText = _props3.noResultsText,
-            optionRenderer = _props3.optionRenderer;
+            optionRenderer = _props3.optionRenderer,
+            disabled = _props3.disabled;
         var _state3 = this.state,
             values = _state3.values,
             isOpened = _state3.isOpened,
@@ -25987,7 +25995,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             isOpened = _state4.isOpened;
 
         var values = Array.from(this.state.values);
-        return _react2.default.createElement(_Select2.default, { style: style, 'data-select': true, className: className,
+        return _react2.default.createElement(_Select2.default, { style: style, 'data-select': true, className: className, disabled: disabled,
           ref: function ref(node) {
             return _this10.selectNode = node;
           }, innerRef: function innerRef(node) {
@@ -25998,6 +26006,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           style: { position: "absolute", zIndex: "0", outline: "none", opacity: "0" },
           value: (0, _stringifyValue2.default)(values.length ? values : ""),
           disabled: disabled, required: required }), _react2.default.createElement(_SelectControl2.default, {
+          disabled: disabled,
           isOpened: isOpened,
           'aria-haspopup': isOpened,
           className: classes.selectControl,
@@ -26035,6 +26044,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onInputClear: function onInputClear() {},
     clearable: false,
     searchable: true,
+    disabled: false,
     multi: false,
     options: [],
     placeholder: 'Select...',
@@ -48453,11 +48463,16 @@ module.exports = exports['default'];
 var fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
 module.exports = {
+  'select__box-sizing': 'border-box',
+  'select__position': 'relative',
   'select__color': '#777',
   'select__background-color': '#fff',
   'select__border-radius': '2px',
   'select__border-style': 'solid',
   'select__border-width': '1px',
+  'select__opacity--disabled': '0.5',
+  'select__cursor--disabled': 'not-allowed',
+  'select__pointer-events--disabled': 'none',
 
   'select-arrow__size': 8,
   'select-arrow__color': '#9b9ba5',
@@ -63901,57 +63916,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports !== "undefined") {
-    factory(exports, require('styled-components'));
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, global.styledComponents);
-    global.Select = mod.exports;
-  }
-})(undefined, function (exports, _styledComponents) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-
-  var _styledComponents2 = _interopRequireDefault(_styledComponents);
-
-  function _interopRequireDefault(obj) {
-    return obj && obj.__esModule ? obj : {
-      default: obj
-    };
-  }
-
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  position: relative;\n'], ['\n  box-sizing: border-box;\n  position: relative;\n']);
-
-  function _taggedTemplateLiteral(strings, raw) {
-    return Object.freeze(Object.defineProperties(strings, {
-      raw: {
-        value: Object.freeze(raw)
-      }
-    }));
-  }
-
-  exports.default = _styledComponents2.default.div(_templateObject);
-});
-//# sourceMappingURL=Select.js.map
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
-
-(function (global, factory) {
-  if (true) {
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
@@ -63963,7 +63927,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       exports: {}
     };
     factory(mod.exports, global.styledComponents, global.cssHelpers);
-    global.SelectMenu = mod.exports;
+    global.Select = mod.exports;
   }
 })(undefined, function (exports, _styledComponents, _cssHelpers) {
   'use strict';
@@ -63980,7 +63944,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n']);
+  var _templateObject = _taggedTemplateLiteral(['\n  ', '\n  ', '\n\n  ', '\n'], ['\n  ', '\n  ', '\n\n  ', '\n']);
 
   function _taggedTemplateLiteral(strings, raw) {
     return Object.freeze(Object.defineProperties(strings, {
@@ -63990,14 +63954,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     }));
   }
 
-  var g = (0, _cssHelpers.autoCssGenerator)('select-menu');
+  var g = (0, _cssHelpers.autoCssGenerator)('select');
 
-  exports.default = _styledComponents2.default.div(_templateObject, g('max-height'));
+  var isDisabled = function isDisabled() {
+    return '\n  ' + g('cursor', 'disabled') + '\n  ' + g('opacity', 'disabled') + '\n  ' + g('pointer-events', 'disabled') + '\n';
+  };
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('box-sizing'), g('position'), function (props) {
+    return props.disabled && isDisabled();
+  });
 });
-//# sourceMappingURL=SelectMenu.js.map
+//# sourceMappingURL=Select.js.map
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64024,11 +63994,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   var fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
   module.exports = {
+    'select__box-sizing': 'border-box',
+    'select__position': 'relative',
     'select__color': '#777',
     'select__background-color': '#fff',
     'select__border-radius': '2px',
     'select__border-style': 'solid',
     'select__border-width': '1px',
+    'select__opacity--disabled': '0.5',
+    'select__cursor--disabled': 'not-allowed',
+    'select__pointer-events--disabled': 'none',
 
     'select-arrow__size': 8,
     'select-arrow__color': '#9b9ba5',
@@ -64111,6 +64086,59 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   };
 });
 //# sourceMappingURL=cssVariables.js.map
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectMenu = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-menu');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('max-height'));
+});
+//# sourceMappingURL=SelectMenu.js.map
 
 /***/ }),
 /* 70 */

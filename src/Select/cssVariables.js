@@ -1,11 +1,16 @@
 const fontFamily = 'Tahoma, Helvetica, Arial, sans-serif';
 
 module.exports = {
+  'select__box-sizing': 'border-box',
+  'select__position': 'relative',
   'select__color': '#777',
   'select__background-color': '#fff',
   'select__border-radius': '2px',
   'select__border-style': 'solid',
   'select__border-width': '1px',
+  'select__opacity--disabled': '0.5',
+  'select__cursor--disabled': 'not-allowed',
+  'select__pointer-events--disabled': 'none',
 
   'select-arrow__size': 8,
   'select-arrow__color': '#9b9ba5',
@@ -20,6 +25,7 @@ module.exports = {
   'select-control__min-height': '36px',
   'select-control__border-color': '#dcdce3',
   'select-control__border-color--focused': '#40a3f5',
+  'select-control__cursor--disabled': 'not-allowed',
 
   'select-input__height': '23px',
   'select-input__padding': '0',

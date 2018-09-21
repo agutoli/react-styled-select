@@ -284,16 +284,21 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMultiValueWrapper() {
-    const { multi, placeholder, searchable, classes, valueRenderer } = this.props;
+    const { multi, placeholder, searchable, classes, valueRenderer, disabled } = this.props;
     const { values, isOpened, isSelected, searchTerm, searchWidth } = this.state;
 
     const SelectValueComp = multi ? SelectMultiValue : SelectValue;
     const SelectWrapperComp = multi ? SelectMultiValueWrapper : SelectValueWrapper;
 
     let content = '';
+    let _values = values
+    if (_values.size) {
 
-    if (values.size) {
-      content = Array.from(values).map((value, key) => (
+      if (!multi && _values.size > 1) {
+        _values = new Set([])
+      }
+
+      content = Array.from(_values).map((value, key) => (
         <SelectValueComp value={value} onRemoveTag={this.onRemoveTagBinded} key={key} className={classes.selectValue} data-select-value data-multi-value={multi}>
           {valueRenderer({ multi, value, label: this.optionsMap[value].label }, classes.selectValueLabel)}
         </SelectValueComp>
@@ -306,7 +311,7 @@ class WrapperSelect extends React.PureComponent {
       }
     }
 
-    if (!values.size && !searchTerm) {
+    if (!_values.size && !searchTerm) {
       content = (
         <SelectPlaceholder
           className={classes.selectPlaceholder}
@@ -335,6 +340,7 @@ class WrapperSelect extends React.PureComponent {
         <SelectInput data-select-input className={classes.selectInput}>
           <SelectInputField
             style={{width: `${searchWidth}px`}}
+            disabled={disabled}
             id={this.state['input-field-id']}
             className={classes.selectInputField}
             data-select-input-search
@@ -354,7 +360,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   renderSelectMenuOuter() {
-    const { classes, noResultsText, optionRenderer } = this.props;
+    const { classes, noResultsText, optionRenderer, disabled } = this.props;
     const { values, isOpened, focusedIndex, options } = this.state;
 
     if (!isOpened) {
@@ -438,7 +444,7 @@ class WrapperSelect extends React.PureComponent {
     const { value, isSelected, isOpened } = this.state;
     const values = Array.from(this.state.values)
     return (
-      <Select style={style} data-select className={className}
+      <Select style={style} data-select className={className} disabled={disabled}
         ref={(node) => this.selectNode = node} innerRef={(node) => this.selectInnerRef = node}>
         <input
           type={required ? "text" : "hidden"}
@@ -447,6 +453,7 @@ class WrapperSelect extends React.PureComponent {
           value={stringifyValue(values.length ? values : "" )}
           disabled={disabled} required={required} />
         <SelectControl
+          disabled={disabled}
           isOpened={isOpened}
           aria-haspopup={isOpened}
           className={classes.selectControl}
@@ -493,6 +500,7 @@ WrapperSelect.defaultProps = {
   onInputClear: () => {},
   clearable: false,
   searchable: true,
+  disabled: false,
   multi: false,
   options: [],
   placeholder: 'Select...',

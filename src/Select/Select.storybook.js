@@ -204,3 +204,15 @@ storiesOf('Select', module)
       </div>
     </div>
   ))
+  .add('disabled=true', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <Select.ShadowDOM
+          disabled
+          value={['one', 'four']}
+          options={options}
+          onChange={action('onChange')}
+        />
+      </div>
+    </div>
+  ))

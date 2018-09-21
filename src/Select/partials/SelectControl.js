@@ -9,6 +9,10 @@ const isOpened = () => `
   ${g('border-color', 'focused')}
 `
 
+const isDisabled = () => `
+  ${g('cursor', 'disabled')}
+`
+
 export default styled.div`
   display: flex;
   position: relative;
@@ -29,4 +33,5 @@ export default styled.div`
   ${globalCss('background-color')}
 
   ${props => props.isOpened && isOpened()}
+  ${props => props.disabled && isDisabled()}
  `
