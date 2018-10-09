@@ -217,3 +217,17 @@ storiesOf('Select', module)
       </div>
     </div>
   ))
+  .add('events', () => (
+    <div style={{display: 'flex', margin: '20px'}}>
+      <div style={{width: '300px'}}>
+        <Select
+          value={['one', 'four']}
+          onKeyUp={action('onKeyUp')}
+          onKeyDown={action('onKeyDown')}
+          onKeyPress={action('onKeyPress')}
+          options={options}
+          onChange={action('onChange')}
+        />
+      </div>
+    </div>
+  ))

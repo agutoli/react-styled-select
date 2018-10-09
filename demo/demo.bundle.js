@@ -25744,6 +25744,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             options = _state.options,
             isOpened = _state.isOpened;
 
+        this.props.onKeyDown(event);
+
         var typing = function typing() {
           var term = _this7.inputInnerRef.value.toLowerCase().trim();
 
@@ -25879,6 +25881,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           id: this.state['input-field-id'],
           className: classes.selectInputField,
           'data-select-input-search': true,
+          onKeyUp: this.props.onKeyUp,
+          onKeyPress: this.props.onKeyPress,
           onKeyDown: this.onSearchingBinded,
           onChange: this.props.onInputChange,
           innerRef: function innerRef(n) {
@@ -26025,6 +26029,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onClose: _propTypes2.default.func,
     onOpen: _propTypes2.default.func,
     onChange: _propTypes2.default.func,
+    onKeyUp: _propTypes2.default.func,
+    onKeyPress: _propTypes2.default.func,
+    onKeyDown: _propTypes2.default.func,
     onValueClick: _propTypes2.default.func,
     closeMenuOnSelect: _propTypes2.default.func,
     onInputClear: _propTypes2.default.func,
@@ -26040,6 +26047,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onClose: function onClose() {},
     onOpen: function onOpen() {},
     onChange: function onChange() {},
+    onKeyUp: function onKeyUp() {},
+    onKeyPress: function onKeyPress() {},
+    onKeyDown: function onKeyDown() {},
     onInputChange: function onInputChange() {},
     onTyping: function onTyping() {},
     onValueClick: function onValueClick() {},

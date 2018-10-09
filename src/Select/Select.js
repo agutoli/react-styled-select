@@ -215,6 +215,8 @@ class WrapperSelect extends React.PureComponent {
     const { onInputChange, onTyping } = this.props
     const { focusedIndex, options, isOpened } = this.state;
 
+    this.props.onKeyDown(event)
+
     const typing = () => {
       const term = this.inputInnerRef.value.toLowerCase().trim()
 
@@ -345,6 +347,8 @@ class WrapperSelect extends React.PureComponent {
             id={this.state['input-field-id']}
             className={classes.selectInputField}
             data-select-input-search
+            onKeyUp={this.props.onKeyUp}
+            onKeyPress={this.props.onKeyPress}
             onKeyDown={this.onSearchingBinded}
             onChange={this.props.onInputChange}
             innerRef={(n) => this.inputInnerRef = n}
@@ -478,6 +482,9 @@ WrapperSelect.propTypes = {
   onClose: PropTypes.func,
   onOpen: PropTypes.func,
   onChange: PropTypes.func,
+  onKeyUp: PropTypes.func,
+  onKeyPress: PropTypes.func,
+  onKeyDown: PropTypes.func,
   onValueClick: PropTypes.func,
   closeMenuOnSelect: PropTypes.func,
   onInputClear: PropTypes.func,
@@ -496,6 +503,9 @@ WrapperSelect.defaultProps = {
   onClose: () => {},
   onOpen: () => {},
   onChange: () => {},
+  onKeyUp: () => {},
+  onKeyPress: () => {},
+  onKeyDown: () => {},
   onInputChange: () => {},
   onTyping: () => {},
   onValueClick: () => {},
