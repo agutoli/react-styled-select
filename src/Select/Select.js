@@ -212,7 +212,7 @@ class WrapperSelect extends React.PureComponent {
   }
 
   onSearching(event) {
-    const { onInputChange, onTyping } = this.props
+    const { onInputChange, onTyping, searchable } = this.props
     const { focusedIndex, options, isOpened } = this.state;
 
     this.props.onKeyDown(event)
@@ -260,11 +260,13 @@ class WrapperSelect extends React.PureComponent {
         setTimeout(typing, 1)
         break;
       case KEY_UP:
+        event.preventDefault();
         this.setState({
           focusedIndex: (focusedIndex <= 0 ? lastIndex : (focusedIndex - 1))
         })
         break;
       case KEY_DOWN:
+        event.preventDefault();
         if (!isOpened) {
           this.openOptions()
           break;
@@ -274,6 +276,7 @@ class WrapperSelect extends React.PureComponent {
         })
         break;
       case KEY_ENTER:
+        event.preventDefault();
         if (!options.length) break;
         const newValue = options[focusedIndex].value
         this.onSelectValueBinded(newValue, event)
@@ -282,7 +285,9 @@ class WrapperSelect extends React.PureComponent {
         this.closeOptions()
         break;
       default:
-        setTimeout(typing, 1)
+        if (searchable) {
+          setTimeout(typing, 1)
+        }
     }
   }
 
@@ -328,6 +333,11 @@ class WrapperSelect extends React.PureComponent {
           htmlFor={this.state['input-field-id']}
           innerRef={(n) => this.inputInnerRef = n}
           className={classes.selectMultiValueWrapper}
+          onFocus={this.onSelectFocusedBinded}
+          onKeyDown={this.onSearchingBinded}
+          onKeyUp={this.props.onKeyUp}
+          onKeyPress={this.props.onKeyPress}
+          tabIndex={this.props.tabIndex}
           data-select-multi-value-wrapper={multi}>
           {content}
         </SelectWrapperComp>
@@ -347,9 +357,11 @@ class WrapperSelect extends React.PureComponent {
             id={this.state['input-field-id']}
             className={classes.selectInputField}
             data-select-input-search
+            onFocus={this.onSelectFocusedBinded}
             onKeyUp={this.props.onKeyUp}
             onKeyPress={this.props.onKeyPress}
             onKeyDown={this.onSearchingBinded}
+            tabIndex={this.props.tabIndex}
             onChange={this.props.onInputChange}
             innerRef={(n) => this.inputInnerRef = n}
             aria-label={placeholder}
@@ -486,6 +498,7 @@ WrapperSelect.propTypes = {
   onKeyPress: PropTypes.func,
   onKeyDown: PropTypes.func,
   onValueClick: PropTypes.func,
+  tabIndex: PropTypes.string,
   closeMenuOnSelect: PropTypes.func,
   onInputClear: PropTypes.func,
   clearable: PropTypes.bool,
@@ -510,6 +523,7 @@ WrapperSelect.defaultProps = {
   onTyping: () => {},
   onValueClick: () => {},
   onInputClear: () => {},
+  tabIndex: '0',
   closeMenuOnSelect: () => {},
   clearable: false,
   searchable: true,

@@ -215,11 +215,38 @@ describe('<Select />', () => {
     typing(input, '', {keyCode: KEY_DOWN}, () => {
       setTimeout(() => {
         wrapper.update()
-        expect(wrapper.find('[data-select-menu-outer]').children().length).to.equal(1);
+        expect(wrapper.find('[data-select-menu-outer]').children().length).to.equal(2);
+        done()
       }, 2)
-      done()
     })
   });
+
+  it('should open outer menu when KEY_DOWN is pressed and searchable is false', (done) => {
+    const onOpenSpy = sinon.spy()
+    const wrapper = mount(<Select onOpen={onOpenSpy} options={options} searchable={false} value={2} />);
+    const select = wrapper.find('[data-select-multi-value-wrapper]').first()
+
+    typing(select, '', {keyCode: KEY_DOWN}, () => {
+      wrapper.update();
+      setTimeout(() => {
+        expect(wrapper.find('[data-select-menu-outer]').children().length).to.equal(2);
+        done()
+      }, 2)
+    })
+  });
+
+  it('should open outer menu when focused', (done) => {
+    const onOpenSpy = sinon.spy()
+    const wrapper = mount(<Select onOpen={onOpenSpy} options={options} searchable={false} value={2} />);
+    const select = wrapper.find('[data-select-multi-value-wrapper]').first()
+    select.simulate('focus')
+
+    wrapper.update();
+    setTimeout(() => {
+      expect(wrapper.find('[data-select-menu-outer]').children().length).to.equal(2);
+      done()
+    }, 2)
+  })
 
   it('should render a custom value renderer', () => {
     const valueRenderer = () => {
