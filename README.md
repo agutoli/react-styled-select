@@ -189,6 +189,7 @@ class MyForm extends React.Component {
 --styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0;
 
 --styled-<b>select-menu</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a>: 198px;
+--styled-<b>select-menu</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
 
 --styled-<b>select-multi-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 3px 0 3px 5px;
 
