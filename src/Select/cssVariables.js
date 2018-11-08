@@ -32,6 +32,7 @@ module.exports = {
   'select-input__line-height': '23px',
 
   'select-menu__max-height': '198px',
+  'select-menu__border-radius': '2px',
 
   'select-menu-outer__max-height': '200px',
   'select-menu-outer__background-color': '#fff',

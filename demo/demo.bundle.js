@@ -25738,7 +25738,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         var _props = this.props,
             onInputChange = _props.onInputChange,
-            onTyping = _props.onTyping;
+            onTyping = _props.onTyping,
+            searchable = _props.searchable;
         var _state = this.state,
             focusedIndex = _state.focusedIndex,
             options = _state.options,
@@ -25790,11 +25791,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             setTimeout(typing, 1);
             break;
           case _constants.KEY_UP:
+            event.preventDefault();
             this.setState({
               focusedIndex: focusedIndex <= 0 ? lastIndex : focusedIndex - 1
             });
             break;
           case _constants.KEY_DOWN:
+            event.preventDefault();
             if (!isOpened) {
               this.openOptions();
               break;
@@ -25804,6 +25807,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             });
             break;
           case _constants.KEY_ENTER:
+            event.preventDefault();
             if (!options.length) break;
             var newValue = options[focusedIndex].value;
             this.onSelectValueBinded(newValue, event);
@@ -25812,7 +25816,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             this.closeOptions();
             break;
           default:
-            setTimeout(typing, 1);
+            if (searchable) {
+              setTimeout(typing, 1);
+            }
         }
       }
     }, {
@@ -25869,6 +25875,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               return _this8.inputInnerRef = n;
             },
             className: classes.selectMultiValueWrapper,
+            onFocus: this.onSelectFocusedBinded,
+            onKeyDown: this.onSearchingBinded,
+            onKeyUp: this.props.onKeyUp,
+            onKeyPress: this.props.onKeyPress,
+            tabIndex: this.props.tabIndex,
             'data-select-multi-value-wrapper': multi }, content);
         }
 
@@ -25881,9 +25892,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           id: this.state['input-field-id'],
           className: classes.selectInputField,
           'data-select-input-search': true,
+          onFocus: this.onSelectFocusedBinded,
           onKeyUp: this.props.onKeyUp,
           onKeyPress: this.props.onKeyPress,
           onKeyDown: this.onSearchingBinded,
+          tabIndex: this.props.tabIndex,
           onChange: this.props.onInputChange,
           innerRef: function innerRef(n) {
             return _this8.inputInnerRef = n;
@@ -26033,6 +26046,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onKeyPress: _propTypes2.default.func,
     onKeyDown: _propTypes2.default.func,
     onValueClick: _propTypes2.default.func,
+    tabIndex: _propTypes2.default.string,
     closeMenuOnSelect: _propTypes2.default.func,
     onInputClear: _propTypes2.default.func,
     clearable: _propTypes2.default.bool,
@@ -26054,6 +26068,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onTyping: function onTyping() {},
     onValueClick: function onValueClick() {},
     onInputClear: function onInputClear() {},
+    tabIndex: '0',
     closeMenuOnSelect: function closeMenuOnSelect() {},
     clearable: false,
     searchable: true,
@@ -48507,6 +48522,7 @@ module.exports = {
   'select-input__line-height': '23px',
 
   'select-menu__max-height': '198px',
+  'select-menu__border-radius': '2px',
 
   'select-menu-outer__max-height': '200px',
   'select-menu-outer__background-color': '#fff',
@@ -64039,6 +64055,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     'select-input__line-height': '23px',
 
     'select-menu__max-height': '198px',
+    'select-menu__border-radius': '2px',
 
     'select-menu-outer__max-height': '200px',
     'select-menu-outer__background-color': '#fff',
@@ -64139,7 +64156,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
   }
 
-  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n']);
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n  ', '\n'], ['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n  ', '\n']);
 
   function _taggedTemplateLiteral(strings, raw) {
     return Object.freeze(Object.defineProperties(strings, {
@@ -64151,7 +64168,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
   var g = (0, _cssHelpers.autoCssGenerator)('select-menu');
 
-  exports.default = _styledComponents2.default.div(_templateObject, g('max-height'));
+  exports.default = _styledComponents2.default.div(_templateObject, g('max-height'), g('border-radius'));
 });
 //# sourceMappingURL=SelectMenu.js.map
 

@@ -8,4 +8,5 @@ export default styled.div`
   overflow-y: auto;
 
   ${g('max-height')}
+  ${g('border-radius')}
 `
