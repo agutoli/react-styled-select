@@ -21,9 +21,15 @@ const SelectMultiValue = styled.div`
   }
 `
 
-export default (props) => (
-  <SelectMultiValue {...props}>
-    <SelectValueIcon onMouseDown={(e) => props.onRemoveTag(props, e)}>×</SelectValueIcon>
-    {props.children}
-  </SelectMultiValue>
-)
+export default (props) => {
+  const _props = Object.assign({}, props)
+
+  delete _props.onRemoveTag
+
+  return (
+    <SelectMultiValue {..._props}>
+      <SelectValueIcon onMouseDown={(e) => props.onRemoveTag(props, e)}>×</SelectValueIcon>
+      {props.children}
+    </SelectMultiValue>
+  )
+}

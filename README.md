@@ -6,7 +6,7 @@
 react-styled-select
 ============
 
-Up to date with react/react-dom `16.2.0`
+Up to date with react/react-dom `16.2.0` and styled-components `4.1.1`
 
 ### ATTENTION: Work in Progress (sorry about that!)
 

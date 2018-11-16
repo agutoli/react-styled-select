@@ -10,6 +10,7 @@ export default styled.div`
   align-content: space-around;
   flex: 2 100%;
   flex-wrap: wrap;
-
+  outline: none;
+  
   ${g('padding')}
 `

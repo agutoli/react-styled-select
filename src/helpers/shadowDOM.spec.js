@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import sinon from 'sinon'
 import { expect } from 'chai'
 
@@ -16,12 +17,17 @@ const MyDiv = styled.div`
 class MyComponent extends React.PureComponent {
   render() {
     return (
-      <MyDiv ref={(node) => this.selectNode = node}>Teste</MyDiv>
+      <MyDiv ref={(node) => {
+        this.selectNode = node
+        if (!node.focus) {
+          this.selectNode = ReactDOM.findDOMNode(node);
+        }
+      }}>Teste</MyDiv>
     )
   }
   componentDidMount() {
     if (!this.props.noGenerateClass) {
-      this.props.generatedClassName(this.selectNode.state.generatedClassName);
+      this.props.generatedClassName(this.selectNode.className);
     } else {
       this.props.generatedClassName('notexistentsclass');
     }

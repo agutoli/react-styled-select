@@ -14,8 +14,14 @@ export default (element) => {
     }
 
     applyStylesheet = (classNameID) => {
-      const style = document.querySelector(`[data-styled-components*=${classNameID}]`);
+      let style = document.querySelector('style[data-styled]');
+
+      if (!style) {
+        style = document.querySelector(`style[data-styled-components*=${classNameID.split(' ')[1]}]`);
+      }
+
       if (!style) return;
+
       try {
         this.styleTag.innerHTML = '';
       } catch(e) {}

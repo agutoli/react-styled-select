@@ -1,10 +1,11 @@
+import React from 'react'
 import styled from 'styled-components'
 import { autoCssGenerator } from '../cssHelpers';
 
 const globalCss = autoCssGenerator('select');
 const g = autoCssGenerator('select-value');
 
-export default styled.div`
+const SelectValue = styled.div`
   display: inline-block;
   vertical-align: top;
 
@@ -17,3 +18,13 @@ export default styled.div`
   ${g('line-height')}
   ${g('white-space')}
 `
+
+export default (props) => {
+  const _props = Object.assign({}, props)
+
+  delete _props.onRemoveTag
+
+  return (
+    <SelectValue {..._props} />
+  )
+}
