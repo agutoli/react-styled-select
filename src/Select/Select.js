@@ -411,7 +411,6 @@ class WrapperSelect extends React.PureComponent {
     }
 
     let selectOptions = <SelectNoResults>{noResultsText}</SelectNoResults>;
-
     if (options.length > 0) {
       selectOptions = options.map((opt, i) => {
         const isSelected = values.has(opt.value)
@@ -435,6 +434,7 @@ class WrapperSelect extends React.PureComponent {
         }, opt), i)
       })
     }
+
     return (
       <SelectMenuOuter
         className={classes.selectMenuOuter}
@@ -536,7 +536,7 @@ WrapperSelect.propTypes = {
   closeMenuOnSelect: PropTypes.func,
   onInputClear: PropTypes.func,
   clearable: PropTypes.bool,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.any,
   className: PropTypes.string,
   classes: PropTypes.object,
   noResultsText: PropTypes.oneOfType([
