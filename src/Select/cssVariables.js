@@ -92,5 +92,12 @@ module.exports = {
   'select-multi-value__border-radius': '3px',
   'select-multi-value__box-shadow': 'rgba(0,0,0,0.2) 0px 0px 3px',
 
+  'select-value-wrapper__box-sizing': 'border-box',
+  'select-value-wrapper__display': 'flex',
+  'select-value-wrapper__align-items': 'center',
+  'select-value-wrapper__align-content': 'space-around',
+  'select-value-wrapper__flex': '2 100%',
+  'select-value-wrapper__padding': '0 0 0 5px',
+
   'select-multi-value-wrapper__padding': '3px 0 3px 5px',
 }

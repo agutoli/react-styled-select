@@ -148,17 +148,6 @@ class MyForm extends React.Component {
 ## Available CSS variables
 
 <pre>
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing">box-sizing</a>: border-box;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor</a>--<b>disabled</b>: not-allowed;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity">opacity</a>--<b>disabled</b>: 0.5;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events">pointer-events</a>--<b>disabled</b>: none;
---styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">position</a>: relative;
-
 --styled-<b>select-arrow-zone</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width">width</a>: 25px;
 
 --styled-<b>select-arrow</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #9b9ba5;
@@ -188,8 +177,8 @@ class MyForm extends React.Component {
 --styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a>: 200px;
 --styled-<b>select-menu-outer</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0;
 
---styled-<b>select-menu</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a>: 198px;
 --styled-<b>select-menu</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
+--styled-<b>select-menu</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max-height">max-height</a>: 198px;
 
 --styled-<b>select-multi-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 3px 0 3px 5px;
 
@@ -230,6 +219,13 @@ class MyForm extends React.Component {
 --styled-<b>select-value-label</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family">font-family</a>: Tahoma, Helvetica, Arial, sans-serif;
 --styled-<b>select-value-label</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 1px 6px;
 
+--styled-<b>select-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-content">align-content</a>: space-around;
+--styled-<b>select-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items">align-items</a>: center;
+--styled-<b>select-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing">box-sizing</a>: border-box;
+--styled-<b>select-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">display</a>: flex;
+--styled-<b>select-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex">flex</a>: 2 100%;
+--styled-<b>select-value-wrapper</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a>: 0 0 0 5px;
+
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: Tahoma, Helvetica, Arial, sans-serif;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a>: 14px;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a>: 34px;
@@ -239,7 +235,16 @@ class MyForm extends React.Component {
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow">text-overflow</a>: ellipsis;
 --styled-<b>select-value</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space">white-space</a>: nowrap;
 
-
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a>: #fff;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius">border-radius</a>: 2px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style">border-style</a>: solid;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-width">border-width</a>: 1px;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing">box-sizing</a>: border-box;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color">color</a>: #777;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor">cursor</a>--<b>disabled</b>: not-allowed;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity">opacity</a>--<b>disabled</b>: 0.5;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events">pointer-events</a>--<b>disabled</b>: none;
+--styled-<b>select</b>__<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">position</a>: relative;
 </pre>
 
 ## Inspiration

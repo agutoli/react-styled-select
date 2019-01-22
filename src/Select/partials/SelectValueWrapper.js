@@ -1,10 +1,13 @@
 import styled from 'styled-components'
+import { autoCssGenerator } from '../cssHelpers';
+
+const g = autoCssGenerator('select-value-wrapper');
 
 export default styled.div`
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  align-content: space-around;
-  padding: 0 0 0 5px;
-  flex: 2 100%;
+  ${g('box-sizing')}
+  ${g('display')}
+  ${g('align-items')}
+  ${g('align-content')}
+  ${g('flex')}
+  ${g('padding')}
 `
