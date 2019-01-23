@@ -25612,20 +25612,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(6), __webpack_require__(5), __webpack_require__(0), __webpack_require__(62), __webpack_require__(64), __webpack_require__(12), __webpack_require__(21), __webpack_require__(70), __webpack_require__(71), __webpack_require__(73), __webpack_require__(74), __webpack_require__(75), __webpack_require__(93), __webpack_require__(77), __webpack_require__(78), __webpack_require__(22), __webpack_require__(79), __webpack_require__(80), __webpack_require__(81), __webpack_require__(82), __webpack_require__(83), __webpack_require__(84), __webpack_require__(85), __webpack_require__(86), __webpack_require__(87), __webpack_require__(88), __webpack_require__(90), __webpack_require__(92)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(6), __webpack_require__(5), __webpack_require__(0), __webpack_require__(62), __webpack_require__(64), __webpack_require__(12), __webpack_require__(21), __webpack_require__(70), __webpack_require__(71), __webpack_require__(73), __webpack_require__(74), __webpack_require__(75), __webpack_require__(76), __webpack_require__(94), __webpack_require__(78), __webpack_require__(79), __webpack_require__(22), __webpack_require__(80), __webpack_require__(81), __webpack_require__(82), __webpack_require__(83), __webpack_require__(84), __webpack_require__(85), __webpack_require__(86), __webpack_require__(87), __webpack_require__(88), __webpack_require__(89), __webpack_require__(91), __webpack_require__(93)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   } else if (typeof exports !== "undefined") {
-    factory(exports, require('react'), require('react-dom'), require('prop-types'), require('styled-components'), require('react-click-outside'), require('uuid'), require('./Async'), require('../helpers/shadowDOM'), require('./constants'), require('./partials/Select'), require('./partials/SelectMenu'), require('./partials/SelectValue'), require('./partials/SelectMultiValue'), require('./partials/SelectClear'), require('./partials/SelectArrow'), require('./partials/SelectInput'), require('./partials/SelectInputField'), require('./partials/SelectInputFieldSize'), require('./partials/SelectControl'), require('./partials/SelectNoResults'), require('./partials/SelectClearZone'), require('./partials/SelectArrowZone'), require('./partials/SelectMenuOuter'), require('./partials/SelectPlaceholder'), require('./partials/SelectValueWrapper'), require('./partials/SelectMultiValueWrapper'), require('./renderers/ValueRenderer'), require('./renderers/OptionRenderer'), require('./functions/stringifyValue'));
+    factory(exports, require('react'), require('react-dom'), require('prop-types'), require('styled-components'), require('react-click-outside'), require('uuid'), require('./Async'), require('../helpers/shadowDOM'), require('./constants'), require('./partials/Select'), require('./partials/SelectMenu'), require('./partials/SelectMenuVirtualized'), require('./partials/SelectValue'), require('./partials/SelectMultiValue'), require('./partials/SelectClear'), require('./partials/SelectArrow'), require('./partials/SelectInput'), require('./partials/SelectInputField'), require('./partials/SelectInputFieldSize'), require('./partials/SelectControl'), require('./partials/SelectNoResults'), require('./partials/SelectClearZone'), require('./partials/SelectArrowZone'), require('./partials/SelectMenuOuter'), require('./partials/SelectPlaceholder'), require('./partials/SelectValueWrapper'), require('./partials/SelectMultiValueWrapper'), require('./renderers/ValueRenderer'), require('./renderers/OptionRenderer'), require('./functions/stringifyValue'));
   } else {
     var mod = {
       exports: {}
     };
-    factory(mod.exports, global.react, global.reactDom, global.propTypes, global.styledComponents, global.reactClickOutside, global.uuid, global.Async, global.shadowDOM, global.constants, global.Select, global.SelectMenu, global.SelectValue, global.SelectMultiValue, global.SelectClear, global.SelectArrow, global.SelectInput, global.SelectInputField, global.SelectInputFieldSize, global.SelectControl, global.SelectNoResults, global.SelectClearZone, global.SelectArrowZone, global.SelectMenuOuter, global.SelectPlaceholder, global.SelectValueWrapper, global.SelectMultiValueWrapper, global.ValueRenderer, global.OptionRenderer, global.stringifyValue);
+    factory(mod.exports, global.react, global.reactDom, global.propTypes, global.styledComponents, global.reactClickOutside, global.uuid, global.Async, global.shadowDOM, global.constants, global.Select, global.SelectMenu, global.SelectMenuVirtualized, global.SelectValue, global.SelectMultiValue, global.SelectClear, global.SelectArrow, global.SelectInput, global.SelectInputField, global.SelectInputFieldSize, global.SelectControl, global.SelectNoResults, global.SelectClearZone, global.SelectArrowZone, global.SelectMenuOuter, global.SelectPlaceholder, global.SelectValueWrapper, global.SelectMultiValueWrapper, global.ValueRenderer, global.OptionRenderer, global.stringifyValue);
     global.Select = mod.exports;
   }
-})(undefined, function (exports, _react, _reactDom, _propTypes, _styledComponents, _reactClickOutside, _uuid, _Async, _shadowDOM, _constants, _Select, _SelectMenu, _SelectValue, _SelectMultiValue, _SelectClear, _SelectArrow, _SelectInput, _SelectInputField, _SelectInputFieldSize, _SelectControl, _SelectNoResults, _SelectClearZone, _SelectArrowZone, _SelectMenuOuter, _SelectPlaceholder, _SelectValueWrapper, _SelectMultiValueWrapper, _ValueRenderer, _OptionRenderer, _stringifyValue) {
+})(undefined, function (exports, _react, _reactDom, _propTypes, _styledComponents, _reactClickOutside, _uuid, _Async, _shadowDOM, _constants, _Select, _SelectMenu, _SelectMenuVirtualized, _SelectValue, _SelectMultiValue, _SelectClear, _SelectArrow, _SelectInput, _SelectInputField, _SelectInputFieldSize, _SelectControl, _SelectNoResults, _SelectClearZone, _SelectArrowZone, _SelectMenuOuter, _SelectPlaceholder, _SelectValueWrapper, _SelectMultiValueWrapper, _ValueRenderer, _OptionRenderer, _stringifyValue) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -25652,6 +25652,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   var _Select2 = _interopRequireDefault(_Select);
 
   var _SelectMenu2 = _interopRequireDefault(_SelectMenu);
+
+  var _SelectMenuVirtualized2 = _interopRequireDefault(_SelectMenuVirtualized);
 
   var _SelectValue2 = _interopRequireDefault(_SelectValue);
 
@@ -25766,6 +25768,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         searchTerm: null,
         searchWidth: 1,
         focusedIndex: 0,
+        currentMenuScrollTop: 0,
         options: props.options,
         'aria-owns': _this2.props['aria-owns'] || _uuid2.default.v4(),
         'input-field-id': _uuid2.default.v4()
@@ -25780,6 +25783,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       _this2.onClearValueBinded = _this2.onClearValue.bind(_this2);
       _this2.onSelectValueBinded = _this2.onSelectValue.bind(_this2);
       _this2.onSelectFocusedBinded = _this2.onSelectFocused.bind(_this2);
+      _this2.onSelectMenuScrollerBinded = _this2.onSelectMenuScroller.bind(_this2);
       return _this2;
     }
 
@@ -26062,7 +26066,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
 
           content = Array.from(_values).map(function (value, key) {
-            return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this8.onRemoveTagBinded, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: _this8.optionsMap[value].label }, classes.selectValueLabel));
+            return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this8.onRemoveTagBinded, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: (_this8.optionsMap[value] || {}).label }, classes.selectValueLabel));
           });
 
           if (!multi && content.length > 1) {
@@ -26136,6 +26140,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           } }, searchTerm));
       }
     }, {
+      key: 'onSelectMenuScroller',
+      value: function onSelectMenuScroller(event) {
+        this.setState({
+          currentMenuScrollTop: event.target.scrollTop
+        });
+      }
+    }, {
       key: 'renderSelectMenuOuter',
       value: function renderSelectMenuOuter() {
         var _this9 = this;
@@ -26144,12 +26155,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             classes = _props3.classes,
             noResultsText = _props3.noResultsText,
             optionRenderer = _props3.optionRenderer,
-            disabled = _props3.disabled;
+            disabled = _props3.disabled,
+            virtualizedMaxHeight = _props3.virtualizedMaxHeight,
+            virtualizedOptionHeight = _props3.virtualizedOptionHeight,
+            virtualized = _props3.virtualized;
         var _state3 = this.state,
             values = _state3.values,
             isOpened = _state3.isOpened,
             focusedIndex = _state3.focusedIndex,
-            options = _state3.options;
+            options = _state3.options,
+            currentMenuScrollTop = _state3.currentMenuScrollTop;
 
         if (!isOpened) {
           return _react2.default.createElement('div', { 'aria-hidden': 'true', id: ['aria-owns'], role: 'listbox' }, _react2.default.createElement('div', { role: 'option', tabIndex: '-1' }));
@@ -26158,13 +26173,23 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var selectOptions = _react2.default.createElement(_SelectNoResults2.default, null, noResultsText);
         if (options.length > 0) {
           selectOptions = options.map(function (opt, i) {
+            var elementTopPosition = virtualizedOptionHeight * i + virtualizedOptionHeight;
+            var isTopHidden = currentMenuScrollTop > elementTopPosition;
+            var isBottomHidden = currentMenuScrollTop < elementTopPosition - (virtualizedMaxHeight + virtualizedOptionHeight);
+
+            if ((isTopHidden || isBottomHidden) && virtualized) {
+              return null;
+            }
+
             var isSelected = values.has(opt.value);
             var isFocused = focusedIndex === i;
             return optionRenderer(Object.assign({
               key: i,
               'data-key': i,
               isSelected: isSelected,
+              virtualized: virtualized,
               id: _this9.state['aria-owns'],
+              virtualizedOptionHeight: virtualizedOptionHeight,
               className: classes.selectOption,
               isFocused: focusedIndex == i,
               tabIndex: values.has(opt.value) ? '0' : '-1',
@@ -26184,16 +26209,43 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
         return _react2.default.createElement(_SelectMenuOuter2.default, {
           className: classes.selectMenuOuter,
-          'data-select-menu-outer': true }, _react2.default.createElement(_SelectMenu2.default, {
+          'data-select-menu-outer': true }, virtualized ? this.renderSelectMenuVirtualizedOptions(selectOptions) : this.renderSelectMenuOptions(selectOptions));
+      }
+    }, {
+      key: 'renderSelectMenuOptions',
+      value: function renderSelectMenuOptions(selectOptions) {
+        var classes = this.props.classes;
+
+        return _react2.default.createElement(_SelectMenu2.default, {
           role: 'listbox',
-          className: classes.selectMenu, 'data-select-menu': true }, selectOptions));
+          className: classes.selectMenu, 'data-select-menu': true }, selectOptions);
+      }
+    }, {
+      key: 'renderSelectMenuVirtualizedOptions',
+      value: function renderSelectMenuVirtualizedOptions(selectOptions) {
+        var _props4 = this.props,
+            classes = _props4.classes,
+            virtualizedMaxHeight = _props4.virtualizedMaxHeight,
+            virtualizedOptionHeight = _props4.virtualizedOptionHeight;
+        var options = this.state.options;
+
+        var scrollHeight = options.length * virtualizedOptionHeight;
+
+        return _react2.default.createElement(_SelectMenuVirtualized2.default, {
+          role: 'listbox',
+          style: {
+            height: virtualizedMaxHeight + 'px',
+            maxHeight: virtualizedMaxHeight + 'px'
+          },
+          onScroll: this.onSelectMenuScrollerBinded,
+          className: classes.selectMenu, 'data-select-menu': true }, _react2.default.createElement('div', { style: { height: scrollHeight + 'px', position: 'relative' } }, selectOptions));
       }
     }, {
       key: 'renderSelectClearZone',
       value: function renderSelectClearZone() {
-        var _props4 = this.props,
-            clearable = _props4.clearable,
-            classes = _props4.classes;
+        var _props5 = this.props,
+            clearable = _props5.clearable,
+            classes = _props5.classes;
 
         if (!clearable) return;
 
@@ -26229,13 +26281,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       value: function render() {
         var _this10 = this;
 
-        var _props5 = this.props,
-            name = _props5.name,
-            disabled = _props5.disabled,
-            className = _props5.className,
-            classes = _props5.classes,
-            style = _props5.style,
-            required = _props5.required;
+        var _props6 = this.props,
+            name = _props6.name,
+            disabled = _props6.disabled,
+            className = _props6.className,
+            classes = _props6.classes,
+            style = _props6.style,
+            required = _props6.required;
         var _state4 = this.state,
             value = _state4.value,
             isSelected = _state4.isSelected,
@@ -26281,6 +26333,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     onValueClick: _propTypes2.default.func,
     tabIndex: _propTypes2.default.string,
     closeMenuOnSelect: _propTypes2.default.func,
+    virtualized: _propTypes2.default.bool,
+    virtualizedMaxHeight: _propTypes2.default.number,
+    virtualizedOptionHeight: _propTypes2.default.number,
     onInputClear: _propTypes2.default.func,
     clearable: _propTypes2.default.bool,
     placeholder: _propTypes2.default.any,
@@ -26308,6 +26363,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     disabled: false,
     multi: false,
     options: [],
+    virtualized: false,
+    virtualizedMaxHeight: 198,
+    virtualizedOptionHeight: 38,
     placeholder: 'Select...',
     noResultsText: 'No results found',
     classes: {
@@ -26675,7 +26733,7 @@ var _lib = __webpack_require__(61);
 
 var _lib2 = _interopRequireDefault(_lib);
 
-var _ShadowDOM = __webpack_require__(94);
+var _ShadowDOM = __webpack_require__(95);
 
 var _ShadowDOM2 = _interopRequireDefault(_ShadowDOM);
 
@@ -67028,6 +67086,59 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('styled-components'), require('../cssHelpers'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.styledComponents, global.cssHelpers);
+    global.SelectMenuVirtualized = mod.exports;
+  }
+})(undefined, function (exports, _styledComponents, _cssHelpers) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _styledComponents2 = _interopRequireDefault(_styledComponents);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _templateObject = _taggedTemplateLiteral(['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n'], ['\n  box-sizing: border-box;\n  overflow-y: auto;\n\n  ', '\n']);
+
+  function _taggedTemplateLiteral(strings, raw) {
+    return Object.freeze(Object.defineProperties(strings, {
+      raw: {
+        value: Object.freeze(raw)
+      }
+    }));
+  }
+
+  var g = (0, _cssHelpers.autoCssGenerator)('select-menu');
+
+  exports.default = _styledComponents2.default.div(_templateObject, g('border-radius'));
+});
+//# sourceMappingURL=SelectMenuVirtualized.js.map
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+(function (global, factory) {
+  if (true) {
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(0), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
@@ -67084,7 +67195,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectValue.js.map
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67092,7 +67203,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(0), __webpack_require__(76), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(0), __webpack_require__(77), __webpack_require__(1)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -67151,7 +67262,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectMultiValue.js.map
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67204,7 +67315,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectValueIcon.js.map
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67264,7 +67375,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectArrow.js.map
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67317,7 +67428,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectInput.js.map
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67370,7 +67481,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectInputFieldSize.js.map
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67436,7 +67547,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectControl.js.map
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67489,7 +67600,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectNoResults.js.map
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67542,7 +67653,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectClearZone.js.map
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67595,7 +67706,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectArrowZone.js.map
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67648,7 +67759,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectMenuOuter.js.map
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67701,7 +67812,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectPlaceholder.js.map
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67754,7 +67865,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectValueWrapper.js.map
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67807,7 +67918,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectMultiValueWrapper.js.map
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67815,7 +67926,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(89)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(90)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -67857,7 +67968,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=ValueRenderer.js.map
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67913,7 +68024,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectValueLabel.js.map
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67921,7 +68032,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 (function (global, factory) {
   if (true) {
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(91)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports, __webpack_require__(3), __webpack_require__(92)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -67953,8 +68064,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   }
 
   function OptionRenderer(option, index) {
+    var style = {};
+    if (option.virtualized) {
+      style = {
+        position: 'absolute',
+        width: '100%',
+        top: option.virtualizedOptionHeight * index + 'px',
+        maxHeight: option.virtualizedOptionHeight + 'px',
+        height: option.virtualizedOptionHeight + 'px'
+      };
+    }
     return _react2.default.createElement(_SelectOption2.default, {
       id: option.id,
+      style: style,
       className: option.className,
       key: index,
       isSelected: option.isSelected,
@@ -67972,7 +68094,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=OptionRenderer.js.map
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68037,7 +68159,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectOption.js.map
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68090,7 +68212,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 //# sourceMappingURL=stringifyValue.js.map
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68143,7 +68265,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //# sourceMappingURL=SelectClear.js.map
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

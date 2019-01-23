@@ -19,6 +19,7 @@ const SEARCH_INPUT_MIN_SIZE = 1;
 
 import Select from './partials/Select'
 import SelectMenu from './partials/SelectMenu'
+import SelectMenuVirtualized from './partials/SelectMenuVirtualized'
 import SelectValue from './partials/SelectValue'
 import SelectMultiValue from './partials/SelectMultiValue'
 import SelectClear from './partials/SelectClear'
@@ -57,6 +58,7 @@ class WrapperSelect extends React.PureComponent {
       searchTerm: null,
       searchWidth: 1,
       focusedIndex: 0,
+      currentMenuScrollTop: 0,
       options: props.options,
       'aria-owns': this.props['aria-owns'] || uuid.v4(),
       'input-field-id': uuid.v4()
@@ -71,6 +73,7 @@ class WrapperSelect extends React.PureComponent {
     this.onClearValueBinded = this.onClearValue.bind(this)
     this.onSelectValueBinded = this.onSelectValue.bind(this)
     this.onSelectFocusedBinded = this.onSelectFocused.bind(this)
+    this.onSelectMenuScrollerBinded = this.onSelectMenuScroller.bind(this)
   }
 
   updateValues(props) {
@@ -309,7 +312,7 @@ class WrapperSelect extends React.PureComponent {
 
       content = Array.from(_values).map((value, key) => (
         <SelectValueComp value={value} onRemoveTag={this.onRemoveTagBinded} key={key} className={classes.selectValue} data-select-value data-multi-value={multi}>
-          {valueRenderer({ multi, value, label: this.optionsMap[value].label }, classes.selectValueLabel)}
+          {valueRenderer({ multi, value, label: (this.optionsMap[value]||{}).label }, classes.selectValueLabel)}
         </SelectValueComp>
       ))
 
@@ -398,9 +401,30 @@ class WrapperSelect extends React.PureComponent {
     )
   }
 
+  onSelectMenuScroller(event) {
+    this.setState({
+      currentMenuScrollTop: event.target.scrollTop
+    })
+  }
+
   renderSelectMenuOuter() {
-    const { classes, noResultsText, optionRenderer, disabled } = this.props;
-    const { values, isOpened, focusedIndex, options } = this.state;
+    const {
+      classes,
+      noResultsText,
+      optionRenderer,
+      disabled,
+      virtualizedMaxHeight,
+      virtualizedOptionHeight,
+      virtualized
+    } = this.props;
+
+    const {
+      values,
+      isOpened,
+      focusedIndex,
+      options,
+      currentMenuScrollTop
+    } = this.state;
 
     if (!isOpened) {
       return (
@@ -413,13 +437,23 @@ class WrapperSelect extends React.PureComponent {
     let selectOptions = <SelectNoResults>{noResultsText}</SelectNoResults>;
     if (options.length > 0) {
       selectOptions = options.map((opt, i) => {
+        const elementTopPosition = (virtualizedOptionHeight * i) + virtualizedOptionHeight
+        const isTopHidden = currentMenuScrollTop > elementTopPosition
+        const isBottomHidden = currentMenuScrollTop < (elementTopPosition - (virtualizedMaxHeight + virtualizedOptionHeight))
+
+        if ((isTopHidden || isBottomHidden) && virtualized) {
+          return null
+        }
+
         const isSelected = values.has(opt.value)
         const isFocused = focusedIndex === i;
         return optionRenderer(Object.assign({
           key: i,
           'data-key': i,
           isSelected,
+          virtualized,
           id: this.state['aria-owns'],
+          virtualizedOptionHeight: virtualizedOptionHeight,
           className: classes.selectOption,
           isFocused: focusedIndex == i,
           tabIndex: values.has(opt.value) ? '0' : '-1',
@@ -439,12 +473,43 @@ class WrapperSelect extends React.PureComponent {
       <SelectMenuOuter
         className={classes.selectMenuOuter}
         data-select-menu-outer>
-        <SelectMenu
-          role="listbox"
-          className={classes.selectMenu} data-select-menu>
-          {selectOptions}
-        </SelectMenu>
+        {virtualized ?
+          this.renderSelectMenuVirtualizedOptions(selectOptions) :
+          this.renderSelectMenuOptions(selectOptions)}
       </SelectMenuOuter>
+    )
+  }
+
+  renderSelectMenuOptions(selectOptions) {
+    const { classes } = this.props;
+    return (
+      <SelectMenu
+        role="listbox"
+        className={classes.selectMenu} data-select-menu>
+        {selectOptions}
+      </SelectMenu>
+    )
+  }
+
+  renderSelectMenuVirtualizedOptions(selectOptions) {
+    const { classes, virtualizedMaxHeight, virtualizedOptionHeight } = this.props;
+    const { options } = this.state;
+
+    const scrollHeight = options.length * virtualizedOptionHeight
+
+    return (
+      <SelectMenuVirtualized
+        role="listbox"
+        style={{
+          height: `${virtualizedMaxHeight}px`,
+          maxHeight: `${virtualizedMaxHeight}px`
+        }}
+        onScroll={this.onSelectMenuScrollerBinded}
+        className={classes.selectMenu} data-select-menu>
+        <div style={{height: `${scrollHeight}px`, position: 'relative'}}>
+          {selectOptions}
+        </div>
+      </SelectMenuVirtualized>
     )
   }
 
@@ -534,6 +599,9 @@ WrapperSelect.propTypes = {
   onValueClick: PropTypes.func,
   tabIndex: PropTypes.string,
   closeMenuOnSelect: PropTypes.func,
+  virtualized: PropTypes.bool,
+  virtualizedMaxHeight: PropTypes.number,
+  virtualizedOptionHeight: PropTypes.number,
   onInputClear: PropTypes.func,
   clearable: PropTypes.bool,
   placeholder: PropTypes.any,
@@ -564,6 +632,9 @@ WrapperSelect.defaultProps = {
   disabled: false,
   multi: false,
   options: [],
+  virtualized: false,
+  virtualizedMaxHeight: 198,
+  virtualizedOptionHeight: 38,
   placeholder: 'Select...',
   noResultsText: 'No results found',
   classes: {

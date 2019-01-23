@@ -4,15 +4,21 @@ import { action } from '@storybook/addon-actions';
 
 import Select from './'
 
-var options = [
-  { value: 'one', label: 'One' },
-  { value: 'two', label: 'Two' },
-  { value: 'tree', label: 'Tree' },
-  { value: 'four', label: 'Four' },
-  { value: 'five', label: 'Five' },
-  { value: 'six', label: 'Six' },
-  { value: 'seven', label: 'Seven' },
-]
+// var options = [
+//   { value: 'one', label: 'One' },
+//   { value: 'two', label: 'Two' },
+//   { value: 'tree', label: 'Tree' },
+//   { value: 'four', label: 'Four' },
+//   { value: 'five', label: 'Five' },
+//   { value: 'six', label: 'Six' },
+//   { value: 'seven', label: 'Seven' },
+// ]
+
+var options = []
+
+for(let i=0; i < 1000; i++) {
+  options.push({ value: 'one', label: `One ${i}` })
+}
 
 var getOptions = function(input, callback) {
   setTimeout(function() {
@@ -62,6 +68,7 @@ storiesOf('Select', module)
     <div style={{display: 'flex', margin: '20px'}}>
       <div style={{width: '300px'}}>
         <Select.ShadowDOM
+          virtualized
           name="form-field-name"
           options={options}
           onOpen={action('onOpen')}
