@@ -64,6 +64,7 @@ class WrapperSelect extends React.PureComponent {
       'input-field-id': uuid.v4()
     }
 
+    this.scrollerRef = null
     this.inputRef = null
     this.searchSizeRef = null
     this.shouldFireClickOutsideHack = null
@@ -74,6 +75,7 @@ class WrapperSelect extends React.PureComponent {
     this.onSelectValueBinded = this.onSelectValue.bind(this)
     this.onSelectFocusedBinded = this.onSelectFocused.bind(this)
     this.onSelectMenuScrollerBinded = this.onSelectMenuScroller.bind(this)
+    this.setRefAtVirtualizedBinded = this.setRefAtVirtualized.bind(this)
   }
 
   updateValues(props) {
@@ -95,6 +97,15 @@ class WrapperSelect extends React.PureComponent {
   }
 
   openOptions() {
+    const { virtualized } = this.props;
+    const { currentMenuScrollTop } = this.state;
+
+    if (this.scrollerRef && virtualized) {
+      window.setTimeout(() => {
+        this.scrollerRef.scrollTop = currentMenuScrollTop
+      }, 1)
+    }
+
     this.setState({
       options: this.getOptions(),
       focusedIndex: 0,
@@ -491,14 +502,20 @@ class WrapperSelect extends React.PureComponent {
     )
   }
 
+  setRefAtVirtualized(node) {
+    if (node) {
+      this.scrollerRef = node
+    }
+  }
+
   renderSelectMenuVirtualizedOptions(selectOptions) {
     const { classes, virtualizedMaxHeight, virtualizedOptionHeight } = this.props;
     const { options } = this.state;
-
     const scrollHeight = options.length * virtualizedOptionHeight
 
     return (
       <SelectMenuVirtualized
+        ref={this.setRefAtVirtualizedBinded}
         role="listbox"
         style={{
           height: `${virtualizedMaxHeight}px`,

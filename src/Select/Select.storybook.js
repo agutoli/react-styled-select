@@ -17,7 +17,7 @@ import Select from './'
 var options = []
 
 for(let i=0; i < 1000; i++) {
-  options.push({ value: 'one', label: `One ${i}` })
+  options.push({ value: `one${i}`, label: `One ${i}` })
 }
 
 var getOptions = function(input, callback) {

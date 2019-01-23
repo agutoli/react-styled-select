@@ -25774,6 +25774,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         'input-field-id': _uuid2.default.v4()
       };
 
+      _this2.scrollerRef = null;
       _this2.inputRef = null;
       _this2.searchSizeRef = null;
       _this2.shouldFireClickOutsideHack = null;
@@ -25784,6 +25785,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       _this2.onSelectValueBinded = _this2.onSelectValue.bind(_this2);
       _this2.onSelectFocusedBinded = _this2.onSelectFocused.bind(_this2);
       _this2.onSelectMenuScrollerBinded = _this2.onSelectMenuScroller.bind(_this2);
+      _this2.setRefAtVirtualizedBinded = _this2.setRefAtVirtualized.bind(_this2);
       return _this2;
     }
 
@@ -25810,6 +25812,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'openOptions',
       value: function openOptions() {
+        var _this3 = this;
+
+        var virtualized = this.props.virtualized;
+        var currentMenuScrollTop = this.state.currentMenuScrollTop;
+
+        if (this.scrollerRef && virtualized) {
+          window.setTimeout(function () {
+            _this3.scrollerRef.scrollTop = currentMenuScrollTop;
+          }, 1);
+        }
+
         this.setState({
           options: this.getOptions(),
           focusedIndex: 0,
@@ -25842,7 +25855,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'onRemoveTag',
       value: function onRemoveTag(props, event) {
-        var _this3 = this;
+        var _this4 = this;
 
         event.stopPropagation();
         var multi = this.props.multi;
@@ -25852,13 +25865,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         this.setState({
           values: new Set(Array.from(this.state.values))
         }, function () {
-          _this3.props.onChange(Array.from(_this3.state.values));
+          _this4.props.onChange(Array.from(_this4.state.values));
         });
       }
     }, {
       key: 'resetField',
       value: function resetField() {
-        var _this4 = this;
+        var _this5 = this;
 
         var multi = this.props.multi;
 
@@ -25875,9 +25888,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           focusedIndex: 0,
           options: this.props.options
         }, function () {
-          _this4.closeOptions();
-          _this4.inputRef.value = '';
-          _this4.props.onInputClear();
+          _this5.closeOptions();
+          _this5.inputRef.value = '';
+          _this5.props.onInputClear();
         });
       }
     }, {
@@ -25890,7 +25903,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'onSelectValue',
       value: function onSelectValue(newValue, event) {
-        var _this5 = this;
+        var _this6 = this;
 
         var multi = this.props.multi;
         var values = this.state.values;
@@ -25904,8 +25917,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             searchTerm: null,
             focusedIndex: 0
           }, function () {
-            _this5.inputRef.value = '';
-            _this5.props.onChange(multi ? Array.from(values) : newValue);
+            _this6.inputRef.value = '';
+            _this6.props.onChange(multi ? Array.from(values) : newValue);
           });
         }
         this.closeOptions();
@@ -25915,13 +25928,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'onSelectFocused',
       value: function onSelectFocused(event) {
-        var _this6 = this;
+        var _this7 = this;
 
         this.shouldFireClickOutsideHack = false;
 
         clearInterval(this.focusedTimeout);
         this.focusedTimeout = setTimeout(function () {
-          _this6.shouldFireClickOutsideHack = true;
+          _this7.shouldFireClickOutsideHack = true;
         }, 200);
 
         this.setState({
@@ -25948,7 +25961,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'onSearching',
       value: function onSearching(event) {
-        var _this7 = this;
+        var _this8 = this;
 
         var _props = this.props,
             onInputChange = _props.onInputChange,
@@ -25962,11 +25975,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         this.props.onKeyDown(event);
 
         var typing = function typing() {
-          var term = _this7.inputRef.value.toLowerCase().trim();
+          var term = _this8.inputRef.value.toLowerCase().trim();
 
           onTyping(term);
 
-          var filteredOptions = _this7.getOptions().filter(function (opt) {
+          var filteredOptions = _this8.getOptions().filter(function (opt) {
             if (typeof opt.label !== 'string') {
               return true;
             }
@@ -25975,8 +25988,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             return label.indexOf(term) !== -1;
           });
 
-          _this7.setState({
-            searchTerm: _this7.inputRef.value,
+          _this8.setState({
+            searchTerm: _this8.inputRef.value,
             searchWidth: searchWidth,
             options: filteredOptions,
             isOpened: true,
@@ -25984,13 +25997,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           });
 
           var searchWidth = SEARCH_INPUT_MIN_SIZE;
-          if (_this7.searchSizeRef) {
-            var width = _this7.searchSizeRef.getBoundingClientRect().width;
+          if (_this8.searchSizeRef) {
+            var width = _this8.searchSizeRef.getBoundingClientRect().width;
             searchWidth = width > SEARCH_INPUT_MIN_SIZE ? width : SEARCH_INPUT_MIN_SIZE;
           }
 
           setTimeout(function () {
-            _this7.setState({ searchWidth: searchWidth });
+            _this8.setState({ searchWidth: searchWidth });
           });
         };
 
@@ -26038,7 +26051,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'renderSelectMultiValueWrapper',
       value: function renderSelectMultiValueWrapper() {
-        var _this8 = this;
+        var _this9 = this;
 
         var _props2 = this.props,
             multi = _props2.multi,
@@ -26066,12 +26079,12 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
 
           content = Array.from(_values).map(function (value, key) {
-            return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this8.onRemoveTagBinded, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: (_this8.optionsMap[value] || {}).label }, classes.selectValueLabel));
+            return _react2.default.createElement(SelectValueComp, { value: value, onRemoveTag: _this9.onRemoveTagBinded, key: key, className: classes.selectValue, 'data-select-value': true, 'data-multi-value': multi }, valueRenderer({ multi: multi, value: value, label: (_this9.optionsMap[value] || {}).label }, classes.selectValueLabel));
           });
 
           if (!multi && content.length > 1) {
             setTimeout(function () {
-              _this8.resetField();
+              _this9.resetField();
             }, 10);
           }
         }
@@ -26087,9 +26100,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             htmlFor: this.state['input-field-id'],
             ref: function ref(node) {
               if (node) {
-                _this8.inputRef = node;
+                _this9.inputRef = node;
                 if (!node.focus) {
-                  _this8.inputRef = _reactDom2.default.findDOMNode(node);
+                  _this9.inputRef = _reactDom2.default.findDOMNode(node);
                 }
               }
             },
@@ -26119,9 +26132,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           onChange: this.props.onInputChange,
           ref: function ref(node) {
             if (node) {
-              _this8.inputRef = node;
+              _this9.inputRef = node;
               if (!node.focus) {
-                _this8.inputRef = _reactDom2.default.findDOMNode(node);
+                _this9.inputRef = _reactDom2.default.findDOMNode(node);
               }
             }
           },
@@ -26131,10 +26144,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           role: 'combobox', type: 'text' })), _react2.default.createElement(_SelectInputFieldSize2.default, {
           'data-select-input-size': true,
           ref: function ref(node) {
-            _this8.searchSizeRef = node;
+            _this9.searchSizeRef = node;
             if (node) {
               if (!node.focus) {
-                _this8.searchSizeRef = _reactDom2.default.findDOMNode(node);
+                _this9.searchSizeRef = _reactDom2.default.findDOMNode(node);
               }
             }
           } }, searchTerm));
@@ -26149,7 +26162,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'renderSelectMenuOuter',
       value: function renderSelectMenuOuter() {
-        var _this9 = this;
+        var _this10 = this;
 
         var _props3 = this.props,
             classes = _props3.classes,
@@ -26188,20 +26201,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
               'data-key': i,
               isSelected: isSelected,
               virtualized: virtualized,
-              id: _this9.state['aria-owns'],
+              id: _this10.state['aria-owns'],
               virtualizedOptionHeight: virtualizedOptionHeight,
               className: classes.selectOption,
               isFocused: focusedIndex == i,
               tabIndex: values.has(opt.value) ? '0' : '-1',
               onMouseOver: function onMouseOver(e) {
                 var dataKey = e.target.getAttribute('data-key');
-                _this9.setState({ focusedIndex: dataKey });
+                _this10.setState({ focusedIndex: dataKey });
               },
               onMouseOut: function onMouseOut(e) {
-                _this9.setState({ focusedIndex: null });
+                _this10.setState({ focusedIndex: null });
               },
               onMouseDown: function onMouseDown(e) {
-                return _this9.onSelectValueBinded(opt.value, e);
+                return _this10.onSelectValueBinded(opt.value, e);
               }
             }, opt), i);
           });
@@ -26221,6 +26234,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           className: classes.selectMenu, 'data-select-menu': true }, selectOptions);
       }
     }, {
+      key: 'setRefAtVirtualized',
+      value: function setRefAtVirtualized(node) {
+        if (node) {
+          this.scrollerRef = node;
+        }
+      }
+    }, {
       key: 'renderSelectMenuVirtualizedOptions',
       value: function renderSelectMenuVirtualizedOptions(selectOptions) {
         var _props4 = this.props,
@@ -26232,6 +26252,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var scrollHeight = options.length * virtualizedOptionHeight;
 
         return _react2.default.createElement(_SelectMenuVirtualized2.default, {
+          ref: this.setRefAtVirtualizedBinded,
           role: 'listbox',
           style: {
             height: virtualizedMaxHeight + 'px',
@@ -26279,7 +26300,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }, {
       key: 'render',
       value: function render() {
-        var _this10 = this;
+        var _this11 = this;
 
         var _props6 = this.props,
             name = _props6.name,
@@ -26296,9 +26317,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         var values = Array.from(this.state.values);
 
         var setRef = function setRef(node) {
-          _this10.selectNode = node;
+          _this11.selectNode = node;
           if (node && !node.focus) {
-            _this10.selectNode = _reactDom2.default.findDOMNode(node);
+            _this11.selectNode = _reactDom2.default.findDOMNode(node);
           }
         };
 
