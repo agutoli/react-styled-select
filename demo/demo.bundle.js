@@ -26003,7 +26003,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
           }
 
           setTimeout(function () {
-            _this8.setState({ searchWidth: searchWidth });
+            _this8.setState({ searchWidth: searchWidth, currentMenuScrollTop: 0 });
           });
         };
 

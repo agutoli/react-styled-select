@@ -261,7 +261,7 @@ class WrapperSelect extends React.PureComponent {
       }
 
       setTimeout(() => {
-        this.setState({ searchWidth })
+        this.setState({ searchWidth, currentMenuScrollTop: 0 })
       })
     }
 
