@@ -62,7 +62,7 @@ This project was built with [styled-components](https://github.com/styled-compon
 |`disabled` | bool | `false` | disables every events over the component
 |`multi` | bool | `false` | multi values support
 |`virtualized`| bool | `false` | (`NEW`) efficiently rendering large lists options
-|`virtualizedMaxHeight`| number | `maxHeight` | (`NEW`) height of option menu
+|`virtualizedMaxHeight`| number | `198` | (`NEW`) height of option menu
 |`virtualizedOptionHeight`| number | `38` | (`NEW`) Height of each options
 |`searchable`| bool | `true` | whether to enable searching feature or not
 |`placeholder`| string | `Select...` | The short hint is displayed in the input field before the user enters a value
