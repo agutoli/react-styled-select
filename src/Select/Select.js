@@ -82,13 +82,14 @@ class WrapperSelect extends React.PureComponent {
     this.indexValues(props)
 
     let values = [];
-    if (props.value && this.optionsMap.hasOwnProperty(props.value)) {
+    if ((props.value && !Array.isArray(props.value)) && this.optionsMap.hasOwnProperty(props.value)) {
       values.push(props.value)
     }
 
     if (Array.isArray(props.value)) {
       values = values.concat(props.value)
     }
+
     return new Set(values)
   }
 
