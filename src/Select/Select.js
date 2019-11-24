@@ -359,6 +359,7 @@ class WrapperSelect extends React.PureComponent {
           onFocus={this.onSelectFocusedBinded}
           onKeyDown={this.onSearchingBinded}
           onKeyUp={this.props.onKeyUp}
+          onBlur={this.props.onBlur}
           onKeyPress={this.props.onKeyPress}
           tabIndex={this.props.tabIndex}
           data-select-multi-value-wrapper={multi}>
@@ -606,6 +607,7 @@ class WrapperSelect extends React.PureComponent {
 }
 
 WrapperSelect.propTypes = {
+  onBlur: PropTypes.func,
   value: PropTypes.any,
   options: PropTypes.array,
   onClose: PropTypes.func,
@@ -633,6 +635,7 @@ WrapperSelect.propTypes = {
 }
 
 WrapperSelect.defaultProps = {
+  onBlur: () => {},
   onClose: () => {},
   onOpen: () => {},
   onChange: () => {},
