@@ -559,7 +559,7 @@ class WrapperSelect extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       options: nextProps.options,
       values: this.updateValues(nextProps)
