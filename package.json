@@ -70,7 +70,7 @@
     "css-loader": "^3.4.2",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
-    "eslint": "^3.19.0",
+    "eslint": "^6.7.0",
     "jest": "^25.1.0",
     "jest-enzyme": "^7.0.1",
     "jsdom": "^11.6.2",
