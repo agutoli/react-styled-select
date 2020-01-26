@@ -10,7 +10,7 @@ import 'brace/mode/css';
 import 'brace/theme/github';
 
 import Select from '../lib'
-import SelectShadow from '../lib/Select/ShadowDOM'
+import SelectShadow from '../lib/Select'
 
 const options = [
   { value: 'one', label: 'One' },
