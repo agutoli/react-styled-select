@@ -1,4 +1,4 @@
-= DEPRECATED =
+# DEPRECATED
 
 Please consider using https://react-select.com/home 
 
