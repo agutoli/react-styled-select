@@ -204,14 +204,19 @@ class WrapperSelect extends React.PureComponent {
 
     clearInterval(this.focusedTimeout)
     this.focusedTimeout = setTimeout(() => {
-      this.shouldFireClickOutsideHack = true
+      this.shouldFireClickOutsideHack = true;
+      if (_this7.state.isOpened) {
+          _this7.closeOptions();
+      }
+      else {
+          _this7.openOptions();
+      }
     }, 200)
 
     this.setState({
       isFocused: true
     })
 
-    this.openOptions()
     this.setFocus()
   }
 
